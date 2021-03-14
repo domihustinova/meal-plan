@@ -7,10 +7,11 @@ import {
   activityOptions,
   validationSchema,
 } from "./services/helpers";
-import { StyledTdeeFormButton } from "./styles/TdeeForm";
 import TdeeFormInputField from "./TdeeFormComponents/TdeeFormInputField";
 import TdeeFormSelect from "./TdeeFormComponents/TdeeFormSelect";
 import TdeeFormRadioGroup from "./TdeeFormComponents/TdeeFormRadioGroup";
+
+import Button from "../../common/Button";
 
 const TdeeForm = ({ onFormSubmit }) => {
   return (
@@ -26,17 +27,42 @@ const TdeeForm = ({ onFormSubmit }) => {
       validationSchema={validationSchema}
       onSubmit={async (values, { resetForm }) => {
         onFormSubmit(values);
-        resetForm();
+        // console.log(values);
+        // resetForm();
       }}
     >
       {() => (
         <Form>
           <Stack spacing="large">
-            <TdeeFormRadioGroup name="gender" options={genderOptions} />
+            {/* <TdeeFormRadioGroup name="gender" options={genderOptions} /> */}
             <Stack spacing="medium" direction="row">
-              <TdeeFormInputField name="age" placeholder="Age" />
-              <TdeeFormInputField name="weight" placeholder="Weight (kg)" />
-              <TdeeFormInputField name="height" placeholder="Height (cm)" />
+              <TdeeFormSelect
+                label="Gender"
+                name="gender"
+                placeholder="Gender"
+                options={genderOptions}
+              />
+              <TdeeFormInputField
+                id="age"
+                name="age"
+                type="number"
+                label="Age"
+                placeholder="Age"
+              />
+              <TdeeFormInputField
+                id="weight"
+                name="weight"
+                type="number"
+                label="Weight"
+                placeholder="Weight (kg)"
+              />
+              <TdeeFormInputField
+                id="height"
+                name="height"
+                type="number"
+                label="Height"
+                placeholder="Height (cm)"
+              />
             </Stack>
             <Stack spacing="medium" direction="row">
               <TdeeFormSelect
@@ -44,12 +70,17 @@ const TdeeForm = ({ onFormSubmit }) => {
                 placeholder="Activity"
                 options={activityOptions}
               />
-              <TdeeFormInputField name="bodyFat" placeholder="Body Fat (%)" />
+
+              <TdeeFormInputField
+                id="bodyFat"
+                name="bodyFat"
+                type="number"
+                label="Body Fat"
+                placeholder="Body Fat (%)"
+              />
             </Stack>
             <Stack justify="end">
-              <StyledTdeeFormButton type="submit">
-                Calculate
-              </StyledTdeeFormButton>
+              <Button type="submit">Calculate</Button>
             </Stack>
           </Stack>
         </Form>

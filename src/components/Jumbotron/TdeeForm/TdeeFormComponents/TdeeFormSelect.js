@@ -2,10 +2,11 @@ import React from "react";
 import { useField } from "formik";
 import { Select } from "@kiwicom/orbit-components";
 
-const TdeeFormSelect = ({ name, options, placeholder }) => {
+const TdeeFormSelect = ({ name, label, options, placeholder }) => {
   const [field, meta] = useField(name);
   return (
     <Select
+      label={label}
       name={name}
       value={field.value}
       options={options}
