@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import styled from "styled-components";
+import styled from "styled-components/macro";
 import Button from "../../common/Button";
+import GoalsCard from "./GoalsCard";
 
 const GOALS = [
   { title: "Maintenance", value: "maintenance" },
@@ -12,36 +13,49 @@ const StyledResultsCardWrapper = styled.div``;
 
 const StyledButtonGroup = styled.div`
   display: flex;
+`;
 
-  Button {
-    border-radius: 0;
-    margin: 0 2px 0 0;
-    :first-child {
-      border-radius: 4px 0 0 4px;
-    }
-    :last-child {
-      border-radius: 0 4px 4px 0;
-    }
+const StyledButton = styled(Button)`
+  border-radius: 0;
+  margin: 0 2px 0 0;
+  border: 1px solid #64c879;
+  color: ${({ isSelected }) => (isSelected ? "#fff" : "#64c879")};
+  background: ${({ isSelected }) => (isSelected ? "#64c879" : "#fff")};
+  :first-child {
+    border-radius: 4px 0 0 4px;
+  }
+  :last-child {
+    border-radius: 0 4px 4px 0;
   }
 `;
 
-const ResultsCard = () => {
-  const [selectedGoal, setSelectedGoal] = useState(GOALS[0]);
+const ResultsCard = ({ caloriesData }) => {
+  const [selectedGoal, setSelectedGoal] = useState(GOALS[0].value);
 
   const handleSettingGoal = (goal) => {
     setSelectedGoal(goal);
-    console.log(selectedGoal);
   };
+
+  const goalSelectionData = caloriesData.find(
+    (obj) => obj.goal === selectedGoal
+  );
+
+  console.log(goalSelectionData);
 
   return (
     <StyledResultsCardWrapper>
       <StyledButtonGroup>
         {GOALS.map((goal) => (
-          <Button key={goal.value} onClick={() => handleSettingGoal(goal)}>
+          <StyledButton
+            key={goal.value}
+            isSelected={goal.value === selectedGoal}
+            onClick={() => handleSettingGoal(goal.value)}
+          >
             {goal.title}
-          </Button>
+          </StyledButton>
         ))}
       </StyledButtonGroup>
+      <GoalsCard goalSelectionData={goalSelectionData} />
     </StyledResultsCardWrapper>
   );
 };

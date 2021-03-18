@@ -11,6 +11,7 @@ export const StyledButton = styled.button`
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  box-shadow: 0px 2px 7px rgba(0, 0, 0, 0.1);
   transition: all 300ms ease-in-out;
 
   &:hover {
@@ -24,8 +25,8 @@ export const StyledButton = styled.button`
   }
 `;
 
-const Button = ({ type, onClick, children }) => (
-  <StyledButton type={type} onClick={onClick}>
+const Button = ({ type, onClick, children, ...restProps }) => (
+  <StyledButton type={type} onClick={onClick} {...restProps}>
     {children}
   </StyledButton>
 );

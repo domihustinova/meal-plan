@@ -1,6 +1,6 @@
 import React from "react";
 import { useField } from "formik";
-import InputField from "../../../common/InputField";
+import InputField from "../../common/InputField";
 
 const TdeeFormInputField = ({ id, name, type, label, placeholder }) => {
   const [field, meta] = useField(name);

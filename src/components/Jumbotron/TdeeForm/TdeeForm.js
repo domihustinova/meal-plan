@@ -11,7 +11,7 @@ import TdeeFormInputField from "./TdeeFormComponents/TdeeFormInputField";
 import TdeeFormSelect from "./TdeeFormComponents/TdeeFormSelect";
 import TdeeFormRadioGroup from "./TdeeFormComponents/TdeeFormRadioGroup";
 
-import Button from "../../common/Button";
+import Button from "../common/Button";
 
 const TdeeForm = ({ onFormSubmit }) => {
   return (
@@ -22,13 +22,10 @@ const TdeeForm = ({ onFormSubmit }) => {
         weight: "",
         height: "",
         activity: "",
-        bodyFat: "",
       }}
       validationSchema={validationSchema}
-      onSubmit={async (values, { resetForm }) => {
+      onSubmit={(values) => {
         onFormSubmit(values);
-        // console.log(values);
-        // resetForm();
       }}
     >
       {() => (
@@ -49,6 +46,8 @@ const TdeeForm = ({ onFormSubmit }) => {
                 label="Age"
                 placeholder="Age"
               />
+            </Stack>
+            <Stack spacing="medium" direction="row">
               <TdeeFormInputField
                 id="weight"
                 name="weight"
@@ -63,20 +62,10 @@ const TdeeForm = ({ onFormSubmit }) => {
                 label="Height"
                 placeholder="Height (cm)"
               />
-            </Stack>
-            <Stack spacing="medium" direction="row">
               <TdeeFormSelect
                 name="activity"
                 placeholder="Activity"
                 options={activityOptions}
-              />
-
-              <TdeeFormInputField
-                id="bodyFat"
-                name="bodyFat"
-                type="number"
-                label="Body Fat"
-                placeholder="Body Fat (%)"
               />
             </Stack>
             <Stack justify="end">

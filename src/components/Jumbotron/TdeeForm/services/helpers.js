@@ -39,8 +39,4 @@ export const validationSchema = Yup.object({
       "Invalid Job Type"
     )
     .required("Required activity"),
-  bodyFat: Yup.number()
-    .positive("Must be more than 0 %")
-    .max(99, "Must be 99 % or less")
-    .notRequired(),
 });
