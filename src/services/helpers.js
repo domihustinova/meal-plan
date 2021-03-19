@@ -1,25 +1,4 @@
-const GOALS = ["maintenance", "cutting", "bulking"];
-
-const MACRO_RATIOS = [
-  {
-    name: "Low Carb",
-    protein: 40,
-    carb: 20,
-    fat: 40,
-  },
-  {
-    name: "Moderate Carb",
-    protein: 30,
-    carb: 35,
-    fat: 35,
-  },
-  {
-    name: "High Carb",
-    protein: 30,
-    carb: 50,
-    fat: 20,
-  },
-];
+import { GOALS, MACRO_RATIOS, ACTIVITY_MULTIPLIERS } from "./consts";
 
 const getBmr = (gender, age, weight, height) => {
   const weightFactor = 10;
@@ -45,30 +24,34 @@ const getTdeeForGoal = (goal, tdee) => {
 };
 
 const getFinalTdee = (activity, bmr) => {
-  const activityMultipliers = {
-    sedentary: 1.2,
-    light: 1.375,
-    moderate: 1.55,
-    heavy: 1.725,
-    extreme: 1.9,
-  };
-
-  let tdee = Math.round(bmr * activityMultipliers[activity]);
+  let tdee = Math.round(bmr * ACTIVITY_MULTIPLIERS[activity]);
 
   return GOALS.map((goal) => ({
-    goal,
-    tdee: getTdeeForGoal(goal, tdee),
+    goal: goal.value,
+    tdee: getTdeeForGoal(goal.value, tdee),
   }));
 };
 
 const getMacros = (tdee) => {
   return MACRO_RATIOS.map((ratio) => ({
     ratioName: ratio.name,
-    macros: {
-      protein: Math.floor((tdee * ratio.protein) / 100 / 4),
-      carb: Math.floor((tdee * ratio.carb) / 100 / 4),
-      fat: Math.floor((tdee * ratio.fat) / 100 / 9),
-    },
+    macros: [
+      {
+        name: "Proteins",
+        key: "proteins",
+        amount: Math.floor((tdee * ratio.protein) / 100 / 4),
+      },
+      {
+        name: "Carbohydrates",
+        key: "carbs",
+        amount: Math.floor((tdee * ratio.carb) / 100 / 4),
+      },
+      {
+        name: "Fats",
+        key: "fats",
+        amount: Math.floor((tdee * ratio.fat) / 100 / 9),
+      },
+    ],
     maxMacro: Math.max(
       Math.floor((tdee * ratio.protein) / 100 / 4),
       Math.floor((tdee * ratio.carb) / 100 / 4),
@@ -77,14 +60,7 @@ const getMacros = (tdee) => {
   }));
 };
 
-export const getCalories = ({
-  gender,
-  age,
-  weight,
-  height,
-  activity,
-  bodyfat,
-}) => {
+export const getCalories = ({ gender, age, weight, height, activity }) => {
   const bmr = getBmr(gender, age, weight, height);
   const TDEE = getFinalTdee(activity, bmr);
 

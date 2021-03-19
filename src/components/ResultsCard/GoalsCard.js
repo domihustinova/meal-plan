@@ -1,3 +1,5 @@
+// refactored
+
 import React from "react";
 import styled from "styled-components";
 
@@ -68,13 +70,25 @@ const StyledContainer = styled.div`
     transition-property: width, background-color;
   }
 
-  .progress-moved .progress-bar-proteins {
+  .progress-bar-proteins {
     width: ${({ width }) => width};
     background: linear-gradient(to right, #5289f7, #6ae7d5);
     /* animation: progressAnimationProteins 6s; */
   }
 
-  @keyframes progressAnimationProteins {
+  .progress-bar-carbs {
+    width: ${({ width }) => width};
+    background: linear-gradient(to right, #ef476f, #f9bcca);
+    /* animation: progressAnimationCarbs 6s; */
+  }
+
+  .progress-bar-fats {
+    width: ${({ width }) => width};
+    background: linear-gradient(to right, #9d79db, #e98dbd);
+    /* animation: progressAnimationFats 6s; */
+  }
+
+  /* @keyframes progressAnimationProteins {
     0% {
       width: 5%;
       background-color: #5289f7;
@@ -83,15 +97,9 @@ const StyledContainer = styled.div`
       width: 85%;
       background-color: #6ae7d5;
     }
-  }
+  } */
 
-  .progress-moved .progress-bar-carbs {
-    width: ${({ width }) => width};
-    background: linear-gradient(to right, #ef476f, #f9bcca);
-    /* animation: progressAnimationCarbs 6s; */
-  }
-
-  @keyframes progressAnimationCarbs {
+  /* @keyframes progressAnimationCarbs {
     0% {
       width: 5%;
       background-color: #ef476f;
@@ -100,15 +108,9 @@ const StyledContainer = styled.div`
       width: 85%;
       background-color: #f9bcca;
     }
-  }
+  } */
 
-  .progress-moved .progress-bar-fats {
-    width: ${({ width }) => width};
-    background: linear-gradient(to right, #9d79db, #e98dbd);
-    /* animation: progressAnimationFats 6s; */
-  }
-
-  @keyframes progressAnimationFats {
+  /* @keyframes progressAnimationFats {
     0% {
       width: 5%;
       background-color: #9d79db;
@@ -117,7 +119,7 @@ const StyledContainer = styled.div`
       width: 85%;
       background-color: #e98dbd;
     }
-  }
+  } */
 `;
 
 const GoalsCard = ({ goalSelectionData }) => {
@@ -134,36 +136,18 @@ const GoalsCard = ({ goalSelectionData }) => {
           <StyledGoalsCard>
             <h3>{ratio.ratioName}</h3>
             <ul>
-              <li>
-                Carbohydrates - {ratio.macros.carb}g
-                <StyledContainer
-                  width={`${(ratio.macros.carb / maxMacroValue) * 100}%`}
-                >
-                  <div className="progress2 progress-moved">
-                    <div className="progress-bar-carbs"></div>
-                  </div>
-                </StyledContainer>
-              </li>
-              <li>
-                Proteins - {ratio.macros.protein}g
-                <StyledContainer
-                  width={`${(ratio.macros.protein / maxMacroValue) * 100}%`}
-                >
-                  <div className="progress2 progress-moved">
-                    <div className="progress-bar-proteins"></div>
-                  </div>
-                </StyledContainer>
-              </li>
-              <li>
-                Fats - {ratio.macros.fat}g
-                <StyledContainer
-                  width={`${(ratio.macros.fat / maxMacroValue) * 100}%`}
-                >
-                  <div className="progress2 progress-moved">
-                    <div className="progress-bar-fats"></div>
-                  </div>
-                </StyledContainer>
-              </li>
+              {ratio.macros.map((macro) => (
+                <li>
+                  {macro.name} - {macro.amount}g
+                  <StyledContainer
+                    width={`${(macro.amount / maxMacroValue) * 100}%`}
+                  >
+                    <div className="progress2">
+                      <div className={`progress-bar-${macro.key}`}></div>
+                    </div>
+                  </StyledContainer>
+                </li>
+              ))}
             </ul>
           </StyledGoalsCard>
         ))}

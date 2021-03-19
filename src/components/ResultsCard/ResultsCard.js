@@ -1,18 +1,16 @@
+// refactored
+
 import React, { useState } from "react";
 import styled from "styled-components/macro";
-import Button from "../../common/Button";
+import Button from "../common/Button";
 import GoalsCard from "./GoalsCard";
 
-const GOALS = [
-  { title: "Maintenance", value: "maintenance" },
-  { title: "Cutting", value: "cutting" },
-  { title: "Bulking", value: "bulking" },
-];
+import { GOALS } from "../../services/consts";
 
 const StyledResultsCardWrapper = styled.div``;
 
 const StyledButtonGroup = styled.div`
-  display: flex;
+  /* display: flex; */
 `;
 
 const StyledButton = styled(Button)`
@@ -40,14 +38,12 @@ const ResultsCard = ({ caloriesData }) => {
     (obj) => obj.goal === selectedGoal
   );
 
-  console.log(goalSelectionData);
-
   return (
     <StyledResultsCardWrapper>
       <StyledButtonGroup>
         {GOALS.map((goal) => (
           <StyledButton
-            key={goal.value}
+            // key={goal.value}
             isSelected={goal.value === selectedGoal}
             onClick={() => handleSettingGoal(goal.value)}
           >

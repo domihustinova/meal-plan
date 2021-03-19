@@ -1,5 +1,11 @@
-import Jumbotron from "./components/Jumbotron/Jumbotron";
+import Jumbo from "./components/Jumbo/Jumbo";
+import { Home } from "./pages/Home";
 
-const App = () => <Jumbotron />;
+const App = () => (
+  <div>
+    <Jumbo />
+    <Home />
+  </div>
+);
 
 export default App;

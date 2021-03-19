@@ -1,81 +1,105 @@
 import React from "react";
-import { Formik, Form } from "formik";
-import { Stack } from "@kiwicom/orbit-components";
-
+import { useField } from "formik";
 import {
-  genderOptions,
-  activityOptions,
-  validationSchema,
-} from "./services/helpers";
-import TdeeFormInputField from "./TdeeFormComponents/TdeeFormInputField";
-import TdeeFormSelect from "./TdeeFormComponents/TdeeFormSelect";
-import TdeeFormRadioGroup from "./TdeeFormComponents/TdeeFormRadioGroup";
+  Container,
+  Error,
+  Input,
+  InputContainer,
+  Select,
+  SelectContainer,
+  Label,
+  Submit,
+} from "./styles/TdeeForm";
 
-import Button from "../common/Button";
+export default function TdeeForm({ children, ...restProps }) {
+  return <Container {...restProps}>{children}</Container>;
+}
 
-const TdeeForm = ({ onFormSubmit }) => {
+TdeeForm.InputContainer = function TdeeFormInputContainer({
+  id,
+  name,
+  type,
+  label,
+  placeholder,
+  children,
+  error,
+  ...restProps
+}) {
+  const [field, meta] = useField(name);
   return (
-    <Formik
-      initialValues={{
-        gender: "",
-        age: "",
-        weight: "",
-        height: "",
-        activity: "",
-      }}
-      validationSchema={validationSchema}
-      onSubmit={(values) => {
-        onFormSubmit(values);
-      }}
-    >
-      {() => (
-        <Form>
-          <Stack spacing="large">
-            {/* <TdeeFormRadioGroup name="gender" options={genderOptions} /> */}
-            <Stack spacing="medium" direction="row">
-              <TdeeFormSelect
-                label="Gender"
-                name="gender"
-                placeholder="Gender"
-                options={genderOptions}
-              />
-              <TdeeFormInputField
-                id="age"
-                name="age"
-                type="number"
-                label="Age"
-                placeholder="Age"
-              />
-            </Stack>
-            <Stack spacing="medium" direction="row">
-              <TdeeFormInputField
-                id="weight"
-                name="weight"
-                type="number"
-                label="Weight"
-                placeholder="Weight (kg)"
-              />
-              <TdeeFormInputField
-                id="height"
-                name="height"
-                type="number"
-                label="Height"
-                placeholder="Height (cm)"
-              />
-              <TdeeFormSelect
-                name="activity"
-                placeholder="Activity"
-                options={activityOptions}
-              />
-            </Stack>
-            <Stack justify="end">
-              <Button type="submit">Calculate</Button>
-            </Stack>
-          </Stack>
-        </Form>
-      )}
-    </Formik>
+    <InputContainer htmlFor={id}>
+      <Label>{label}</Label>
+      <Input
+        id={id}
+        name={name}
+        type={type}
+        label={label}
+        value={field.value}
+        placeholder={placeholder}
+        onChange={field.onChange}
+        onBlur={(ev) => field.onBlur(ev)}
+        error={meta.error && meta.touched ? meta.error : null}
+        {...restProps}
+      />
+      <Error>{meta.error}</Error>
+      {children}
+    </InputContainer>
   );
 };
 
-export default TdeeForm;
+TdeeForm.SelectContainer = function TdeeFormSelectContainer({
+  name,
+  label,
+  value,
+  options,
+  placeholder,
+  children,
+  ...restProps
+}) {
+  const [field, meta] = useField(name);
+  return (
+    <SelectContainer>
+      <Label>{label}</Label>
+      <Select
+        label={label}
+        name={name}
+        value={field.value}
+        options={options}
+        placeholder={placeholder}
+        onChange={field.onChange}
+        onBlur={(ev) => field.onBlur(ev)}
+        error={meta.error && meta.touched ? meta.error : null}
+      >
+        {placeholder && (
+          <option label={placeholder} value="">
+            {placeholder}
+          </option>
+        )}
+        {options.map((option) => (
+          <option
+            key={`option-${option.key || option.value}`}
+            value={option.value}
+            disabled={option.disabled}
+          >
+            {option.label}
+          </option>
+        ))}
+      </Select>
+      <Error>{meta.error}</Error>
+      {children}
+    </SelectContainer>
+  );
+};
+
+TdeeForm.Submit = function TdeeFormSubmit({
+  type,
+  onClick,
+  children,
+  ...restProps
+}) {
+  return (
+    <Submit type={type} onClick={onClick} {...restProps}>
+      {children}
+    </Submit>
+  );
+};
