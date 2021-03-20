@@ -66,6 +66,8 @@ const getMacros = (tdee) => {
 
 export const getCalories = ({ gender, age, weight, height, activity }) => {
   const bmr = getBmr(gender, age, weight, height);
+  const tdee = Math.round(bmr * ACTIVITY_MULTIPLIERS[activity]);
+  const maintenanceTdee = getTdeeForGoal("maintenance", tdee);
   const TDEE = getFinalTdee(activity, bmr);
 
   const final = TDEE.map((tdee) => ({
@@ -73,5 +75,8 @@ export const getCalories = ({ gender, age, weight, height, activity }) => {
     ratios: getMacros(tdee.tdee),
   }));
 
-  return final;
+  return {
+    maintenanceTdee,
+    final,
+  };
 };

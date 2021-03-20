@@ -9,7 +9,7 @@ export function ResultsContainer({ caloriesData }) {
     setSelectedGoal(goal);
   };
 
-  const goalSelectionData = caloriesData.find(
+  const goalSelectionData = caloriesData.final.find(
     (obj) => obj.goal === selectedGoal
   );
 
@@ -19,26 +19,31 @@ export function ResultsContainer({ caloriesData }) {
 
   return (
     <Results>
-      <Results.Title>Macronutrients</Results.Title>
-      <Results.ButtonGroup>
-        {GOALS.map((goal) => (
-          <Results.Button
-            isSelected={goal.value === selectedGoal}
-            onClick={() => handleSettingGoal(goal.value)}
-          >
-            {goal.title}
-          </Results.Button>
-        ))}
-      </Results.ButtonGroup>
+      <Results.Title>Recommended Macronutrients</Results.Title>
       <Results.Description>
-        These macronutrient values reflect your {goalSelectionData.goal}{" "}
-        calories of {goalSelectionData.tdee} calories per day.
+        Based on your stats, the best estimate for your maintenance calories is{" "}
+        {caloriesData.maintenanceTdee} calories per day. The macronutrient
+        values below reflect your {goalSelectionData.goal} calories of{" "}
+        {goalSelectionData.tdee} calories per day.
       </Results.Description>
-      <Results.CardGroup>
-        {goalSelectionData.ratios.map((ratio) => (
-          <Results.Card ratioData={ratio} maxMacroValue={maxMacroValue} />
-        ))}
-      </Results.CardGroup>
+      <Results.Content>
+        <Results.ButtonGroup>
+          {GOALS.map((goal) => (
+            <Results.Button
+              isSelected={goal.value === selectedGoal}
+              onClick={() => handleSettingGoal(goal.value)}
+            >
+              {goal.title}
+            </Results.Button>
+          ))}
+        </Results.ButtonGroup>
+
+        <Results.CardGroup>
+          {goalSelectionData.ratios.map((ratio) => (
+            <Results.Card ratioData={ratio} maxMacroValue={maxMacroValue} />
+          ))}
+        </Results.CardGroup>
+      </Results.Content>
     </Results>
   );
 }

@@ -1,10 +1,12 @@
 import React from "react";
 
 import {
+  Container,
+  Title,
+  Description,
+  Content,
   Button,
   ButtonGroup,
-  Container,
-  Description,
   Card,
   CardGroup,
   CardTitle,
@@ -13,7 +15,6 @@ import {
   ProgressBar,
   ProgressBarMoved,
   ProgressBarBackground,
-  Title,
 } from "./styles/Results";
 
 export default function Results({ children, ...restProps }) {
@@ -24,16 +25,20 @@ Results.Title = function ResultsTitle({ children, ...restProps }) {
   return <Title {...restProps}>{children}</Title>;
 };
 
+Results.Description = function ResultsDescription({ children, ...restProps }) {
+  return <Description {...restProps}>{children}</Description>;
+};
+
+Results.Content = function ResultsContent({ children, ...restProps }) {
+  return <Content {...restProps}>{children}</Content>;
+};
+
 Results.ButtonGroup = function ResultsButtonGroup({ children, ...restProps }) {
   return <ButtonGroup {...restProps}>{children}</ButtonGroup>;
 };
 
 Results.Button = function ResultsButton({ children, ...restProps }) {
   return <Button {...restProps}>{children}</Button>;
-};
-
-Results.Description = function ResultsDescription({ children, ...restProps }) {
-  return <Description {...restProps}>{children}</Description>;
 };
 
 Results.CardGroup = function ResultsCardGroup({ children, ...restProps }) {
