@@ -20,8 +20,7 @@ export const GlobalStyle = createGlobalStyle`
     font-family: 'Poppins', sans-serif;
     font-size: 16px;
     font-weight: 400;
-    color: #333333;
-    background-color: rgb(238, 244, 244);
+    background-color: #fff;
     line-height: 1.3;
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;

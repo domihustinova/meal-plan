@@ -2,9 +2,10 @@ import React from "react";
 import { useField } from "formik";
 import {
   Container,
-  Row,
   Title,
   Text,
+  Content,
+  Row,
   Error,
   Input,
   InputContainer,
@@ -24,6 +25,10 @@ TdeeForm.Title = function TdeeFormTitle({ children, ...restProps }) {
 
 TdeeForm.Text = function TdeeFormText({ children, ...restProps }) {
   return <Text {...restProps}>{children}</Text>;
+};
+
+TdeeForm.Content = function TdeeFormContent({ children, ...restProps }) {
+  return <Content {...restProps}>{children}</Content>;
 };
 
 TdeeForm.Row = function TdeeFormRow({
@@ -56,12 +61,13 @@ TdeeForm.InputButtonContainer = function TdeeFormInputButtonContainer({
         {options.map((option) => (
           <div>
             <input
+              key={option.value}
               id={option.value}
               name={name}
               type="radio"
               value={option.value}
+              checked={option.value === field.value}
               onChange={field.onChange}
-              onBlur={(ev) => field.onBlur(ev)}
               error={meta.error && meta.touched ? meta.error : null}
               {...restProps}
             />

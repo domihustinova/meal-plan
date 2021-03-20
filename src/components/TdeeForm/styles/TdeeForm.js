@@ -1,16 +1,10 @@
 import styled from "styled-components/macro";
 
 export const Container = styled.div`
-  max-width: 750px;
+  max-width: 800px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  padding: 1.5rem;
-  border: none;
-  border: 1px solid rgb(234, 237, 245);
-  border-radius: 20px;
-  /* box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); */
-  transition: all 300ms ease-in-out;
 `;
 
 export const Title = styled.h2`
@@ -29,20 +23,35 @@ export const Text = styled.p`
   margin-bottom: 28px;
 `;
 
+export const Content = styled.div`
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+
+  @media (max-width: 600px) {
+    flex-direction: column;
+    margin: 0px;
+  }
+`;
+
 export const Row = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: ${({ justify }) => justify};
-  margin-bottom: 20px;
+  margin-bottom: 15px;
+
+  @media (max-width: 600px) {
+    flex-direction: column;
+  }
 `;
 
 export const Label = styled.span`
   display: block;
   font-size: 12px;
   font-weight: 500;
-  /* margin-left: 5px; */
   margin-bottom: 5px;
-  /* text-transform: uppercase; */
   color: #333333;
   line-height: 16px;
 `;
@@ -55,7 +64,6 @@ export const Error = styled.div`
   width: 100%;
   margin-top: 2px;
   margin-left: 5px;
-  /* position: absolute; */
   top: 100%;
   max-height: 16px;
   overflow: hidden;
@@ -78,37 +86,44 @@ export const InputButtonContainer = styled.div`
 
 export const InputButtonGroup = styled.div`
   display: flex;
+  @media (max-width: 600px) {
+    flex-direction: column;
+  }
 
   input[type="radio"] {
     visibility: hidden;
     height: 0;
     width: 0;
+
+    @media (max-width: 600px) {
+      margin-bottom: 50px;
+    }
   }
 
   label {
-    width: 125px;
-    height: 50px;
+    width: 120px;
+    height: 40px;
     padding: 0.75rem 1.5rem;
     margin-right: 10px;
     cursor: pointer;
     border: none;
     border-radius: 20px;
     font-size: 14px;
-    font-weight: 700;
-    color: rgb(34, 70, 245);
+    font-weight: 600;
+    color: #2246f5;
     background: #fff;
     box-shadow: 0px 2px 7px rgba(0, 0, 0, 0.1);
     transition: all 300ms ease-in-out;
   }
 
   input[type="radio"]:checked + label {
-    color: rgb(34, 70, 245);
-    border: 1px solid rgb(34, 70, 245);
+    color: #2246f5;
+    border: 1px solid #2246f5;
   }
 `;
 
 export const Input = styled.input`
-  width: 125px;
+  width: 100px;
   height: 44px;
   border-radius: 20px;
 
@@ -121,7 +136,7 @@ export const Input = styled.input`
 
   &:focus {
     outline: none;
-    border: 1px solid ${({ error }) => (error ? `#D21C1C` : `rgb(34, 70, 245)`)};
+    border: 1px solid ${({ error }) => (error ? `#D21C1C` : `#2246f5`)};
     box-shadow: ${({ error }) =>
       error
         ? `inset 0 0 0 1px rgba(210, 28, 28, 0.15), 0 0 0 3px rgba(210, 28, 28, 0.15)`
@@ -143,7 +158,6 @@ export const Input = styled.input`
 export const InputContainer = styled.div`
   position: relative;
   display: block;
-  /* width: 100%; */
   margin-bottom: 2px;
   margin-right: 10px;
 `;
@@ -158,8 +172,8 @@ export const Submit = styled.button`
   font-size: 14px;
   font-weight: 700;
   color: #fff;
-  background: rgb(34, 70, 245);
-  box-shadow: 0px 2px 7px rgba(0, 0, 0, 0.1);
+  background: #2246f5;
+  box-shadow: 0px 3px 7px rgba(34, 70, 245, 0.3);
   transition: all 300ms ease-in-out;
 
   &:hover {
@@ -168,7 +182,5 @@ export const Submit = styled.button`
 
   &:focus {
     outline: none;
-    box-shadow: inset 0 0 0 1px rgba(100, 200, 121, 0.15),
-      0 0 0 3px rgba(100, 200, 121, 0.15);
   }
 `;
