@@ -11,9 +11,12 @@ export const Container = styled.div`
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  padding: 1.5rem;
   border: none;
   transition: all 300ms ease-in-out;
+
+  @media (max-width: 850px) {
+    padding: 24px;
+  }
 `;
 
 export const Title = styled.h2`
@@ -34,6 +37,8 @@ export const Description = styled.p`
 `;
 
 export const Content = styled.div`
+  display: flex;
+  flex-direction: column;
   width: 100%;
 `;
 
@@ -42,6 +47,10 @@ export const ButtonGroup = styled.div`
   display: flex;
   justify-content: flex-end;
   margin-bottom: 20px;
+
+  @media (max-width: 850px) {
+    justify-content: center;
+  }
 `;
 
 export const Button = styled.button`
@@ -71,22 +80,33 @@ export const Button = styled.button`
 
 export const CardGroup = styled.div`
   display: flex;
-  direction: row;
+  flex-direction: row;
   width: 100%;
   justify-content: space-between;
+
+  @media (max-width: 850px) {
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 
 export const Card = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-width: 250px;
+  width: 240px;
   font-size: 14px;
   padding: 20px 30px;
   border-radius: 20px;
   overflow: hidden;
   background-color: $white;
   box-shadow: 0px 2px 7px rgba(0, 0, 0, 0.1);
+
+  @media (max-width: 850px) {
+    :not(:last-child) {
+      margin-bottom: 24px;
+    }
+  }
 `;
 
 export const CardTitle = styled.h3`
@@ -109,7 +129,7 @@ export const CardListItem = styled.li`
 
 export const ProgressBar = styled.div`
   margin: 0px auto;
-  width: 100%;
+  width: 160px;
   text-align: center;
 `;
 

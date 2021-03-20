@@ -1,5 +1,7 @@
 import React, { useState } from "react";
+
 import { Results } from "../components";
+
 import { GOALS } from "../services/consts";
 
 export function ResultsContainer({ caloriesData }) {
