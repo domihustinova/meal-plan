@@ -59,20 +59,19 @@ export const Button = styled.button`
   padding: 0.75rem;
   margin-left: 10px;
   cursor: pointer;
-  border: none;
+  border: 1px solid transparent;
   border-radius: 20px;
-
   font-size: 14px;
   font-weight: 700;
-
   color: #2246f5;
   background: #fff;
   box-shadow: 0px 2px 7px rgba(0, 0, 0, 0.1);
   transition: all 300ms ease-in-out;
+  border: ${({ isSelected }) =>
+    isSelected ? "1px solid #2246f5" : "1px solid transparent"};
 
-  border: ${({ isSelected }) => (isSelected ? "1px solid #2246f5" : "none")};
-
-  &:focus {
+  &:focus,
+  &:hover {
     outline: none;
     border: 1px solid #2246f5;
   }

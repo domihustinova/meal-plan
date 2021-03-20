@@ -2,9 +2,13 @@ import styled from "styled-components/macro";
 
 export const Container = styled.div`
   max-width: 800px;
-  margin: 0 auto;
+  margin: 24px auto;
   display: flex;
   flex-direction: column;
+
+  @media (max-width: 850px) {
+    padding: 24px;
+  }
 `;
 
 export const Title = styled.h2`
@@ -30,7 +34,7 @@ export const Content = styled.div`
   border-radius: 20px;
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
 
-  @media (max-width: 600px) {
+  @media (max-width: 720px) {
     flex-direction: column;
     margin: 0px;
   }
@@ -50,7 +54,7 @@ export const Row = styled.div`
     margin-bottom: 0;
   }
 
-  @media (max-width: 600px) {
+  @media (max-width: 720px) {
     flex-direction: column;
   }
 `;
@@ -94,7 +98,9 @@ export const InputButtonContainer = styled.div`
 
 export const InputButtonGroup = styled.div`
   display: flex;
-  @media (max-width: 600px) {
+  justify-content: space-between;
+
+  @media (max-width: 720px) {
     flex-direction: column;
   }
 
@@ -103,18 +109,19 @@ export const InputButtonGroup = styled.div`
     height: 0;
     width: 0;
 
-    @media (max-width: 600px) {
+    @media (max-width: 720px) {
       margin-bottom: 50px;
+      visibility: visible;
+      height: 10;
+      width: 10;
     }
   }
 
   label {
-    width: 120px;
-    height: 40px;
     padding: 0.75rem 1.5rem;
     margin-right: 10px;
     cursor: pointer;
-    border: none;
+    border: 1px solid transparent;
     border-radius: 20px;
     font-size: 14px;
     font-weight: 600;
@@ -124,6 +131,7 @@ export const InputButtonGroup = styled.div`
     transition: all 300ms ease-in-out;
   }
 
+  input[type="radio"]:hover + label,
   input[type="radio"]:checked + label {
     color: #2246f5;
     border: 1px solid #2246f5;
@@ -134,21 +142,18 @@ export const Input = styled.input`
   width: 100px;
   height: 44px;
   border-radius: 20px;
-
-  border: 1px solid ${({ error }) => (error ? `#D21C1C` : `#EFEFEF`)};
+  border: 1px solid #efefef;
   padding: 20px;
   font-size: 14px;
   background-color: transparent;
   box-sizing: border-box;
-  transition: all 0.15s ease-in-out;
+  transition: all 300ms ease-in-out;
 
-  &:focus {
+  &:focus,
+  &:hover,
+  &:not(:placeholder-shown) {
     outline: none;
-    border: 1px solid ${({ error }) => (error ? `#D21C1C` : `#2246f5`)};
-    box-shadow: ${({ error }) =>
-      error
-        ? `inset 0 0 0 1px rgba(210, 28, 28, 0.15), 0 0 0 3px rgba(210, 28, 28, 0.15)`
-        : `none`};
+    border: 1px solid #2246f5;
   }
 
   &::placeholder {
@@ -166,8 +171,8 @@ export const Input = styled.input`
 export const InputContainer = styled.div`
   position: relative;
   display: block;
+  width: 115px;
   margin-bottom: 2px;
-  margin-right: 10px;
 `;
 
 export const Submit = styled.button`
