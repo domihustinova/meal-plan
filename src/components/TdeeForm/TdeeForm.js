@@ -2,11 +2,14 @@ import React from "react";
 import { useField } from "formik";
 import {
   Container,
+  Row,
+  Title,
+  Text,
   Error,
   Input,
   InputContainer,
-  Select,
-  SelectContainer,
+  InputButtonGroup,
+  InputButtonContainer,
   Label,
   Submit,
 } from "./styles/TdeeForm";
@@ -14,6 +17,62 @@ import {
 export default function TdeeForm({ children, ...restProps }) {
   return <Container {...restProps}>{children}</Container>;
 }
+
+TdeeForm.Title = function TdeeFormTitle({ children, ...restProps }) {
+  return <Title {...restProps}>{children}</Title>;
+};
+
+TdeeForm.Text = function TdeeFormText({ children, ...restProps }) {
+  return <Text {...restProps}>{children}</Text>;
+};
+
+TdeeForm.Row = function TdeeFormRow({
+  justify = "flex-start",
+  children,
+  ...restProps
+}) {
+  return (
+    <Row justify={justify} {...restProps}>
+      {children}
+    </Row>
+  );
+};
+
+TdeeForm.InputButtonContainer = function TdeeFormInputButtonContainer({
+  id,
+  name,
+  type,
+  label,
+  options,
+  children,
+  error,
+  ...restProps
+}) {
+  const [field, meta] = useField(name);
+  return (
+    <InputButtonContainer id={id} label={label}>
+      <Label>{label}</Label>
+      <InputButtonGroup>
+        {options.map((option) => (
+          <div>
+            <input
+              id={option.value}
+              name={name}
+              type="radio"
+              value={option.value}
+              onChange={field.onChange}
+              onBlur={(ev) => field.onBlur(ev)}
+              error={meta.error && meta.touched ? meta.error : null}
+              {...restProps}
+            />
+            <label htmlFor={option.value}>{option.label}</label>
+          </div>
+        ))}
+      </InputButtonGroup>
+      <Error>{meta.error}</Error>
+    </InputButtonContainer>
+  );
+};
 
 TdeeForm.InputContainer = function TdeeFormInputContainer({
   id,
@@ -44,50 +103,6 @@ TdeeForm.InputContainer = function TdeeFormInputContainer({
       <Error>{meta.error}</Error>
       {children}
     </InputContainer>
-  );
-};
-
-TdeeForm.SelectContainer = function TdeeFormSelectContainer({
-  name,
-  label,
-  value,
-  options,
-  placeholder,
-  children,
-  ...restProps
-}) {
-  const [field, meta] = useField(name);
-  return (
-    <SelectContainer>
-      <Label>{label}</Label>
-      <Select
-        label={label}
-        name={name}
-        value={field.value}
-        options={options}
-        placeholder={placeholder}
-        onChange={field.onChange}
-        onBlur={(ev) => field.onBlur(ev)}
-        error={meta.error && meta.touched ? meta.error : null}
-      >
-        {placeholder && (
-          <option label={placeholder} value="">
-            {placeholder}
-          </option>
-        )}
-        {options.map((option) => (
-          <option
-            key={`option-${option.key || option.value}`}
-            value={option.value}
-            disabled={option.disabled}
-          >
-            {option.label}
-          </option>
-        ))}
-      </Select>
-      <Error>{meta.error}</Error>
-      {children}
-    </SelectContainer>
   );
 };
 

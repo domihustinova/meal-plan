@@ -1,5 +1,52 @@
 import styled from "styled-components/macro";
 
+export const Container = styled.div`
+  max-width: 750px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+  border: none;
+  border: 1px solid rgb(234, 237, 245);
+  border-radius: 20px;
+  /* box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); */
+  transition: all 300ms ease-in-out;
+`;
+
+export const Title = styled.h2`
+  color: #000;
+  font-size: 24px;
+  font-weight: 700;
+  margin-top: 0;
+  margin-bottom: 28px;
+`;
+
+export const Text = styled.p`
+  color: #000;
+  font-size: 16px;
+  font-weight: 400;
+  margin-top: 0;
+  margin-bottom: 28px;
+`;
+
+export const Row = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: ${({ justify }) => justify};
+  margin-bottom: 20px;
+`;
+
+export const Label = styled.span`
+  display: block;
+  font-size: 12px;
+  font-weight: 500;
+  /* margin-left: 5px; */
+  margin-bottom: 5px;
+  /* text-transform: uppercase; */
+  color: #333333;
+  line-height: 16px;
+`;
+
 export const Error = styled.div`
   color: #d21c1c;
   font-size: 12px;
@@ -7,7 +54,8 @@ export const Error = styled.div`
   line-height: 16px;
   width: 100%;
   margin-top: 2px;
-  position: absolute;
+  margin-left: 5px;
+  /* position: absolute; */
   top: 100%;
   max-height: 16px;
   overflow: hidden;
@@ -15,59 +63,65 @@ export const Error = styled.div`
   text-overflow: ellipsis;
 `;
 
-export const Container = styled.div``;
+export const InputButtonContainer = styled.div`
+  display: flex;
+  flex-direction: column;
 
-export const Select = styled.select`
-  appearance: none;
-  background: #fff;
-  cursor: pointer;
-  color: #252a31;
-  height: 32px;
-  padding: 0 32px 0 12px;
-  outline: none;
-  width: 100%;
-  color: #000;
-  transition: box-shadow 0.15s ease-in-out;
-  border-radius: 3px;
-
-  &::placeholder {
-    color: #efefef;
-    opacity: 1;
+  ${Label} {
+    margin-bottom: 20px;
   }
 
-  &:focus {
-    outline: none;
-    border: 1px solid ${({ error }) => (error ? `#D21C1C` : `#64c879`)};
-    box-shadow: ${({ error }) =>
-      error
-        ? `inset 0 0 0 1px rgba(210, 28, 28, 0.15), 0 0 0 3px rgba(210, 28, 28, 0.15)`
-        : `none`};
+  ${Error} {
+    margin-top: 20px;
   }
 `;
 
-export const SelectContainer = styled.div`
-  position: relative;
+export const InputButtonGroup = styled.div`
   display: flex;
-  align-items: center;
-  background: #ffffff;
-  width: 100%;
-  box-sizing: border-box;
-  cursor: pointer;
+
+  input[type="radio"] {
+    visibility: hidden;
+    height: 0;
+    width: 0;
+  }
+
+  label {
+    width: 125px;
+    height: 50px;
+    padding: 0.75rem 1.5rem;
+    margin-right: 10px;
+    cursor: pointer;
+    border: none;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 700;
+    color: rgb(34, 70, 245);
+    background: #fff;
+    box-shadow: 0px 2px 7px rgba(0, 0, 0, 0.1);
+    transition: all 300ms ease-in-out;
+  }
+
+  input[type="radio"]:checked + label {
+    color: rgb(34, 70, 245);
+    border: 1px solid rgb(34, 70, 245);
+  }
 `;
 
 export const Input = styled.input`
+  width: 125px;
+  height: 44px;
+  border-radius: 20px;
+
   border: 1px solid ${({ error }) => (error ? `#D21C1C` : `#EFEFEF`)};
-  padding: 12px;
+  padding: 20px;
+  font-size: 14px;
   background-color: transparent;
-  width: 100%;
-  height: 32px;
   box-sizing: border-box;
-  border-radius: 3px;
   transition: all 0.15s ease-in-out;
 
   &:focus {
     outline: none;
-    border: 1px solid ${({ error }) => (error ? `#D21C1C` : `#64c879`)};
+    border: 1px solid ${({ error }) => (error ? `#D21C1C` : `rgb(34, 70, 245)`)};
     box-shadow: ${({ error }) =>
       error
         ? `inset 0 0 0 1px rgba(210, 28, 28, 0.15), 0 0 0 3px rgba(210, 28, 28, 0.15)`
@@ -89,34 +143,27 @@ export const Input = styled.input`
 export const InputContainer = styled.div`
   position: relative;
   display: block;
-  width: 100%;
+  /* width: 100%; */
   margin-bottom: 2px;
-`;
-
-export const Label = styled.span`
-  display: block;
-  font-size: 12px;
-  text-transform: uppercase;
-  color: #333333;
-  line-height: 16px;
-  margin-bottom: 3px;
+  margin-right: 10px;
 `;
 
 export const Submit = styled.button`
+  width: 125px;
+  height: 50px;
   padding: 0.75rem 1.5rem;
-  font-size: 12px;
-  font-weight: 500;
-  text-transform: uppercase;
-  background: #64c879;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
   cursor: pointer;
+  border: none;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #fff;
+  background: rgb(34, 70, 245);
   box-shadow: 0px 2px 7px rgba(0, 0, 0, 0.1);
   transition: all 300ms ease-in-out;
 
   &:hover {
-    opacity: 0.8;
+    opacity: 0.9;
   }
 
   &:focus {
