@@ -1,11 +1,14 @@
-import Jumbo from "./components/Jumbo/Jumbo";
+import React, { Fragment } from "react";
+import { GlobalStyle } from "./theme/globalStyle";
 import { Home } from "./pages/Home";
 
-const App = () => (
-  <div>
-    <Jumbo />
-    <Home />
-  </div>
-);
+function App() {
+  return (
+    <Fragment>
+      <GlobalStyle />
+      <Home />
+    </Fragment>
+  );
+}
 
 export default App;
