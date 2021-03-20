@@ -1,11 +1,15 @@
-import { GOALS, MACRO_RATIOS, ACTIVITY_MULTIPLIERS } from "./consts";
+import {
+  GOALS,
+  MACRO_RATIOS,
+  ACTIVITY_MULTIPLIERS,
+  BMR_FACTORS,
+} from "./consts";
 
 const getBmr = (gender, age, weight, height) => {
-  const weightFactor = 10;
-  const heightFactor = 6.25;
-  const ageFactor = 5;
-
-  let bmr = weightFactor * weight + heightFactor * height - ageFactor * age;
+  let bmr =
+    BMR_FACTORS.weight * weight +
+    BMR_FACTORS.height * height -
+    BMR_FACTORS.age * age;
 
   return gender === "female" ? (bmr -= 161) : (bmr += 5);
 };

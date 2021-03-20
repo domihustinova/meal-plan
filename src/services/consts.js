@@ -31,8 +31,14 @@ export const ACTIVITY_MULTIPLIERS = {
   sedentary: 1.2,
   light: 1.375,
   moderate: 1.55,
-  heavy: 1.725,
+  high: 1.725,
   extreme: 1.9,
+};
+
+export const BMR_FACTORS = {
+  weight: 10,
+  height: 6.25,
+  age: 5,
 };
 
 export const genderOptions = [
@@ -41,21 +47,21 @@ export const genderOptions = [
 ];
 
 export const activityOptions = [
-  { label: "Sedentary (office job)", value: "sedentary" },
-  { label: "Lightly Active (1-2 days/week)", value: "light" },
+  { label: "No sport", value: "sedentary" },
+  { label: "Light", value: "light" },
   {
-    label: "Moderately Active (3-5 days/week)",
+    label: "Moderate",
     value: "moderate",
   },
   {
-    label: "Very Active (6-7 days/week)",
-    value: "heavy",
+    label: "High",
+    value: "high",
   },
-  { label: "Extremely Active (2x per day)", value: "extreme" },
+  { label: "Extreme", value: "extreme" },
 ];
 
 export const validationSchemaForm = Yup.object({
-  // gender: Yup.string().required("Required gender"),
+  gender: Yup.string().required("Required gender"),
   age: Yup.number()
     .min(1, "That seems too young")
     .max(100, "That seems too old")
@@ -70,7 +76,7 @@ export const validationSchemaForm = Yup.object({
     .required("Required height"),
   activity: Yup.string()
     .oneOf(
-      ["sedentary", "light", "moderate", "heavy", "extreme"],
+      ["sedentary", "light", "moderate", "high", "extreme"],
       "Invalid Job Type"
     )
     .required("Required activity"),
