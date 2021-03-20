@@ -44,9 +44,7 @@ TdeeForm.Row = function TdeeFormRow({
 };
 
 TdeeForm.InputButtonContainer = function TdeeFormInputButtonContainer({
-  id,
   name,
-  type,
   label,
   options,
   children,
@@ -55,7 +53,7 @@ TdeeForm.InputButtonContainer = function TdeeFormInputButtonContainer({
 }) {
   const [field, meta] = useField(name);
   return (
-    <InputButtonContainer id={id} label={label}>
+    <InputButtonContainer label={label}>
       <Label>{label}</Label>
       <InputButtonGroup>
         {options.map((option) => (
@@ -68,14 +66,13 @@ TdeeForm.InputButtonContainer = function TdeeFormInputButtonContainer({
               value={option.value}
               checked={option.value === field.value}
               onChange={field.onChange}
-              error={meta.error && meta.touched ? meta.error : null}
               {...restProps}
             />
             <label htmlFor={option.value}>{option.label}</label>
           </div>
         ))}
       </InputButtonGroup>
-      <Error>{meta.error}</Error>
+      {meta.error && meta.touched ? <Error>{meta.error}</Error> : null}
     </InputButtonContainer>
   );
 };
@@ -83,31 +80,27 @@ TdeeForm.InputButtonContainer = function TdeeFormInputButtonContainer({
 TdeeForm.InputContainer = function TdeeFormInputContainer({
   id,
   name,
-  type,
   label,
   placeholder,
-  children,
   error,
   ...restProps
 }) {
   const [field, meta] = useField(name);
   return (
     <InputContainer htmlFor={id}>
-      <Label>{label}</Label>
+      <Label htmlFor={id}>{label}</Label>
       <Input
         id={id}
         name={name}
-        type={type}
+        type="number"
         label={label}
         value={field.value}
         placeholder={placeholder}
         onChange={field.onChange}
         onBlur={(ev) => field.onBlur(ev)}
-        error={meta.error && meta.touched ? meta.error : null}
         {...restProps}
       />
-      <Error>{meta.error}</Error>
-      {children}
+      {meta.error && meta.touched ? <Error>{meta.error}</Error> : null}
     </InputContainer>
   );
 };

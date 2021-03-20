@@ -36,7 +36,6 @@ export function TdeeFormContainer({ onFormSubmit }) {
           <TdeeForm.Content>
             <TdeeForm.Row>
               <TdeeForm.InputButtonContainer
-                id="gender"
                 name="gender"
                 label="Gender"
                 options={genderOptions}
@@ -46,28 +45,24 @@ export function TdeeFormContainer({ onFormSubmit }) {
               <TdeeForm.InputContainer
                 id="age"
                 name="age"
-                type="number"
                 label="Age"
                 placeholder="Age"
               />
               <TdeeForm.InputContainer
                 id="weight"
                 name="weight"
-                type="number"
                 label="Weight"
                 placeholder="Weight (kg)"
               />
               <TdeeForm.InputContainer
                 id="height"
                 name="height"
-                type="number"
                 label="Height"
                 placeholder="Height (cm)"
               />
             </TdeeForm.Row>
             <TdeeForm.Row>
               <TdeeForm.InputButtonContainer
-                id="activity"
                 name="activity"
                 label="Activity"
                 options={activityOptions}

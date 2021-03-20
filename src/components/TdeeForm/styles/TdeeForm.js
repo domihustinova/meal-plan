@@ -40,7 +40,15 @@ export const Row = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: ${({ justify }) => justify};
-  margin-bottom: 15px;
+  margin-bottom: 25px;
+
+  :nth-of-type(2) {
+    margin-bottom: 15px;
+  }
+
+  :last-of-type {
+    margin-bottom: 0;
+  }
 
   @media (max-width: 600px) {
     flex-direction: column;
@@ -165,6 +173,7 @@ export const InputContainer = styled.div`
 export const Submit = styled.button`
   width: 125px;
   height: 50px;
+  margin-top: 15px;
   padding: 0.75rem 1.5rem;
   cursor: pointer;
   border: none;
