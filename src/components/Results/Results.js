@@ -45,18 +45,13 @@ Results.CardGroup = function ResultsCardGroup({ children, ...restProps }) {
   return <CardGroup {...restProps}>{children}</CardGroup>;
 };
 
-Results.Card = function ResultsCard({
-  ratioData,
-  maxMacroValue,
-  children,
-  ...restProps
-}) {
+Results.Card = function ResultsCard({ ratioData, maxMacroValue }) {
   return (
-    <Card {...restProps}>
-      <CardTitle>{ratioData.ratioName}</CardTitle>
+    <Card key={ratioData.value}>
+      <CardTitle>{ratioData.name}</CardTitle>
       <CardList>
         {ratioData.macros.map((macro) => (
-          <CardListItem>
+          <CardListItem key={macro.name}>
             {macro.name} - {macro.amount}g
             <ProgressBar>
               <ProgressBarBackground>

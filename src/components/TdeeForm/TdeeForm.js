@@ -31,13 +31,9 @@ TdeeForm.Content = function TdeeFormContent({ children, ...restProps }) {
   return <Content {...restProps}>{children}</Content>;
 };
 
-TdeeForm.Row = function TdeeFormRow({
-  justify = "flex-start",
-  children,
-  ...restProps
-}) {
+TdeeForm.Row = function TdeeFormRow({ type, children, ...restProps }) {
   return (
-    <Row justify={justify} {...restProps}>
+    <Row type={type} {...restProps}>
       {children}
     </Row>
   );
@@ -57,7 +53,7 @@ TdeeForm.InputButtonContainer = function TdeeFormInputButtonContainer({
       <Label>{label}</Label>
       <InputButtonGroup>
         {options.map((option) => (
-          <div>
+          <div key={option.value}>
             <input
               key={option.value}
               id={option.value}

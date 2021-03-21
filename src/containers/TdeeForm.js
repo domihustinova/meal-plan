@@ -34,14 +34,14 @@ export function TdeeFormContainer({ onFormSubmit }) {
             measure of how many calories you burn per day.
           </TdeeForm.Text>
           <TdeeForm.Content>
-            <TdeeForm.Row>
+            <TdeeForm.Row type="radio">
               <TdeeForm.InputButtonContainer
                 name="gender"
                 label="Gender"
                 options={genderOptions}
               />
             </TdeeForm.Row>
-            <TdeeForm.Row>
+            <TdeeForm.Row type="input">
               <TdeeForm.InputContainer
                 id="age"
                 name="age"
@@ -61,14 +61,14 @@ export function TdeeFormContainer({ onFormSubmit }) {
                 placeholder="Height (cm)"
               />
             </TdeeForm.Row>
-            <TdeeForm.Row>
+            <TdeeForm.Row type="radio">
               <TdeeForm.InputButtonContainer
                 name="activity"
                 label="Activity"
                 options={activityOptions}
               />
             </TdeeForm.Row>
-            <TdeeForm.Row justify="flex-end">
+            <TdeeForm.Row type="button">
               <TdeeForm.Submit type="submit">Calculate</TdeeForm.Submit>
             </TdeeForm.Row>
           </TdeeForm.Content>

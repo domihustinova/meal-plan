@@ -2,6 +2,7 @@ import {
   GOALS,
   MACRO_RATIOS,
   ACTIVITY_MULTIPLIERS,
+  GOAL_ADDENDS,
   BMR_FACTORS,
 } from "./consts";
 
@@ -14,31 +15,19 @@ const getBmr = (gender, age, weight, height) => {
   return gender === "female" ? (bmr -= 161) : (bmr += 5);
 };
 
-const getTdeeForGoal = (goal, tdee) => {
-  switch (goal) {
-    case "maintenance":
-      return tdee;
-    case "cutting":
-      return tdee - 500;
-    case "bulking":
-      return tdee + 500;
-    default:
-      return null;
-  }
-};
-
 const getFinalTdee = (activity, bmr) => {
   let tdee = Math.round(bmr * ACTIVITY_MULTIPLIERS[activity]);
 
   return GOALS.map((goal) => ({
     goal: goal.value,
-    tdee: getTdeeForGoal(goal.value, tdee),
+    tdee: tdee + GOAL_ADDENDS[goal.value],
   }));
 };
 
 const getMacros = (tdee) => {
   return MACRO_RATIOS.map((ratio) => ({
-    ratioName: ratio.name,
+    name: ratio.name,
+    value: ratio.value,
     macros: [
       {
         name: "Proteins",
@@ -66,17 +55,16 @@ const getMacros = (tdee) => {
 
 export const getCalories = ({ gender, age, weight, height, activity }) => {
   const bmr = getBmr(gender, age, weight, height);
-  const tdee = Math.round(bmr * ACTIVITY_MULTIPLIERS[activity]);
-  const maintenanceTdee = getTdeeForGoal("maintenance", tdee);
+  const maintenanceTdee = Math.round(bmr * ACTIVITY_MULTIPLIERS[activity]);
   const TDEE = getFinalTdee(activity, bmr);
 
-  const final = TDEE.map((tdee) => ({
+  const goalsData = TDEE.map((tdee) => ({
     ...tdee,
     ratios: getMacros(tdee.tdee),
   }));
 
   return {
     maintenanceTdee,
-    final,
+    goalsData,
   };
 };

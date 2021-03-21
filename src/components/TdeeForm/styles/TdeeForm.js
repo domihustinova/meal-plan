@@ -40,26 +40,34 @@ export const Content = styled.div`
   }
 `;
 
+const getRowStyles = (name, type) => {
+  const tokens = {
+    justifyContent: {
+      radio: "flex-start",
+      input: "flex-start",
+      button: "flex-end",
+    },
+    marginBottom: {
+      radio: "25px",
+      input: "15px",
+      button: "0px",
+    },
+  };
+  return tokens[name][type];
+};
+
 export const Row = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: ${({ justify }) => justify};
-  margin-bottom: 25px;
-
-  :nth-of-type(2) {
-    margin-bottom: 15px;
-  }
-
-  :last-of-type {
-    margin-bottom: 0;
-  }
+  justify-content: ${(props) => getRowStyles("justifyContent", props.type)};
+  margin-bottom: ${(props) => getRowStyles("marginBottom", props.type)};
 
   @media (max-width: 720px) {
     flex-direction: column;
   }
 `;
 
-export const Label = styled.span`
+export const Label = styled.label`
   display: block;
   font-size: 12px;
   font-weight: 500;

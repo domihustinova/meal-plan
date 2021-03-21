@@ -11,7 +11,7 @@ export function ResultsContainer({ caloriesData }) {
     setSelectedGoal(goal);
   };
 
-  const goalSelectionData = caloriesData.final.find(
+  const goalSelectionData = caloriesData.goalsData.find(
     (obj) => obj.goal === selectedGoal
   );
 
@@ -32,6 +32,7 @@ export function ResultsContainer({ caloriesData }) {
         <Results.ButtonGroup>
           {GOALS.map((goal) => (
             <Results.Button
+              key={goal.value}
               isSelected={goal.value === selectedGoal}
               onClick={() => handleSettingGoal(goal.value)}
             >
@@ -42,7 +43,11 @@ export function ResultsContainer({ caloriesData }) {
 
         <Results.CardGroup>
           {goalSelectionData.ratios.map((ratio) => (
-            <Results.Card ratioData={ratio} maxMacroValue={maxMacroValue} />
+            <Results.Card
+              key={ratio.value}
+              ratioData={ratio}
+              maxMacroValue={maxMacroValue}
+            />
           ))}
         </Results.CardGroup>
       </Results.Content>

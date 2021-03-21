@@ -9,18 +9,21 @@ export const GOALS = [
 export const MACRO_RATIOS = [
   {
     name: "Low Carb",
+    value: "low",
     protein: 40,
     carb: 20,
     fat: 40,
   },
   {
     name: "Moderate Carb",
+    value: "moderate",
     protein: 30,
     carb: 35,
     fat: 35,
   },
   {
     name: "High Carb",
+    value: "high",
     protein: 30,
     carb: 50,
     fat: 20,
@@ -33,6 +36,12 @@ export const ACTIVITY_MULTIPLIERS = {
   moderate: 1.55,
   high: 1.725,
   extreme: 1.9,
+};
+
+export const GOAL_ADDENDS = {
+  maintenance: 0,
+  cutting: -500,
+  bulking: 500,
 };
 
 export const BMR_FACTORS = {
