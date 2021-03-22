@@ -1,9 +1,11 @@
 // palette
 const palette = {
   pastelBlue: {
-    light: "#8eb1ee",
-    normal: "#4d6db1",
-    dark: "#3b5284",
+    lighter: "#8eb1ee", // rgb(142, 177, 238)
+    light: "#517fbe", // rgb(81, 127, 190) logo
+    normal: "#4d6db1", // rgb(77, 109, 177)
+    dark: "#3961aa", // rgb(57, 97, 170) darker logo
+    darker: "#3b5284",
   },
   blue: {
     light: "#0d45e6",
@@ -54,7 +56,7 @@ const base = {
   fontSizeExtraSmall: "0.75rem", // 12px
   fontSizeSmall: "0.875rem", // 14px
   fontSizeMedium: "1rem", // 16px
-  borderRadius: "3px",
+  borderRadiusNormal: "15px",
   fontWeightNormal: "400",
   fontWeightMedium: "500",
   fontWeightBold: "700",
@@ -68,5 +70,19 @@ export const theme = {
   // Text colors
   colorTextPrimary: palette.ink.normal,
   colorTextError: palette.red.normal,
+  colorTextButtonPrimaryPastelBlue: palette.white.normal,
+  colorTextButtonPrimaryPastelBlueHover: palette.white.normal,
+  colorTextButtonSecondaryPastelBlue: palette.pastelBlue.dark,
+  colorTextButtonSecondaryPastelBlueHover: palette.pastelBlue.lighter,
+  // Background colors
+  backgroundButtonPrimaryPastelBlue: palette.pastelBlue.dark,
+  backgroundButtonPrimaryPastelBlueHover: palette.pastelBlue.normal,
+  backgroundButtonSecondaryPastelBlue: palette.white.normal,
+  backgroundButtonSecondaryPastelBlueHover: palette.white.normal,
+  // Border colors
+  borderColorButtonPrimaryPastelBlue: palette.pastelBlue.dark,
+  borderColorButtonPrimaryPastelBlueHover: palette.pastelBlue.normal,
+  borderColorButtonSecondaryPastelBlue: palette.pastelBlue.dark,
+  borderColorButtonSecondaryPastelBlueHover: palette.pastelBlue.lighter,
   ...base,
 };
