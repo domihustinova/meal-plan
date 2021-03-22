@@ -17,11 +17,11 @@ export const GlobalStyle = createGlobalStyle`
     margin: 0;
     padding: 0;
     height: 100%;
-    font-family: 'Poppins', sans-serif;
-    font-size: 16px;
-    font-weight: 400;
-    background-color: #fff;
-    line-height: 1.3;
+    font-family: ${({ theme }) => theme.fontFamily};
+    font-size: ${({ theme }) => theme.fontSizeMedium};
+    font-weight: ${({ theme }) => theme.fontWeightNormal};
+    background-color: ${({ theme }) => theme.baackgroundBody};
+    line-height: ${({ theme }) => theme.lineHeight};
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;

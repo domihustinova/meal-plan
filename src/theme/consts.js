@@ -41,6 +41,7 @@ const palette = {
     normal: "#fff",
   },
   cloud: {
+    light: "#f7f8fa",
     normal: "#eff2f5",
     dark: "#e2e6ea",
   },
@@ -75,6 +76,7 @@ export const theme = {
   colorTextButtonSecondaryPastelBlue: palette.pastelBlue.dark,
   colorTextButtonSecondaryPastelBlueHover: palette.pastelBlue.lighter,
   // Background colors
+  backgroundBody: palette.cloud.light,
   backgroundButtonPrimaryPastelBlue: palette.pastelBlue.dark,
   backgroundButtonPrimaryPastelBlueHover: palette.pastelBlue.normal,
   backgroundButtonSecondaryPastelBlue: palette.white.normal,
