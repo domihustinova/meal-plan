@@ -48,16 +48,48 @@ export const Navigation = styled.nav`
 
 export const HamburgerIcon = styled.button`
   color: ${({ theme }) => theme.colorNavbarHamburger};
-  background-color: transparent;
+  background: transparent;
   border: none;
   font-size: 30px;
   cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
 
   &:hover,
   &:active,
   &:focus {
     outline: none;
-    color: ${({ theme }) => theme.colorNavbarHamburgerHover};
+  }
+
+  div {
+    width: 2rem;
+    height: 0.25rem;
+    background: ${({ theme, isDropdownOpen }) =>
+      isDropdownOpen
+        ? theme.colorNavbarHamburgerHover
+        : theme.colorNavbarHamburger};
+    border-radius: 10px;
+    transition: all 0.3s linear;
+    position: relative;
+    transform-origin: 1px;
+
+    :first-child {
+      transform: ${({ isDropdownOpen }) =>
+        isDropdownOpen ? "rotate(45deg)" : "rotate(0)"};
+    }
+
+    :nth-child(2) {
+      opacity: ${({ isDropdownOpen }) => (isDropdownOpen ? "0" : "1")};
+    }
+
+    :nth-child(3) {
+      transform: ${({ isDropdownOpen }) =>
+        isDropdownOpen ? "rotate(-45deg)" : "rotate(0)"};
+    }
   }
 `;
 

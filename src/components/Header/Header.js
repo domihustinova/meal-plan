@@ -54,18 +54,17 @@ Header.Navigation = function HeaderNavigation({ children, ...restProps }) {
   return <Navigation {...restProps}>{children}</Navigation>;
 };
 
-Header.HamburgerIcon = function HeaderHamburgerIcon({
-  children,
-  ...restProps
-}) {
-  return <HamburgerIcon {...restProps}>{children}</HamburgerIcon>;
+Header.HamburgerIcon = function HeaderHamburgerIcon({ isDropdownOpen }) {
+  return (
+    <HamburgerIcon isDropdownOpen={isDropdownOpen}>
+      <div></div>
+      <div></div>
+      <div></div>
+    </HamburgerIcon>
+  );
 };
 
-Header.Dropdown = function HeaderDropdown({
-  toggleDropdown,
-  children,
-  ...restProps
-}) {
+Header.Dropdown = function HeaderDropdown({ toggleDropdown }) {
   return (
     <Dropdown>
       <Header.TextLink title="Sign In" onClick={toggleDropdown}>

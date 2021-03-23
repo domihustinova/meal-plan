@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars } from "@fortawesome/free-solid-svg-icons";
 
 import { Header } from "../components/";
 import logo from "../images/logo.png";
@@ -25,11 +23,10 @@ export function HeaderContainer() {
 
         {isMobile ? (
           <Header.HamburgerIcon
+            isDropdownOpen={isDropdownOpen}
             onClick={toggleDropdown}
             aria-label="Open dropdown menu"
-          >
-            <FontAwesomeIcon icon={faBars} aria-hidden="true" />
-          </Header.HamburgerIcon>
+          />
         ) : (
           <Header.Navigation>
             <Header.ButtonLink
