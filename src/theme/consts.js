@@ -75,6 +75,8 @@ export const theme = {
   colorTextButtonPrimaryPastelBlueHover: palette.white.normal,
   colorTextButtonSecondaryPastelBlue: palette.pastelBlue.dark,
   colorTextButtonSecondaryPastelBlueHover: palette.pastelBlue.lighter,
+  colorTextLinkPastelBlue: palette.pastelBlue.dark,
+  colorTextLinkPastelBlueHover: palette.blue.dark,
   // Background colors
   backgroundBody: palette.cloud.light,
   backgroundButtonPrimaryPastelBlue: palette.pastelBlue.dark,
@@ -86,5 +88,8 @@ export const theme = {
   borderColorButtonPrimaryPastelBlueHover: palette.pastelBlue.normal,
   borderColorButtonSecondaryPastelBlue: palette.pastelBlue.dark,
   borderColorButtonSecondaryPastelBlueHover: palette.pastelBlue.lighter,
+  // Other
+  colorNavbarHamburger: palette.pastelBlue.dark,
+  colorNavbarHamburgerHover: palette.pastelBlue.normal,
   ...base,
 };

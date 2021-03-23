@@ -3,11 +3,14 @@ import React from "react";
 import {
   ButtonLink,
   Container,
+  Dropdown,
   Frame,
   Group,
+  HamburgerIcon,
   HomeLink,
   Logo,
   Navigation,
+  TextLink,
 } from "./styles/Header";
 
 export default function Header({ children, ...restProps }) {
@@ -43,6 +46,34 @@ Header.ButtonLink = function HeaderButtonLink({
   );
 };
 
+Header.TextLink = function HeaderTextLink({ children, ...restProps }) {
+  return <TextLink {...restProps}>{children}</TextLink>;
+};
+
 Header.Navigation = function HeaderNavigation({ children, ...restProps }) {
   return <Navigation {...restProps}>{children}</Navigation>;
+};
+
+Header.HamburgerIcon = function HeaderHamburgerIcon({
+  children,
+  ...restProps
+}) {
+  return <HamburgerIcon {...restProps}>{children}</HamburgerIcon>;
+};
+
+Header.Dropdown = function HeaderDropdown({
+  toggleDropdown,
+  children,
+  ...restProps
+}) {
+  return (
+    <Dropdown>
+      <Header.TextLink title="Sign In" onClick={toggleDropdown}>
+        Sign In
+      </Header.TextLink>
+      <Header.TextLink title="Sign Up" onClick={toggleDropdown}>
+        Sign Up
+      </Header.TextLink>
+    </Dropdown>
+  );
 };
