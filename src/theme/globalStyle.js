@@ -20,7 +20,7 @@ export const GlobalStyle = createGlobalStyle`
     font-family: ${({ theme }) => theme.fontFamily};
     font-size: ${({ theme }) => theme.fontSizeMedium};
     font-weight: ${({ theme }) => theme.fontWeightNormal};
-    background-color: ${({ theme }) => theme.baackgroundBody};
+    background-color: ${({ theme }) => theme.backgroundBody};
     line-height: ${({ theme }) => theme.lineHeight};
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
