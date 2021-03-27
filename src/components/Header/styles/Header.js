@@ -5,6 +5,9 @@ export const Container = styled.header`
   display: flex;
   background: #fff;
   flex-direction: column;
+  position: relative;
+  z-index: 100;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
 `;
 
 export const Frame = styled.div`
