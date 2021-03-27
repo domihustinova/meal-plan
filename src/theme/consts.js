@@ -53,12 +53,25 @@ const palette = {
   },
 };
 
+// 640px, 1110px, 1400px
+export const breakpoint = {
+  medium: "40em",
+  large: "69.375em",
+  xlarge: "87.5em",
+};
+
+export const MEDIA_QUERY = {
+  MIN_MEDIUM: `(min-width: ${breakpoint.medium})`,
+  MIN_LARGE: `(min-width: ${breakpoint.large})`,
+  MIN_XLARGE: `(min-width: ${breakpoint.xlarge})`,
+};
+
 const base = {
   fontFamily: "'Poppins', sans-serif;",
   fontSizeExtraSmall: "0.75rem", // 12px
   fontSizeSmall: "0.875rem", // 14px
   fontSizeMedium: "1rem", // 16px
-  borderRadiusNormal: "15px",
+  borderRadiusNormal: "0.9375rem",
   fontWeightNormal: "400",
   fontWeightMedium: "500",
   fontWeightBold: "700",
