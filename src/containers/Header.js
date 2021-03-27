@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 
 import { Header } from "../components/";
 import logo from "../images/logo.png";
-import { useWindowSize } from "../services/hooks";
+import { useWindowSize, useOnClickOutside } from "../services/hooks";
 
 export function HeaderContainer() {
   const windowSize = useWindowSize();
@@ -13,9 +13,12 @@ export function HeaderContainer() {
     setIsDropdownOpen(!isDropdownOpen);
   };
 
+  const ref = useRef();
+  useOnClickOutside(ref, () => setIsDropdownOpen(false));
+
   return (
     <Header>
-      <Header.Frame>
+      <Header.Frame ref={ref}>
         <Header.Group>
           <Header.Logo src={logo} title="MealPal" alt="MealPal" />
           <Header.HomeLink title="MealPal">MealPal</Header.HomeLink>
