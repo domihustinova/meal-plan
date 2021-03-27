@@ -13,9 +13,9 @@ export const Container = styled.header`
 export const Frame = styled.div`
   display: flex;
   width: 100%;
-  max-width: 69.375rem;
+  max-width: 1125px;
   margin: 0 auto;
-  padding: 15px;
+  padding: 16px 24px;
   justify-content: space-between;
   align-items: center;
 `;
@@ -98,7 +98,7 @@ export const HamburgerIcon = styled.button`
 
 export const Dropdown = styled.div`
   background: #fff;
-  height: 100px;
+  height: 102px;
 
   a {
     display: block;

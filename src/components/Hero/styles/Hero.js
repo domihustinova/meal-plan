@@ -1,14 +1,24 @@
 import styled from "styled-components/macro";
-import Button from "../../common/Button";
+import { MEDIA_QUERY } from "../../../theme/consts";
 
 export const Container = styled.section`
   width: 100%;
   background: ${({ theme }) => theme.backgroundHero};
   overflow: hidden;
+  padding-right: 24px;
+  padding-left: 24px;
+  padding-bottom: 48px;
+
+  @media ${MEDIA_QUERY.MIN_LARGE} {
+    padding: 0;
+  }
 `;
 
 export const Frame = styled.div`
-  @media (min-width: 640px) {
+  display: flex;
+  flex-direction: column;
+
+  @media ${MEDIA_QUERY.MIN_LARGE} {
     position: relative;
     max-width: 69.375rem;
     width: 100%;
@@ -18,12 +28,12 @@ export const Frame = styled.div`
 `;
 
 export const Image = styled.img`
-  height: 15.625rem; /* 250px */
+  width: 100%;
 
-  @media (min-width: 640px) {
+  @media ${MEDIA_QUERY.MIN_LARGE} {
     position: absolute;
     top: 50px;
-    left: 150px;
+    left: 140px;
     height: 40rem;
   }
 `;
@@ -42,16 +52,13 @@ export const Text = styled.p`
 export const TextContainer = styled.div`
   text-align: center;
 
-  @media (min-width: 640px) {
+  @media ${MEDIA_QUERY.MIN_LARGE} {
     position: absolute;
     top: 20px;
-    left: 0;
+    left: 16px;
     text-align: left;
     display: flex;
     flex-direction: column;
-    padding: 0 15px;
     width: 500px;
   }
 `;
-
-export const ButtonLink = styled(Button)``;

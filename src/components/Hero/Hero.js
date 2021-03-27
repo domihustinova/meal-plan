@@ -1,7 +1,6 @@
 import React from "react";
 
 import {
-  ButtonLink,
   Container,
   Frame,
   Image,
@@ -9,6 +8,7 @@ import {
   TextContainer,
   Title,
 } from "./styles/Hero";
+import Button from "../common/Button";
 
 export default function Hero({ children, ...restProps }) {
   return <Container {...restProps}>{children}</Container>;
@@ -41,8 +41,8 @@ Hero.ButtonLink = function HeroButtonLink({
   ...restProps
 }) {
   return (
-    <ButtonLink type={type} size={size} {...restProps}>
+    <Button type={type} size={size} {...restProps}>
       {children}
-    </ButtonLink>
+    </Button>
   );
 };

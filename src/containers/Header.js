@@ -8,7 +8,7 @@ export function HeaderContainer() {
   const windowSize = useWindowSize();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
-  const isMobile = windowSize.width < 769;
+  const isMobile = windowSize.width < 1110;
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
   };
