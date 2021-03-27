@@ -6,7 +6,7 @@ const BACKGROUND = {
   fats: "linear-gradient(to right, #9d79db, #e98dbd)",
 };
 
-export const Container = styled.div`
+export const Container = styled.section`
   max-width: 800px;
   margin: 0 auto;
   display: flex;

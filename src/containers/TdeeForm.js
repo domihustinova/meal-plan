@@ -24,16 +24,16 @@ export function TdeeFormContainer({ onFormSubmit }) {
         onFormSubmit(values);
       }}
     >
-      <Form>
-        <TdeeForm>
-          <TdeeForm.Title>
-            Learn How Many Calories You Burn Every Day
-          </TdeeForm.Title>
-          <TdeeForm.Text>
-            Use this calculator to learn your Total Daily Energy Expenditure, a
-            measure of how many calories you burn per day.
-          </TdeeForm.Text>
-          <TdeeForm.Content>
+      <TdeeForm>
+        <TdeeForm.Title>
+          Learn How Many Calories You Burn Every Day
+        </TdeeForm.Title>
+        <TdeeForm.Text>
+          Use this calculator to learn your Total Daily Energy Expenditure, a
+          measure of how many calories you burn per day.
+        </TdeeForm.Text>
+        <TdeeForm.Content>
+          <Form>
             <TdeeForm.Row type="radio">
               <TdeeForm.InputButtonContainer
                 name="gender"
@@ -71,9 +71,9 @@ export function TdeeFormContainer({ onFormSubmit }) {
             <TdeeForm.Row type="button">
               <TdeeForm.Submit type="submit">Calculate</TdeeForm.Submit>
             </TdeeForm.Row>
-          </TdeeForm.Content>
-        </TdeeForm>
-      </Form>
+          </Form>
+        </TdeeForm.Content>
+      </TdeeForm>
     </Formik>
   );
 }
