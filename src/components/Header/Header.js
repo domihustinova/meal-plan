@@ -54,9 +54,12 @@ Header.Navigation = function HeaderNavigation({ children, ...restProps }) {
   return <Navigation {...restProps}>{children}</Navigation>;
 };
 
-Header.HamburgerIcon = function HeaderHamburgerIcon({ isDropdownOpen }) {
+Header.HamburgerIcon = function HeaderHamburgerIcon({
+  isDropdownOpen,
+  onClick,
+}) {
   return (
-    <HamburgerIcon isDropdownOpen={isDropdownOpen}>
+    <HamburgerIcon isDropdownOpen={isDropdownOpen} onClick={onClick}>
       <div></div>
       <div></div>
       <div></div>
