@@ -30,6 +30,7 @@ const palette = {
     dark: "#e37b5f",
   },
   yellow: {
+    lighter: "#fffdf5",
     light: "#f8f4dd",
     normal: "#f6e0b8",
     dark: "#f0cc89",
@@ -64,7 +65,8 @@ const base = {
   durationFast: "0.15s",
   durationNormal: "0.3s",
   transitionDefault: "ease-in-out",
-  lineHeight: "1.3",
+  lineHeightNormal: "1.3",
+  lineHeightLarge: "1.6",
 };
 
 export const theme = {
@@ -78,14 +80,15 @@ export const theme = {
   colorTextLinkPastelBlue: palette.pastelBlue.dark,
   colorTextLinkPastelBlueHover: palette.blue.dark,
   // Background colors
-  backgroundBody: palette.cloud.light,
+  backgroundBody: palette.white.normal,
+  backgroundHero: palette.yellow.lighter,
   backgroundButtonPrimaryPastelBlue: palette.pastelBlue.dark,
-  backgroundButtonPrimaryPastelBlueHover: palette.pastelBlue.normal,
+  backgroundButtonPrimaryPastelBlueHover: palette.pastelBlue.light,
   backgroundButtonSecondaryPastelBlue: palette.white.normal,
   backgroundButtonSecondaryPastelBlueHover: palette.white.normal,
   // Border colors
   borderColorButtonPrimaryPastelBlue: palette.pastelBlue.dark,
-  borderColorButtonPrimaryPastelBlueHover: palette.pastelBlue.normal,
+  borderColorButtonPrimaryPastelBlueHover: palette.pastelBlue.light,
   borderColorButtonSecondaryPastelBlue: palette.pastelBlue.dark,
   borderColorButtonSecondaryPastelBlueHover: palette.pastelBlue.lighter,
   // Other

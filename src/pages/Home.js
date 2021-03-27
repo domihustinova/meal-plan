@@ -6,14 +6,15 @@ import { TdeeFormContainer } from "../containers/TdeeForm";
 import { ResultsContainer } from "../containers/Results";
 
 import { getCalories } from "../services/helpers";
+import { HeroContainer } from "../containers/Hero";
 
 export const Main = styled.main`
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  max-width: 1110px;
-  margin: 24px auto;
+  margin: 0 auto;
 `;
 
 export function Home() {
@@ -29,6 +30,7 @@ export function Home() {
     <>
       <HeaderContainer />
       <Main>
+        <HeroContainer />
         <TdeeFormContainer onFormSubmit={onFormSubmit} />
         {isFormSubmitted && <ResultsContainer caloriesData={caloriesData} />}
       </Main>

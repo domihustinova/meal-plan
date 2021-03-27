@@ -11,17 +11,17 @@ export const GlobalStyle = createGlobalStyle`
   *::before,
   *::after {
     box-sizing: inherit;
+    margin: 0;
+    padding: 0;
   }
 
   body {
-    margin: 0;
-    padding: 0;
     height: 100%;
     font-family: ${({ theme }) => theme.fontFamily};
     font-size: ${({ theme }) => theme.fontSizeMedium};
     font-weight: ${({ theme }) => theme.fontWeightNormal};
     background-color: ${({ theme }) => theme.backgroundBody};
-    line-height: ${({ theme }) => theme.lineHeight};
+    line-height: ${({ theme }) => theme.lineHeightNormal};
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
