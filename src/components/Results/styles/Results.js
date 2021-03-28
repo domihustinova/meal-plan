@@ -36,6 +36,9 @@ export const Image = styled.img`
 
   @media ${MEDIA_QUERY.MIN_MEDIUM} {
     width: 50%;
+  }
+
+  @media ${MEDIA_QUERY.MIN_LARGE} {
     order: 2;
   }
 `;
@@ -79,19 +82,23 @@ export const ButtonGroup = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
 
-  @media ${MEDIA_QUERY.MIN_LARGE} {
+  @media ${MEDIA_QUERY.MIN_MEDIUM} {
     flex-direction: row;
-    justify-content: left;
     margin-bottom: 20px;
+  }
+
+  @media ${MEDIA_QUERY.MIN_LARGE} {
+    justify-content: flex-start;
   }
 `;
 
 export const ButtonLink = styled(Button)`
   margin-bottom: 10px;
 
-  @media ${MEDIA_QUERY.MIN_LARGE} {
+  @media ${MEDIA_QUERY.MIN_MEDIUM} {
     margin-bottom: 0;
     margin-right: 10px;
   }
@@ -138,7 +145,7 @@ export const Card = styled.div`
     margin-bottom: 24px;
   }
 
-  @media ${MEDIA_QUERY.MIN_MEDIUM} {
+  @media ${MEDIA_QUERY.MIN_LARGE} {
     :not(:last-child) {
       margin-bottom: 0;
     }
