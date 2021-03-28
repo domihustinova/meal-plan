@@ -4,6 +4,7 @@ import styled from "styled-components/macro";
 import { HeaderContainer } from "../containers/Header";
 import { TdeeFormContainer } from "../containers/TdeeForm";
 import { ResultsContainer } from "../containers/Results";
+import { FooterContainer } from "../containers/Footer";
 
 import { getCalories } from "../services/helpers";
 import { HeroContainer } from "../containers/Hero";
@@ -37,6 +38,7 @@ export function Home() {
         />
         {isFormSubmitted && <ResultsContainer caloriesData={caloriesData} />}
       </Main>
+      <FooterContainer />
     </>
   );
 }

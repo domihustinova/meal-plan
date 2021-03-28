@@ -86,6 +86,9 @@ export const theme = {
   // Text colors
   colorTextPrimary: palette.ink.normal,
   colorTextError: palette.red.normal,
+  colorTextFooter: palette.white.normal,
+  colorTextLinkFooter: palette.pastelBlue.lighter,
+  colorTextLinkFooterHover: palette.white.normal,
   colorTextButtonPrimaryPastelBlue: palette.white.normal,
   colorTextButtonPrimaryPastelBlueHover: palette.white.normal,
   colorTextButtonSecondaryPastelBlue: palette.pastelBlue.dark,
@@ -95,6 +98,7 @@ export const theme = {
   // Background colors
   backgroundBody: palette.white.normal,
   backgroundHero: palette.yellow.lighter,
+  backgroundFooter: palette.pastelBlue.normal,
   backgroundButtonPrimaryPastelBlue: palette.pastelBlue.dark,
   backgroundButtonPrimaryPastelBlueHover: palette.pastelBlue.light,
   backgroundButtonSecondaryPastelBlue: palette.white.normal,
