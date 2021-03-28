@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Formik, Form } from "formik";
 
 import { TdeeForm } from "../components";
-import illustration from "../images/illustration.svg";
+import illustration from "../images/illustration-form.svg";
 
 import {
   genderOptions,

@@ -71,7 +71,7 @@ const base = {
   fontSizeExtraSmall: "0.75rem", // 12px
   fontSizeSmall: "0.875rem", // 14px
   fontSizeMedium: "1rem", // 16px
-  borderRadiusNormal: "0.9375rem",
+  borderRadiusNormal: "0.9375rem", // 15px
   fontWeightNormal: "400",
   fontWeightMedium: "500",
   fontWeightBold: "700",
