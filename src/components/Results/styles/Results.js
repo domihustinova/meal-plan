@@ -3,9 +3,9 @@ import { MEDIA_QUERY } from "../../../theme/consts";
 import Button from "../../common/Button";
 
 const BACKGROUND = {
-  proteins: "linear-gradient(to right, #2246f5, #6ae7d5)",
-  carbs: "linear-gradient(to right, #ef476f, #f9bcca)",
-  fats: "linear-gradient(to right, #9d79db, #e98dbd)",
+  proteins: "linear-gradient(to right, #8eb1ee, #3961aa)",
+  fats: "linear-gradient(to right, #6ebba6, #244552)",
+  carbs: "linear-gradient(to right, #eba796, #cf3e35)",
 };
 
 export const Container = styled.section`
