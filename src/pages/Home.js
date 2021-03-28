@@ -31,7 +31,10 @@ export function Home() {
       <HeaderContainer />
       <Main>
         <HeroContainer />
-        <TdeeFormContainer onFormSubmit={onFormSubmit} />
+        <TdeeFormContainer
+          isFormSubmitted={isFormSubmitted}
+          onFormSubmit={onFormSubmit}
+        />
         {isFormSubmitted && <ResultsContainer caloriesData={caloriesData} />}
       </Main>
     </>

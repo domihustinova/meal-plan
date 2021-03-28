@@ -1,13 +1,48 @@
 import styled from "styled-components/macro";
+import { MEDIA_QUERY } from "../../../theme/consts";
+import Button from "../../common/Button";
 
 export const Container = styled.section`
-  max-width: 800px;
-  margin: 24px auto;
+  width: 100%;
+  padding: 24px;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+`;
 
-  @media (max-width: 850px) {
-    padding: 24px;
+export const Frame = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+
+  @media ${MEDIA_QUERY.MIN_LARGE} {
+    width: 850px;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+`;
+
+export const Image = styled.img`
+  width: 100%;
+
+  @media ${MEDIA_QUERY.MIN_MEDIUM} {
+    width: 60%;
+  }
+`;
+
+export const TextContainer = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 24px;
+
+  @media ${MEDIA_QUERY.MIN_LARGE} {
+    margin: 0;
   }
 `;
 
@@ -23,16 +58,21 @@ export const Text = styled.p`
   color: #000;
   font-size: 16px;
   font-weight: 400;
+  line-height: ${({ theme }) => theme.lineHeightLarge};
   margin-top: 0;
   margin-bottom: 28px;
+`;
+
+export const ButtonLink = styled(Button)`
+  width: 200px;
 `;
 
 export const Content = styled.div`
   max-width: 900px;
   margin: 0 auto;
   padding: 30px;
+  border: 1px solid #efefef;
   border-radius: 20px;
-  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
 
   @media (max-width: 720px) {
     flex-direction: column;
@@ -77,7 +117,7 @@ export const Label = styled.label`
 `;
 
 export const Error = styled.div`
-  color: #d21c1c;
+  color: ${({ theme }) => theme.colorTextError};
   font-size: 12px;
   font-weight: 500;
   line-height: 16px;
@@ -128,40 +168,44 @@ export const InputButtonGroup = styled.div`
   label {
     padding: 0.75rem 1.5rem;
     margin-right: 10px;
-    cursor: pointer;
-    border: 1px solid transparent;
-    border-radius: 20px;
     font-size: 14px;
-    font-weight: 600;
-    color: #2246f5;
-    background: #fff;
+    font-weight: 700;
+    color: ${({ theme }) => theme.colorTextButtonSecondaryPastelBlue};
+    background-color: ${({ theme }) =>
+      theme.backgroundButtonSecondaryPastelBlue};
+    cursor: pointer;
+    border: 1px solid
+      ${({ theme }) => theme.borderColorButtonSecondaryPastelBlue};
+    border-radius: ${({ theme }) => theme.borderRadiusNormal};
     box-shadow: 0px 2px 7px rgba(0, 0, 0, 0.1);
-    transition: all 300ms ease-in-out;
+    outline: none;
+    transition: all ${({ theme }) => theme.durationNormal} ease-in-out;
   }
 
   input[type="radio"]:hover + label,
   input[type="radio"]:checked + label {
-    color: #2246f5;
-    border: 1px solid #2246f5;
+    color: ${({ theme }) => theme.colorTextButtonPrimaryPastelBlue};
+    background-color: ${({ theme }) => theme.backgroundButtonPrimaryPastelBlue};
   }
 `;
 
 export const Input = styled.input`
-  width: 100px;
+  width: 120px;
   height: 44px;
-  border-radius: 20px;
   border: 1px solid #efefef;
+  border-radius: ${({ theme }) => theme.borderRadiusNormal};
   padding: 20px;
   font-size: 14px;
   background-color: transparent;
   box-sizing: border-box;
-  transition: all 300ms ease-in-out;
+  transition: all ${({ theme }) => theme.durationNormal} ease-in-out;
 
   &:focus,
   &:hover,
   &:not(:placeholder-shown) {
     outline: none;
-    border: 1px solid #2246f5;
+    border: 1px solid
+      ${({ theme }) => theme.borderColorButtonPrimaryPastelBlueHover};
   }
 
   &::placeholder {
@@ -179,30 +223,35 @@ export const Input = styled.input`
 export const InputContainer = styled.div`
   position: relative;
   display: block;
-  width: 115px;
+  width: 130px;
   margin-bottom: 2px;
 `;
 
 export const Submit = styled.button`
-  width: 125px;
-  height: 50px;
-  margin-top: 15px;
+  width: 100%;
   padding: 0.75rem 1.5rem;
-  cursor: pointer;
-  border: none;
-  border-radius: 20px;
+  margin-top: 15px;
   font-size: 14px;
   font-weight: 700;
-  color: #fff;
-  background: #2246f5;
-  box-shadow: 0px 3px 7px rgba(34, 70, 245, 0.3);
-  transition: all 300ms ease-in-out;
+  color: ${({ theme }) => theme.colorTextButtonPrimaryPastelBlue};
+  background-color: ${({ theme }) => theme.backgroundButtonPrimaryPastelBlue};
+  cursor: pointer;
+  border: 1px solid ${({ theme }) => theme.borderColorButtonPrimaryPastelBlue};
 
-  &:hover {
-    opacity: 0.9;
-  }
+  border-radius: ${({ theme }) => theme.borderRadiusNormal};
+  box-shadow: 0px 2px 7px rgba(0, 0, 0, 0.1);
 
+  outline: none;
+  transition: all ${({ theme }) => theme.durationNormal} ease-in-out;
+
+  &:hover,
+  &:active,
   &:focus {
     outline: none;
+    color: ${({ theme }) => theme.colorTextButtonPrimaryPastelBlueHover};
+    background-color: ${({ theme }) =>
+      theme.backgroundButtonPrimaryPastelBlueHover};
+    border: 1px solid
+      ${({ theme }) => theme.borderColorButtonPrimaryPastelBlueHover};
   }
 `;
