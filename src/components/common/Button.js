@@ -4,28 +4,28 @@ import styled from "styled-components/macro";
 const getButtonStyleToken = (name, type, theme) => {
   const tokens = {
     textButton: {
-      primaryPastelBlue: theme.colorTextButtonPrimaryPastelBlue,
-      secondaryPastelBlue: theme.colorTextButtonSecondaryPastelBlue,
+      primaryPastelBlue: theme.colorText.button.primary.pastelBlue,
+      secondaryPastelBlue: theme.colorText.button.secondary.pastelBlue,
     },
     textButtonHover: {
-      primaryPastelBlue: theme.colorTextButtonPrimaryPastelBlueHover,
-      secondaryPastelBlue: theme.colorTextButtonSecondaryPastelBlueHover,
+      primaryPastelBlue: theme.colorText.button.primary.pastelBlueHover,
+      secondaryPastelBlue: theme.colorText.button.secondary.pastelBlueHover,
     },
     backgroundButton: {
-      primaryPastelBlue: theme.backgroundButtonPrimaryPastelBlue,
-      secondaryPastelBlue: theme.backgroundButtonSecondaryPastelBlue,
+      primaryPastelBlue: theme.background.button.primary.pastelBlue,
+      secondaryPastelBlue: theme.background.button.secondary.pastelBlue,
     },
     backgroundButtonHover: {
-      primaryPastelBlue: theme.backgroundButtonPrimaryPastelBlueHover,
-      secondaryPastelBlue: theme.backgroundButtonSecondaryPastelBlueHover,
+      primaryPastelBlue: theme.background.button.primary.pastelBlueHover,
+      secondaryPastelBlue: theme.background.button.secondary.pastelBlueHover,
     },
     borderButton: {
-      primaryPastelBlue: theme.borderColorButtonPrimaryPastelBlue,
-      secondaryPastelBlue: theme.borderColorButtonSecondaryPastelBlue,
+      primaryPastelBlue: theme.border.button.primary.pastelBlue,
+      secondaryPastelBlue: theme.border.button.secondary.pastelBlue,
     },
     borderButtonHover: {
-      primaryPastelBlue: theme.borderColorButtonPrimaryPastelBlueHover,
-      secondaryPastelBlue: theme.borderColorButtonSecondaryPastelBlueHover,
+      primaryPastelBlue: theme.border.button.primary.pastelBlueHover,
+      secondaryPastelBlue: theme.border.button.secondary.pastelBlueHover,
     },
     boxShadowButton: {
       primaryPastelBlue: "0px 2px 7px rgba(0, 0, 0, 0.1)",

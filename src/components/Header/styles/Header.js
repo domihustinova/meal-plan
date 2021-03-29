@@ -50,7 +50,7 @@ export const Navigation = styled.nav`
 `;
 
 export const HamburgerIcon = styled.button`
-  color: ${({ theme }) => theme.colorNavbarHamburger};
+  color: ${({ theme }) => theme.navbar.hamburger};
   background: transparent;
   border: none;
   font-size: 30px;
@@ -72,9 +72,7 @@ export const HamburgerIcon = styled.button`
     width: 2rem;
     height: 0.25rem;
     background: ${({ theme, isDropdownOpen }) =>
-      isDropdownOpen
-        ? theme.colorNavbarHamburgerHover
-        : theme.colorNavbarHamburger};
+      isDropdownOpen ? theme.navbar.hamburgerHover : theme.navbar.hamburger};
     border-radius: 10px;
     transition: all 0.3s linear;
     position: relative;
@@ -113,7 +111,7 @@ export const Dropdown = styled.div`
 `;
 
 export const TextLink = styled.a`
-  color: ${({ theme }) => theme.colorTextLinkPastelBlue};
+  color: ${({ theme }) => theme.colorText.link.pastelBlue};
   cursor: pointer;
   text-decoration: none;
   letter-spacing: 0.05em;
@@ -125,6 +123,6 @@ export const TextLink = styled.a`
 
   &:hover,
   &:focus {
-    color: ${({ theme }) => theme.colorTextLinkPastelBlueHover};
+    color: ${({ theme }) => theme.colorText.link.pastelBlueHover};
   }
 `;

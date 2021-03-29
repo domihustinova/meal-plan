@@ -3,7 +3,7 @@ import { MEDIA_QUERY } from "../../../theme/consts";
 
 export const Container = styled.section`
   width: 100%;
-  background: ${({ theme }) => theme.backgroundHero};
+  background: ${({ theme }) => theme.background.hero};
   overflow: hidden;
   padding-right: 24px;
   padding-left: 24px;

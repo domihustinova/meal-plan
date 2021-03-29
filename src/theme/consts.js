@@ -83,33 +83,57 @@ const base = {
 };
 
 export const theme = {
-  // Text colors
-  colorTextPrimary: palette.ink.normal,
-  colorTextError: palette.red.normal,
-  colorTextFooter: palette.white.normal,
-  colorTextLinkFooter: palette.pastelBlue.lighter,
-  colorTextLinkFooterHover: palette.white.normal,
-  colorTextButtonPrimaryPastelBlue: palette.white.normal,
-  colorTextButtonPrimaryPastelBlueHover: palette.white.normal,
-  colorTextButtonSecondaryPastelBlue: palette.pastelBlue.dark,
-  colorTextButtonSecondaryPastelBlueHover: palette.pastelBlue.lighter,
-  colorTextLinkPastelBlue: palette.pastelBlue.dark,
-  colorTextLinkPastelBlueHover: palette.blue.dark,
-  // Background colors
-  backgroundBody: palette.white.normal,
-  backgroundHero: palette.yellow.lighter,
-  backgroundFooter: palette.pastelBlue.normal,
-  backgroundButtonPrimaryPastelBlue: palette.pastelBlue.dark,
-  backgroundButtonPrimaryPastelBlueHover: palette.pastelBlue.light,
-  backgroundButtonSecondaryPastelBlue: palette.white.normal,
-  backgroundButtonSecondaryPastelBlueHover: palette.white.normal,
-  // Border colors
-  borderColorButtonPrimaryPastelBlue: palette.pastelBlue.dark,
-  borderColorButtonPrimaryPastelBlueHover: palette.pastelBlue.light,
-  borderColorButtonSecondaryPastelBlue: palette.pastelBlue.dark,
-  borderColorButtonSecondaryPastelBlueHover: palette.pastelBlue.lighter,
-  // Other
-  colorNavbarHamburger: palette.pastelBlue.dark,
-  colorNavbarHamburgerHover: palette.pastelBlue.normal,
+  colorText: {
+    primary: palette.ink.normal,
+    error: palette.red.normal,
+    footer: palette.white.normal,
+    link: {
+      footer: palette.pastelBlue.lighter,
+      footerHover: palette.white.normal,
+      pastelBlue: palette.pastelBlue.dark,
+      pastelBlueHover: palette.blue.dark,
+    },
+    button: {
+      primary: {
+        pastelBlue: palette.white.normal,
+        pastelBlueHover: palette.white.normal,
+      },
+      secondary: {
+        pastelBlue: palette.pastelBlue.dark,
+        pastelBlueHover: palette.pastelBlue.lighter,
+      },
+    },
+  },
+  background: {
+    body: palette.white.normal,
+    hero: palette.yellow.lighter,
+    footer: palette.pastelBlue.normal,
+    button: {
+      primary: {
+        pastelBlue: palette.pastelBlue.dark,
+        pastelBlueHover: palette.pastelBlue.light,
+      },
+      secondary: {
+        pastelBlue: palette.white.normal,
+        pastelBlueHover: palette.white.normal,
+      },
+    },
+  },
+  border: {
+    button: {
+      primary: {
+        pastelBlue: palette.pastelBlue.dark,
+        pastelBlueHover: palette.pastelBlue.light,
+      },
+      secondary: {
+        pastelBlue: palette.pastelBlue.dark,
+        pastelBlueHover: palette.pastelBlue.lighter,
+      },
+    },
+  },
+  navbar: {
+    hamburger: palette.pastelBlue.dark,
+    hamburgerHover: palette.pastelBlue.normal,
+  },
   ...base,
 };

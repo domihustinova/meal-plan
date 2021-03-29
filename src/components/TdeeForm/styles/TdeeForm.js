@@ -117,7 +117,7 @@ export const Label = styled.label`
 `;
 
 export const Error = styled.div`
-  color: ${({ theme }) => theme.colorTextError};
+  color: ${({ theme }) => theme.colorText.error};
   font-size: 12px;
   font-weight: 500;
   line-height: 16px;
@@ -170,12 +170,11 @@ export const InputButtonGroup = styled.div`
     margin-right: 10px;
     font-size: 14px;
     font-weight: 700;
-    color: ${({ theme }) => theme.colorTextButtonSecondaryPastelBlue};
+    color: ${({ theme }) => theme.colorText.button.secondary.pastelBlue};
     background-color: ${({ theme }) =>
-      theme.backgroundButtonSecondaryPastelBlue};
+      theme.background.button.secondary.pastelBlue};
     cursor: pointer;
-    border: 1px solid
-      ${({ theme }) => theme.borderColorButtonSecondaryPastelBlue};
+    border: 1px solid ${({ theme }) => theme.border.button.secondary.pastelBlue};
     border-radius: ${({ theme }) => theme.borderRadiusNormal};
     box-shadow: 0px 2px 7px rgba(0, 0, 0, 0.1);
     outline: none;
@@ -184,8 +183,9 @@ export const InputButtonGroup = styled.div`
 
   input[type="radio"]:hover + label,
   input[type="radio"]:checked + label {
-    color: ${({ theme }) => theme.colorTextButtonPrimaryPastelBlue};
-    background-color: ${({ theme }) => theme.backgroundButtonPrimaryPastelBlue};
+    color: ${({ theme }) => theme.colorText.button.primary.pastelBlue};
+    background-color: ${({ theme }) =>
+      theme.background.button.primary.pastelBlue};
   }
 `;
 
@@ -205,7 +205,7 @@ export const Input = styled.input`
   &:not(:placeholder-shown) {
     outline: none;
     border: 1px solid
-      ${({ theme }) => theme.borderColorButtonPrimaryPastelBlueHover};
+      ${({ theme }) => theme.border.button.primary.pastelBlueHover};
   }
 
   &::placeholder {
@@ -233,10 +233,11 @@ export const Submit = styled.button`
   margin-top: 15px;
   font-size: 14px;
   font-weight: 700;
-  color: ${({ theme }) => theme.colorTextButtonPrimaryPastelBlue};
-  background-color: ${({ theme }) => theme.backgroundButtonPrimaryPastelBlue};
+  color: ${({ theme }) => theme.colorText.button.primary.pastelBlue};
+  background-color: ${({ theme }) =>
+    theme.background.button.primary.pastelBlue};
   cursor: pointer;
-  border: 1px solid ${({ theme }) => theme.borderColorButtonPrimaryPastelBlue};
+  border: 1px solid ${({ theme }) => theme.border.button.primary.pastelBlue};
 
   border-radius: ${({ theme }) => theme.borderRadiusNormal};
   box-shadow: 0px 2px 7px rgba(0, 0, 0, 0.1);
@@ -248,10 +249,10 @@ export const Submit = styled.button`
   &:active,
   &:focus {
     outline: none;
-    color: ${({ theme }) => theme.colorTextButtonPrimaryPastelBlueHover};
+    color: ${({ theme }) => theme.colorText.button.primary.pastelBlueHover};
     background-color: ${({ theme }) =>
-      theme.backgroundButtonPrimaryPastelBlueHover};
+      theme.background.button.primary.pastelBlueHover};
     border: 1px solid
-      ${({ theme }) => theme.borderColorButtonPrimaryPastelBlueHover};
+      ${({ theme }) => theme.border.button.primary.pastelBlueHover};
   }
 `;
