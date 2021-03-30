@@ -227,32 +227,8 @@ export const InputContainer = styled.div`
   margin-bottom: 2px;
 `;
 
-export const Submit = styled.button`
+export const Submit = styled(Button)`
   width: 100%;
-  padding: 0.75rem 1.5rem;
   margin-top: 15px;
-  font-size: 14px;
-  font-weight: 700;
-  color: ${({ theme }) => theme.colorText.button.primary.pastelBlue};
-  background-color: ${({ theme }) =>
-    theme.background.button.primary.pastelBlue};
-  cursor: pointer;
-  border: 1px solid ${({ theme }) => theme.border.button.primary.pastelBlue};
-
-  border-radius: ${({ theme }) => theme.borderRadiusNormal};
-  box-shadow: 0px 2px 7px rgba(0, 0, 0, 0.1);
-
-  outline: none;
-  transition: all ${({ theme }) => theme.durationNormal} ease-in-out;
-
-  &:hover,
-  &:active,
-  &:focus {
-    outline: none;
-    color: ${({ theme }) => theme.colorText.button.primary.pastelBlueHover};
-    background-color: ${({ theme }) =>
-      theme.background.button.primary.pastelBlueHover};
-    border: 1px solid
-      ${({ theme }) => theme.border.button.primary.pastelBlueHover};
-  }
+  padding: 0.75rem 1.5rem;
 `;

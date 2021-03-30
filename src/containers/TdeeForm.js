@@ -87,7 +87,11 @@ export function TdeeFormContainer({ isFormSubmitted, onFormSubmit }) {
                 />
               </TdeeForm.Row>
               <TdeeForm.Row type="button">
-                <TdeeForm.Submit type="submit">
+                <TdeeForm.Submit
+                  themetype="primaryPastelBlue"
+                  size="normal"
+                  type="submit"
+                >
                   {isFormSubmitted ? "Recalculate" : "Calculate"}
                 </TdeeForm.Submit>
               </TdeeForm.Row>

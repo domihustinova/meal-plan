@@ -8,6 +8,7 @@ const StyledButton = styled.button`
   padding: ${(props) => getButtonSizeToken("paddingButton", props.size)};
   font-size: ${(props) => getButtonSizeToken("fontSizeButton", props.size)};
   font-weight: ${(props) => getButtonSizeToken("fontWeightButton", props.size)};
+  font-family: ${({ theme }) => theme.fontFamily};
   color: ${(props) =>
     getButtonStyleToken("textButton", props.themetype, props.theme)};
   background-color: ${(props) =>
