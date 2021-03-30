@@ -10,19 +10,19 @@ const StyledButtonLink = styled(Link)`
   font-size: ${(props) => getButtonSizeToken("fontSizeButton", props.size)};
   font-weight: ${(props) => getButtonSizeToken("fontWeightButton", props.size)};
   color: ${(props) =>
-    getButtonStyleToken("textButton", props.themeType, props.theme)};
+    getButtonStyleToken("textButton", props.themetype, props.theme)};
   background-color: ${(props) =>
-    getButtonStyleToken("backgroundButton", props.themeType, props.theme)};
+    getButtonStyleToken("backgroundButton", props.themetype, props.theme)};
   text-align: center;
   text-decoration: none;
   cursor: pointer;
   border: 1px solid
     ${(props) =>
-      getButtonStyleToken("borderButton", props.themeType, props.theme)};
+      getButtonStyleToken("borderButton", props.themetype, props.theme)};
 
   border-radius: ${({ theme }) => theme.borderRadiusNormal};
   box-shadow: ${(props) =>
-    getButtonStyleToken("boxShadowButton", props.themeType, props.theme)};
+    getButtonStyleToken("boxShadowButton", props.themetype, props.theme)};
   outline: none;
   transition: all ${({ theme }) => theme.durationNormal} ease-in-out;
 
@@ -31,22 +31,22 @@ const StyledButtonLink = styled(Link)`
   &:focus {
     outline: none;
     color: ${(props) =>
-      getButtonStyleToken("textButtonHover", props.themeType, props.theme)};
+      getButtonStyleToken("textButtonHover", props.themetype, props.theme)};
     background-color: ${(props) =>
       getButtonStyleToken(
         "backgroundButtonHover",
-        props.themeType,
+        props.themetype,
         props.theme
       )};
     border: 1px solid
       ${(props) =>
-        getButtonStyleToken("borderButtonHover", props.themeType, props.theme)};
+        getButtonStyleToken("borderButtonHover", props.themetype, props.theme)};
   }
 `;
 
 const ButtonLink = ({
   to,
-  themeType,
+  themetype,
   size,
   href,
   onClick,
@@ -57,7 +57,7 @@ const ButtonLink = ({
   return (
     <StyledButtonLink
       to={to}
-      themeType={themeType}
+      themetype={themetype}
       size={size}
       href={href}
       onClick={onClick}

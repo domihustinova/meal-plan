@@ -1,4 +1,4 @@
-export const getButtonStyleToken = (name, themeType, theme) => {
+export const getButtonStyleToken = (name, themetype, theme) => {
   const tokens = {
     textButton: {
       primaryPastelBlue: theme.colorText.button.primary.pastelBlue,
@@ -29,7 +29,7 @@ export const getButtonStyleToken = (name, themeType, theme) => {
       secondaryPastelBlue: "0px 2px 7px rgba(0, 0, 0, 0.1)",
     },
   };
-  return tokens[name][themeType];
+  return tokens[name][themetype];
 };
 
 export const getButtonSizeToken = (name, size) => {

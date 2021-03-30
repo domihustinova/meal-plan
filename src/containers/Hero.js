@@ -17,7 +17,7 @@ export function HeroContainer() {
           </Hero.Text>
           <Hero.ButtonLink
             to={ROUTES.SIGN_UP}
-            themeType="primaryPastelBlue"
+            themetype="primaryPastelBlue"
             size="normal"
           >
             Get Started

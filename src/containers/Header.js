@@ -42,7 +42,7 @@ export function HeaderContainer() {
           <Header.Navigation>
             <Header.ButtonLink
               to={ROUTES.SIGN_IN}
-              themeType="secondaryPastelBlue"
+              themetype="secondaryPastelBlue"
               size="normal"
               title="Sign In"
             >
@@ -50,7 +50,7 @@ export function HeaderContainer() {
             </Header.ButtonLink>
             <Header.ButtonLink
               to={ROUTES.SIGN_UP}
-              themeType="primaryPastelBlue"
+              themetype="primaryPastelBlue"
               size="normal"
               title="Sign Up"
             >

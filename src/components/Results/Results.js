@@ -56,13 +56,13 @@ Results.ButtonGroup = function ResultsButtonGroup({ children, ...restProps }) {
 };
 
 Results.Button = function ResultsButtonLink({
-  themeType,
+  themetype,
   size,
   children,
   ...restProps
 }) {
   return (
-    <StyledButton themeType={themeType} size={size} {...restProps}>
+    <StyledButton themetype={themetype} size={size} {...restProps}>
       {children}
     </StyledButton>
   );

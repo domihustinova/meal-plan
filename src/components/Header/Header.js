@@ -44,13 +44,13 @@ Header.HomeLink = function HeaderHomeLink({ to, children, ...restProps }) {
 
 Header.ButtonLink = function HeaderButtonLink({
   to,
-  themeType,
+  themetype,
   size,
   children,
   ...restProps
 }) {
   return (
-    <StyledButtonLink to={to} themeType={themeType} size={size} {...restProps}>
+    <StyledButtonLink to={to} themetype={themetype} size={size} {...restProps}>
       {children}
     </StyledButtonLink>
   );

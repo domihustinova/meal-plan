@@ -59,7 +59,7 @@ export function ResultsContainer({ caloriesData }) {
           <Results.ButtonGroup>
             {GOALS.map((goal) => (
               <Results.Button
-                themeType={
+                themetype={
                   goal.value === selectedGoal
                     ? `primaryPastelBlue`
                     : `secondaryPastelBlue`

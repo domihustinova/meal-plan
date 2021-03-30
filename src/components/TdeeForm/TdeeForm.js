@@ -48,13 +48,13 @@ TdeeForm.Image = function TdeeFormImage({ children, ...restProps }) {
 };
 
 TdeeForm.Button = function TdeeFormButtonLink({
-  themeType,
+  themetype,
   size,
   children,
   ...restProps
 }) {
   return (
-    <StyledButton themeType={themeType} size={size} {...restProps}>
+    <StyledButton themetype={themetype} size={size} {...restProps}>
       {children}
     </StyledButton>
   );

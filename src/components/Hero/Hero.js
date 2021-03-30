@@ -36,13 +36,13 @@ Hero.Image = function HeroImage({ children, ...restProps }) {
 
 Hero.ButtonLink = function HeroButtonLink({
   to,
-  themeType,
+  themetype,
   size,
   children,
   ...restProps
 }) {
   return (
-    <ButtonLink to={to} themeType={themeType} size={size} {...restProps}>
+    <ButtonLink to={to} themetype={themetype} size={size} {...restProps}>
       {children}
     </ButtonLink>
   );

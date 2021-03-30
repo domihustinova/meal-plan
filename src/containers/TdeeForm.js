@@ -41,7 +41,7 @@ export function TdeeFormContainer({ isFormSubmitted, onFormSubmit }) {
               Total Daily Energy Expenditure.
             </TdeeForm.Text>
             <TdeeForm.Button
-              themeType="primaryPastelBlue"
+              themetype="primaryPastelBlue"
               size="normal"
               onClick={handleButtonClick}
             >
