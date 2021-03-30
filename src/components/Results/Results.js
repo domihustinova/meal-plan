@@ -2,7 +2,6 @@ import React from "react";
 
 import {
   ButtonGroup,
-  ButtonLink,
   Card,
   CardGroup,
   CardList,
@@ -15,6 +14,7 @@ import {
   ProgressBar,
   ProgressBarMoved,
   ProgressBarBackground,
+  StyledButton,
   Text,
   TextContainer,
   Title,
@@ -55,16 +55,16 @@ Results.ButtonGroup = function ResultsButtonGroup({ children, ...restProps }) {
   return <ButtonGroup {...restProps}>{children}</ButtonGroup>;
 };
 
-Results.ButtonLink = function ResultsButtonLink({
-  type,
+Results.Button = function ResultsButtonLink({
+  themeType,
   size,
   children,
   ...restProps
 }) {
   return (
-    <ButtonLink type={type} size={size} {...restProps}>
+    <StyledButton themeType={themeType} size={size} {...restProps}>
       {children}
-    </ButtonLink>
+    </StyledButton>
   );
 };
 

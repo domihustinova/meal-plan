@@ -95,7 +95,7 @@ export const ButtonGroup = styled.div`
   }
 `;
 
-export const ButtonLink = styled(Button)`
+export const StyledButton = styled(Button)`
   margin-bottom: 10px;
 
   @media ${MEDIA_QUERY.MIN_MEDIUM} {

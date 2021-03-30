@@ -58,8 +58,8 @@ export function ResultsContainer({ caloriesData }) {
           </Results.Text>
           <Results.ButtonGroup>
             {GOALS.map((goal) => (
-              <Results.ButtonLink
-                type={
+              <Results.Button
+                themeType={
                   goal.value === selectedGoal
                     ? `primaryPastelBlue`
                     : `secondaryPastelBlue`
@@ -69,7 +69,7 @@ export function ResultsContainer({ caloriesData }) {
                 onClick={() => handleSettingGoal(goal.value)}
               >
                 {goal.title}
-              </Results.ButtonLink>
+              </Results.Button>
             ))}
           </Results.ButtonGroup>
         </Results.TextContainer>
