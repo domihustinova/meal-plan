@@ -1,7 +1,7 @@
 import React from "react";
+import { Link as ReactRouterLink } from "react-router-dom";
 
 import {
-  ButtonLink,
   Container,
   Dropdown,
   Frame,
@@ -10,6 +10,7 @@ import {
   HomeLink,
   Logo,
   Navigation,
+  StyledButtonLink,
   TextLink,
 } from "./styles/Header";
 
@@ -22,27 +23,36 @@ Header.Frame = React.forwardRef((props, ref) => (
 ));
 
 Header.Logo = function HeaderLogo({ to, ...restProps }) {
-  return <Logo {...restProps} />;
+  return (
+    <ReactRouterLink to={to}>
+      <Logo {...restProps} />
+    </ReactRouterLink>
+  );
 };
 
 Header.Group = function HeaderGroup({ children, ...restProps }) {
   return <Group {...restProps}>{children}</Group>;
 };
 
-Header.HomeLink = function HeaderHomeLink({ children, ...restProps }) {
-  return <HomeLink {...restProps}>{children}</HomeLink>;
+Header.HomeLink = function HeaderHomeLink({ to, children, ...restProps }) {
+  return (
+    <HomeLink to={to} {...restProps}>
+      {children}
+    </HomeLink>
+  );
 };
 
 Header.ButtonLink = function HeaderButtonLink({
-  type,
+  to,
+  themeType,
   size,
   children,
   ...restProps
 }) {
   return (
-    <ButtonLink type={type} size={size} {...restProps}>
+    <StyledButtonLink to={to} themeType={themeType} size={size} {...restProps}>
       {children}
-    </ButtonLink>
+    </StyledButtonLink>
   );
 };
 

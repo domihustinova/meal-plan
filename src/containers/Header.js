@@ -2,6 +2,7 @@ import React, { useState, useRef } from "react";
 
 import { Header } from "../components/";
 import logo from "../images/logo.png";
+import * as ROUTES from "../constants/routes";
 import { useWindowSize, useOnClickOutside } from "../services/hooks";
 
 export function HeaderContainer() {
@@ -20,8 +21,15 @@ export function HeaderContainer() {
     <Header>
       <Header.Frame ref={ref}>
         <Header.Group>
-          <Header.Logo src={logo} title="MealPal" alt="MealPal" />
-          <Header.HomeLink title="MealPal">MealPal</Header.HomeLink>
+          <Header.Logo
+            to={ROUTES.HOME}
+            src={logo}
+            title="MealPal"
+            alt="MealPal"
+          />
+          <Header.HomeLink to={ROUTES.HOME} title="MealPal">
+            MealPal
+          </Header.HomeLink>
         </Header.Group>
 
         {isMobile ? (
@@ -33,14 +41,16 @@ export function HeaderContainer() {
         ) : (
           <Header.Navigation>
             <Header.ButtonLink
-              type="secondaryPastelBlue"
+              to={ROUTES.SIGN_IN}
+              themeType="secondaryPastelBlue"
               size="normal"
               title="Sign In"
             >
               Sign In
             </Header.ButtonLink>
             <Header.ButtonLink
-              type="primaryPastelBlue"
+              to={ROUTES.SIGN_UP}
+              themeType="primaryPastelBlue"
               size="normal"
               title="Sign Up"
             >

@@ -88,6 +88,9 @@ export const theme = {
     error: palette.red.normal,
     footer: palette.white.normal,
     link: {
+      navbar: {
+        home: palette.ink.dark,
+      },
       footer: palette.pastelBlue.lighter,
       footerHover: palette.white.normal,
       pastelBlue: palette.pastelBlue.dark,
