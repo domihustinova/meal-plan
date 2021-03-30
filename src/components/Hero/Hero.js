@@ -8,7 +8,7 @@ import {
   TextContainer,
   Title,
 } from "./styles/Hero";
-import Button from "../common/Button";
+import ButtonLink from "../common/ButtonLink";
 
 export default function Hero({ children, ...restProps }) {
   return <Container {...restProps}>{children}</Container>;
@@ -35,14 +35,15 @@ Hero.Image = function HeroImage({ children, ...restProps }) {
 };
 
 Hero.ButtonLink = function HeroButtonLink({
-  type,
+  to,
+  themeType,
   size,
   children,
   ...restProps
 }) {
   return (
-    <Button type={type} size={size} {...restProps}>
+    <ButtonLink to={to} themeType={themeType} size={size} {...restProps}>
       {children}
-    </Button>
+    </ButtonLink>
   );
 };
