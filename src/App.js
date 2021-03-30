@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import { ThemeProvider } from "styled-components";
@@ -13,18 +13,20 @@ function App() {
     <Router>
       <ThemeProvider theme={theme}>
         <GlobalStyle />
-        <Route exact path={ROUTES.SIGN_IN}>
-          <SignIn />
-        </Route>
-        <Route exact path={ROUTES.SIGN_UP}>
-          <SignUp />
-        </Route>
-        <Route exact path={ROUTES.DASHBOARD}>
-          <Dashboard />
-        </Route>
-        <Route exact path={ROUTES.HOME}>
-          <Home />
-        </Route>
+        <Switch>
+          <Route exact path={ROUTES.SIGN_IN}>
+            <SignIn />
+          </Route>
+          <Route exact path={ROUTES.SIGN_UP}>
+            <SignUp />
+          </Route>
+          <Route exact path={ROUTES.DASHBOARD}>
+            <Dashboard />
+          </Route>
+          <Route exact path={ROUTES.HOME}>
+            <Home />
+          </Route>
+        </Switch>
       </ThemeProvider>
     </Router>
   );

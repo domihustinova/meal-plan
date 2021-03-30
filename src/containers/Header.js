@@ -18,8 +18,8 @@ export function HeaderContainer() {
   useOnClickOutside(ref, () => setIsDropdownOpen(false));
 
   return (
-    <Header>
-      <Header.Frame ref={ref}>
+    <Header ref={ref}>
+      <Header.Frame>
         <Header.Group>
           <Header.Logo
             to={ROUTES.HOME}
@@ -59,9 +59,7 @@ export function HeaderContainer() {
           </Header.Navigation>
         )}
       </Header.Frame>
-      {isMobile && isDropdownOpen && (
-        <Header.Dropdown toggleDropdown={toggleDropdown} />
-      )}
+      {isMobile && isDropdownOpen && <Header.Dropdown />}
     </Header>
   );
 }

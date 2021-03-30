@@ -1,5 +1,6 @@
 import React from "react";
 import { Link as ReactRouterLink } from "react-router-dom";
+import * as ROUTES from "../../constants/routes";
 
 import {
   Container,
@@ -56,8 +57,12 @@ Header.ButtonLink = function HeaderButtonLink({
   );
 };
 
-Header.TextLink = function HeaderTextLink({ children, ...restProps }) {
-  return <TextLink {...restProps}>{children}</TextLink>;
+Header.TextLink = function HeaderTextLink({ to, children, ...restProps }) {
+  return (
+    <TextLink to={to} {...restProps}>
+      {children}
+    </TextLink>
+  );
 };
 
 Header.Navigation = function HeaderNavigation({ children, ...restProps }) {
@@ -77,13 +82,13 @@ Header.HamburgerIcon = function HeaderHamburgerIcon({
   );
 };
 
-Header.Dropdown = function HeaderDropdown({ toggleDropdown }) {
+Header.Dropdown = function HeaderDropdown() {
   return (
     <Dropdown>
-      <Header.TextLink title="Sign In" onClick={toggleDropdown}>
+      <Header.TextLink to={ROUTES.SIGN_IN} title="Sign In">
         Sign In
       </Header.TextLink>
-      <Header.TextLink title="Sign Up" onClick={toggleDropdown}>
+      <Header.TextLink to={ROUTES.SIGN_UP} title="Sign Up">
         Sign Up
       </Header.TextLink>
     </Dropdown>

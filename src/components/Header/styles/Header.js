@@ -125,7 +125,7 @@ export const Dropdown = styled.div`
   }
 `;
 
-export const TextLink = styled.a`
+export const TextLink = styled(ReactRouterLink)`
   color: ${({ theme }) => theme.colorText.link.pastelBlue};
   cursor: pointer;
   text-decoration: none;
