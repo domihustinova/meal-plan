@@ -1,8 +1,9 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components/macro";
 import { getButtonSizeToken, getButtonStyleToken } from "./consts";
 
-const StyledButton = styled.button`
+const StyledButtonLink = styled(Link)`
   width: ${(props) => getButtonSizeToken("widthButton", props.size)};
   height: ${(props) => getButtonSizeToken("heightButton", props.size)};
   padding: ${(props) => getButtonSizeToken("paddingButton", props.size)};
@@ -43,27 +44,32 @@ const StyledButton = styled.button`
   }
 `;
 
-const Button = ({
+const ButtonLink = ({
+  to,
   themeType,
   size,
+  href,
   onClick,
   ariaLabel,
   children,
   ...restProps
 }) => {
   return (
-    <StyledButton
+    <StyledButtonLink
+      to={to}
       themeType={themeType}
       size={size}
+      href={href}
       onClick={onClick}
       onKeyPress={onClick}
+      rel="noopener noreferrer"
       tabIndex={0}
       aria-label={ariaLabel}
       {...restProps}
     >
       {children}
-    </StyledButton>
+    </StyledButtonLink>
   );
 };
 
-export default Button;
+export default ButtonLink;
