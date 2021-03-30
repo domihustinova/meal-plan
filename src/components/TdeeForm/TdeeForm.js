@@ -2,7 +2,6 @@ import React from "react";
 import { useField } from "formik";
 
 import {
-  ButtonLink,
   Container,
   Content,
   Error,
@@ -14,6 +13,7 @@ import {
   InputButtonContainer,
   Label,
   Row,
+  StyledButton,
   Submit,
   Text,
   TextContainer,
@@ -47,16 +47,16 @@ TdeeForm.Image = function TdeeFormImage({ children, ...restProps }) {
   return <Image {...restProps}>{children}</Image>;
 };
 
-TdeeForm.ButtonLink = function TdeeFormButtonLink({
-  type,
+TdeeForm.Button = function TdeeFormButtonLink({
+  themeType,
   size,
   children,
   ...restProps
 }) {
   return (
-    <ButtonLink type={type} size={size} {...restProps}>
+    <StyledButton themeType={themeType} size={size} {...restProps}>
       {children}
-    </ButtonLink>
+    </StyledButton>
   );
 };
 

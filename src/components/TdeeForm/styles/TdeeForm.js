@@ -63,7 +63,7 @@ export const Text = styled.p`
   margin-bottom: 28px;
 `;
 
-export const ButtonLink = styled(Button)`
+export const StyledButton = styled(Button)`
   width: 200px;
 `;
 

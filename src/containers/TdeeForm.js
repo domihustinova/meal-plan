@@ -40,13 +40,13 @@ export function TdeeFormContainer({ isFormSubmitted, onFormSubmit }) {
               Start small. Learn how many calories you burn every day - your
               Total Daily Energy Expenditure.
             </TdeeForm.Text>
-            <TdeeForm.ButtonLink
-              type="primaryPastelBlue"
+            <TdeeForm.Button
+              themeType="primaryPastelBlue"
               size="normal"
               onClick={handleButtonClick}
             >
               Calculate my TDEE
-            </TdeeForm.ButtonLink>
+            </TdeeForm.Button>
           </TdeeForm.TextContainer>
         </TdeeForm.Frame>
         {showForm && (
