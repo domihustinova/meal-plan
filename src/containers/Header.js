@@ -18,48 +18,50 @@ export function HeaderContainer() {
   useOnClickOutside(ref, () => setIsDropdownOpen(false));
 
   return (
-    <Header ref={ref}>
-      <Header.Frame>
-        <Header.Group>
-          <Header.Logo
-            to={ROUTES.HOME}
-            src={logo}
-            title="MealPal"
-            alt="MealPal"
-          />
-          <Header.HomeLink to={ROUTES.HOME} title="MealPal">
-            MealPal
-          </Header.HomeLink>
-        </Header.Group>
+    <Header>
+      <Header.Wrapper ref={ref}>
+        <Header.Frame>
+          <Header.Group>
+            <Header.Logo
+              to={ROUTES.HOME}
+              src={logo}
+              title="MealPal"
+              alt="MealPal"
+            />
+            <Header.HomeLink to={ROUTES.HOME} title="MealPal">
+              MealPal
+            </Header.HomeLink>
+          </Header.Group>
 
-        {isMobile ? (
-          <Header.HamburgerIcon
-            isDropdownOpen={isDropdownOpen}
-            onClick={toggleDropdown}
-            aria-label="Open dropdown menu"
-          />
-        ) : (
-          <Header.Navigation>
-            <Header.ButtonLink
-              to={ROUTES.SIGN_IN}
-              themetype="secondaryPastelBlue"
-              size="normal"
-              title="Sign In"
-            >
-              Sign In
-            </Header.ButtonLink>
-            <Header.ButtonLink
-              to={ROUTES.SIGN_UP}
-              themetype="primaryPastelBlue"
-              size="normal"
-              title="Sign Up"
-            >
-              Sign Up
-            </Header.ButtonLink>
-          </Header.Navigation>
-        )}
-      </Header.Frame>
-      {isMobile && isDropdownOpen && <Header.Dropdown />}
+          {isMobile ? (
+            <Header.HamburgerIcon
+              isDropdownOpen={isDropdownOpen}
+              onClick={toggleDropdown}
+              aria-label="Open dropdown menu"
+            />
+          ) : (
+            <Header.Navigation>
+              <Header.ButtonLink
+                to={ROUTES.SIGN_IN}
+                themetype="secondaryPastelBlue"
+                size="normal"
+                title="Sign In"
+              >
+                Sign In
+              </Header.ButtonLink>
+              <Header.ButtonLink
+                to={ROUTES.SIGN_UP}
+                themetype="primaryPastelBlue"
+                size="normal"
+                title="Sign Up"
+              >
+                Sign Up
+              </Header.ButtonLink>
+            </Header.Navigation>
+          )}
+        </Header.Frame>
+        {isMobile && isDropdownOpen && <Header.Dropdown />}
+      </Header.Wrapper>
     </Header>
   );
 }

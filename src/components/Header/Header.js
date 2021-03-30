@@ -19,8 +19,12 @@ export default function Header({ children, ...restProps }) {
   return <Container {...restProps}>{children}</Container>;
 }
 
-Header.Frame = React.forwardRef((props, ref) => (
-  <Frame ref={ref}>{props.children}</Frame>
+Header.Frame = function HeaderFrame({ children, ...restProps }) {
+  return <Frame {...restProps}>{children}</Frame>;
+};
+
+Header.Wrapper = React.forwardRef((props, ref) => (
+  <div ref={ref}>{props.children}</div>
 ));
 
 Header.Logo = function HeaderLogo({ to, ...restProps }) {
