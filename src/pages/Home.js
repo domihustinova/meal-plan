@@ -18,7 +18,7 @@ export const Main = styled.main`
   margin: 0 auto;
 `;
 
-export function Home() {
+export default function Home() {
   const [isFormSubmitted, setIsFormSubmitted] = useState(false);
   const [caloriesData, setCaloriesData] = useState("");
 

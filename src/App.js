@@ -1,17 +1,32 @@
 import React, { Fragment } from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+
 import { ThemeProvider } from "styled-components";
 import { theme } from "./theme/consts";
 import { GlobalStyle } from "./theme/globalStyle";
-import { Home } from "./pages/Home";
+
+import { Home, SignIn, SignUp, Dashboard } from "./pages";
+import * as ROUTES from "./constants/routes";
 
 function App() {
   return (
-    <ThemeProvider theme={theme}>
-      <Fragment>
+    <Router>
+      <ThemeProvider theme={theme}>
         <GlobalStyle />
-        <Home />
-      </Fragment>
-    </ThemeProvider>
+        <Route exact path={ROUTES.SIGN_IN}>
+          <SignIn />
+        </Route>
+        <Route exact path={ROUTES.SIGN_UP}>
+          <SignUp />
+        </Route>
+        <Route exact path={ROUTES.DASHBOARD}>
+          <Dashboard />
+        </Route>
+        <Route exact path={ROUTES.HOME}>
+          <Home />
+        </Route>
+      </ThemeProvider>
+    </Router>
   );
 }
 
