@@ -71,6 +71,7 @@ const base = {
   fontSizeExtraSmall: "0.75rem", // 12px
   fontSizeSmall: "0.875rem", // 14px
   fontSizeMedium: "1rem", // 16px
+  borderRadiusSmall: "10px",
   borderRadiusNormal: "0.9375rem", // 15px
   fontWeightNormal: "400",
   fontWeightMedium: "500",
@@ -86,11 +87,14 @@ export const theme = {
   colorText: {
     primary: palette.ink.normal,
     error: palette.red.normal,
+    placeholder: palette.ink.light,
     footer: palette.white.normal,
     link: {
       navbar: {
         home: palette.ink.dark,
       },
+      form: palette.pastelBlue.dark,
+      formHover: palette.pastelBlue.lighter,
       footer: palette.pastelBlue.lighter,
       footerHover: palette.white.normal,
       pastelBlue: palette.pastelBlue.dark,
@@ -110,6 +114,7 @@ export const theme = {
   background: {
     body: palette.white.normal,
     hero: palette.yellow.lighter,
+    main: palette.orange.lighter,
     footer: palette.pastelBlue.normal,
     button: {
       primary: {
@@ -123,6 +128,8 @@ export const theme = {
     },
   },
   border: {
+    input: palette.pastelBlue.normal,
+    inputHover: palette.pastelBlue.normal,
     button: {
       primary: {
         pastelBlue: palette.pastelBlue.dark,
