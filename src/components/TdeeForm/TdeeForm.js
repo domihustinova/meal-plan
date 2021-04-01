@@ -1,23 +1,32 @@
 import React from "react";
 import { useField } from "formik";
+
 import {
+  ButtonLink,
   Container,
-  Title,
-  Text,
   Content,
-  Row,
   Error,
+  Frame,
+  Image,
   Input,
   InputContainer,
   InputButtonGroup,
   InputButtonContainer,
   Label,
+  Row,
   Submit,
+  Text,
+  TextContainer,
+  Title,
 } from "./styles/TdeeForm";
 
 export default function TdeeForm({ children, ...restProps }) {
   return <Container {...restProps}>{children}</Container>;
 }
+
+TdeeForm.Frame = function TdeeFormFrame({ children, ...restProps }) {
+  return <Frame {...restProps}>{children}</Frame>;
+};
 
 TdeeForm.Title = function TdeeFormTitle({ children, ...restProps }) {
   return <Title {...restProps}>{children}</Title>;
@@ -25,6 +34,30 @@ TdeeForm.Title = function TdeeFormTitle({ children, ...restProps }) {
 
 TdeeForm.Text = function TdeeFormText({ children, ...restProps }) {
   return <Text {...restProps}>{children}</Text>;
+};
+
+TdeeForm.TextContainer = function TdeeFormTextContainer({
+  children,
+  ...restProps
+}) {
+  return <TextContainer {...restProps}>{children}</TextContainer>;
+};
+
+TdeeForm.Image = function TdeeFormImage({ children, ...restProps }) {
+  return <Image {...restProps}>{children}</Image>;
+};
+
+TdeeForm.ButtonLink = function TdeeFormButtonLink({
+  type,
+  size,
+  children,
+  ...restProps
+}) {
+  return (
+    <ButtonLink type={type} size={size} {...restProps}>
+      {children}
+    </ButtonLink>
+  );
 };
 
 TdeeForm.Content = function TdeeFormContent({ children, ...restProps }) {

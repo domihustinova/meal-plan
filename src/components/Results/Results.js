@@ -1,32 +1,50 @@
 import React from "react";
 
 import {
-  Container,
-  Title,
-  Description,
-  Content,
-  Button,
   ButtonGroup,
+  ButtonLink,
   Card,
   CardGroup,
-  CardTitle,
   CardList,
   CardListItem,
+  CardTitle,
+  Container,
+  Content,
+  Frame,
+  Image,
   ProgressBar,
   ProgressBarMoved,
   ProgressBarBackground,
+  Text,
+  TextContainer,
+  Title,
 } from "./styles/Results";
 
 export default function Results({ children, ...restProps }) {
   return <Container {...restProps}>{children}</Container>;
 }
 
+Results.Frame = function ResultsFrame({ children, ...restProps }) {
+  return <Frame {...restProps}>{children}</Frame>;
+};
+
 Results.Title = function ResultsTitle({ children, ...restProps }) {
   return <Title {...restProps}>{children}</Title>;
 };
 
-Results.Description = function ResultsDescription({ children, ...restProps }) {
-  return <Description {...restProps}>{children}</Description>;
+Results.Text = function ResultsText({ children, ...restProps }) {
+  return <Text {...restProps}>{children}</Text>;
+};
+
+Results.TextContainer = function ResultsTextContainer({
+  children,
+  ...restProps
+}) {
+  return <TextContainer {...restProps}>{children}</TextContainer>;
+};
+
+Results.Image = function ResultsImage({ children, ...restProps }) {
+  return <Image {...restProps}>{children}</Image>;
 };
 
 Results.Content = function ResultsContent({ children, ...restProps }) {
@@ -37,8 +55,17 @@ Results.ButtonGroup = function ResultsButtonGroup({ children, ...restProps }) {
   return <ButtonGroup {...restProps}>{children}</ButtonGroup>;
 };
 
-Results.Button = function ResultsButton({ children, ...restProps }) {
-  return <Button {...restProps}>{children}</Button>;
+Results.ButtonLink = function ResultsButtonLink({
+  type,
+  size,
+  children,
+  ...restProps
+}) {
+  return (
+    <ButtonLink type={type} size={size} {...restProps}>
+      {children}
+    </ButtonLink>
+  );
 };
 
 Results.CardGroup = function ResultsCardGroup({ children, ...restProps }) {

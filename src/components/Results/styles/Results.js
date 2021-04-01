@@ -1,21 +1,63 @@
 import styled from "styled-components/macro";
+import { MEDIA_QUERY } from "../../../theme/consts";
+import Button from "../../common/Button";
 
 const BACKGROUND = {
-  proteins: "linear-gradient(to right, #2246f5, #6ae7d5)",
-  carbs: "linear-gradient(to right, #ef476f, #f9bcca)",
-  fats: "linear-gradient(to right, #9d79db, #e98dbd)",
+  proteins: "linear-gradient(to right, #8eb1ee, #3961aa)",
+  fats: "linear-gradient(to right, #6ebba6, #244552)",
+  carbs: "linear-gradient(to right, #eba796, #cf3e35)",
 };
 
-export const Container = styled.div`
-  max-width: 800px;
+export const Container = styled.section`
+  width: 100%;
+  padding: 24px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  border: none;
-  transition: all 300ms ease-in-out;
+  align-items: center;
+  overflow: hidden;
+`;
 
-  @media (max-width: 850px) {
-    padding: 24px;
+export const Frame = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  @media ${MEDIA_QUERY.MIN_LARGE} {
+    max-width: 900px;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+`;
+
+export const Image = styled.img`
+  width: 100%;
+  order: 1;
+
+  @media ${MEDIA_QUERY.MIN_MEDIUM} {
+    width: 50%;
+  }
+
+  @media ${MEDIA_QUERY.MIN_LARGE} {
+    order: 2;
+  }
+`;
+
+export const TextContainer = styled.div`
+  width: 100%;
+  display: flex;
+  order: 2;
+  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 24px;
+
+  @media ${MEDIA_QUERY.MIN_LARGE} {
+    margin: 0;
+    align-items: flex-start;
+    text-align: left;
+    order: 1;
   }
 `;
 
@@ -27,7 +69,7 @@ export const Title = styled.h2`
   margin-bottom: 28px;
 `;
 
-export const Description = styled.p`
+export const Text = styled.p`
   color: #000;
   font-size: 16px;
   font-weight: 400;
@@ -36,56 +78,55 @@ export const Description = styled.p`
   margin-bottom: 20px;
 `;
 
+export const ButtonGroup = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  @media ${MEDIA_QUERY.MIN_MEDIUM} {
+    flex-direction: row;
+    margin-bottom: 20px;
+  }
+
+  @media ${MEDIA_QUERY.MIN_LARGE} {
+    justify-content: flex-start;
+  }
+`;
+
+export const ButtonLink = styled(Button)`
+  margin-bottom: 10px;
+
+  @media ${MEDIA_QUERY.MIN_MEDIUM} {
+    margin-bottom: 0;
+    margin-right: 10px;
+  }
+`;
+
 export const Content = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-`;
 
-export const ButtonGroup = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: flex-end;
-  margin-bottom: 20px;
-
-  @media (max-width: 850px) {
-    justify-content: center;
-  }
-`;
-
-export const Button = styled.button`
-  width: 120px;
-  height: 44px;
-  padding: 0.75rem;
-  margin-left: 10px;
-  cursor: pointer;
-  border: 1px solid transparent;
-  border-radius: 20px;
-  font-size: 14px;
-  font-weight: 700;
-  color: #2246f5;
-  background: #fff;
-  box-shadow: 0px 2px 7px rgba(0, 0, 0, 0.1);
-  transition: all 300ms ease-in-out;
-  border: ${({ isSelected }) =>
-    isSelected ? "1px solid #2246f5" : "1px solid transparent"};
-
-  &:focus,
-  &:hover {
-    outline: none;
-    border: 1px solid #2246f5;
+  @media ${MEDIA_QUERY.MIN_LARGE} {
+    max-width: 800px;
+    flex-direction: row;
+    justify-content: space-between;
   }
 `;
 
 export const CardGroup = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   width: 100%;
   justify-content: space-between;
+  align-items: center;
 
-  @media (max-width: 850px) {
-    flex-direction: column;
-    align-items: center;
+  @media ${MEDIA_QUERY.MIN_LARGE} {
+    max-width: 800px;
+    flex-direction: row;
+    justify-content: space-between;
   }
 `;
 
@@ -96,14 +137,17 @@ export const Card = styled.div`
   width: 240px;
   font-size: 14px;
   padding: 20px 30px;
+  border: 1px solid #efefef;
   border-radius: 20px;
   overflow: hidden;
-  background-color: $white;
-  box-shadow: 0px 2px 7px rgba(0, 0, 0, 0.1);
 
-  @media (max-width: 850px) {
+  :not(:last-child) {
+    margin-bottom: 24px;
+  }
+
+  @media ${MEDIA_QUERY.MIN_LARGE} {
     :not(:last-child) {
-      margin-bottom: 24px;
+      margin-bottom: 0;
     }
   }
 `;
