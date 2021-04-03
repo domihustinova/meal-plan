@@ -1,14 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import styled from "styled-components/macro";
-
+import { useHistory } from "react-router-dom";
+import { FirebaseContext } from "../context/firebase";
 import { Form } from "../components";
 import { HeaderContainer } from "../containers/Header";
 import { FooterContainer } from "../containers/Footer";
 import * as ROUTES from "../constants/routes";
 
 export const Main = styled.main`
-  position: relative;
   height: calc(100vh - 136px);
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -18,9 +19,38 @@ export const Main = styled.main`
 `;
 
 export default function SignUp() {
+  const history = useHistory();
+  const { firebase } = useContext(FirebaseContext);
+
   const [firstName, setFirstName] = useState("");
   const [emailAddress, setEmailAddress] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+
+  const isInvalid = firstName === "" || password === "" || emailAddress === "";
+
+  const handleSignup = (event) => {
+    event.preventDefault();
+
+    return firebase
+      .auth()
+      .createUserWithEmailAndPassword(emailAddress, password)
+      .then((result) =>
+        result.user
+          .updateProfile({
+            displayName: firstName,
+          })
+          .then(() => {
+            history.push(ROUTES.DASHBOARD);
+          })
+      )
+      .catch((error) => {
+        setFirstName("");
+        setEmailAddress("");
+        setPassword("");
+        setError(error.message);
+      });
+  };
 
   return (
     <>
@@ -28,7 +58,9 @@ export default function SignUp() {
       <Main>
         <Form>
           <Form.Title>Sign Up</Form.Title>
-          <Form.Frame>
+          {error && <Form.Error>{error}</Form.Error>}
+
+          <Form.Frame onSubmit={handleSignup} method="POST">
             <Form.Input
               placeholder="First name"
               value={firstName}
@@ -47,6 +79,7 @@ export default function SignUp() {
               onChange={({ target }) => setPassword(target.value)}
             />
             <Form.Submit
+              disabled={isInvalid}
               themetype="primaryPastelBlue"
               size="normal"
               type="submit"
