@@ -1,16 +1,17 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Switch } from "react-router-dom";
 
 import { ThemeProvider } from "styled-components";
 import { theme } from "./theme/consts";
 import { GlobalStyle } from "./theme/globalStyle";
 
 import { Home, SignIn, SignUp, Dashboard } from "./pages";
+import { useAuthListener } from "./hooks";
 import { IsUserRedirect, ProtectedRoute } from "./helpers/routes";
 import * as ROUTES from "./constants/routes";
 
 function App() {
-  const user = null;
+  const { user } = useAuthListener();
 
   return (
     <Router>
