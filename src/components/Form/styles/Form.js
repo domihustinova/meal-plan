@@ -89,16 +89,10 @@ export const Link = styled(ReactRouterLink)`
 `;
 
 export const Error = styled.div`
-  color: ${({ theme }) => theme.colorText.error};
-  font-size: 12px;
-  font-weight: 500;
-  line-height: 16px;
-  width: 100%;
-  margin-top: 2px;
-  margin-left: 5px;
-  top: 100%;
-  max-height: 16px;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
+  background: ${({ theme }) => theme.colorText.error};
+  border-radius: 4px;
+  font-size: 14px;
+  margin: 0 0 16px;
+  color: white;
+  padding: 15px 20px;
 `;
