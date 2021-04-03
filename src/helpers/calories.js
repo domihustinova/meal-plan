@@ -4,7 +4,7 @@ import {
   ACTIVITY_MULTIPLIERS,
   GOAL_ADDENDS,
   BMR_FACTORS,
-} from "./consts";
+} from "../services/consts";
 
 const getBmr = (gender, age, weight, height) => {
   let bmr =

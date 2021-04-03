@@ -6,7 +6,7 @@ import { TdeeFormContainer } from "../containers/TdeeForm";
 import { ResultsContainer } from "../containers/Results";
 import { FooterContainer } from "../containers/Footer";
 
-import { getCalories } from "../services/helpers";
+import { getCalories } from "../helpers/calories";
 import { HeroContainer } from "../containers/Hero";
 
 export const Main = styled.main`
