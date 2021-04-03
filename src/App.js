@@ -6,26 +6,44 @@ import { theme } from "./theme/consts";
 import { GlobalStyle } from "./theme/globalStyle";
 
 import { Home, SignIn, SignUp, Dashboard } from "./pages";
+import { IsUserRedirect, ProtectedRoute } from "./helpers/routes";
 import * as ROUTES from "./constants/routes";
 
 function App() {
+  const user = null;
+
   return (
     <Router>
       <ThemeProvider theme={theme}>
         <GlobalStyle />
         <Switch>
-          <Route exact path={ROUTES.SIGN_IN}>
+          <IsUserRedirect
+            user={user}
+            loggedInPath={ROUTES.DASHBOARD}
+            path={ROUTES.SIGN_IN}
+            exact
+          >
             <SignIn />
-          </Route>
-          <Route exact path={ROUTES.SIGN_UP}>
+          </IsUserRedirect>
+          <IsUserRedirect
+            user={user}
+            loggedInPath={ROUTES.DASHBOARD}
+            path={ROUTES.SIGN_UP}
+            exact
+          >
             <SignUp />
-          </Route>
-          <Route exact path={ROUTES.DASHBOARD}>
+          </IsUserRedirect>
+          <ProtectedRoute user={user} path={ROUTES.DASHBOARD}>
             <Dashboard />
-          </Route>
-          <Route exact path={ROUTES.HOME}>
+          </ProtectedRoute>
+          <IsUserRedirect
+            user={user}
+            loggedInPath={ROUTES.DASHBOARD}
+            path={ROUTES.HOME}
+            exact
+          >
             <Home />
-          </Route>
+          </IsUserRedirect>
         </Switch>
       </ThemeProvider>
     </Router>
