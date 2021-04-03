@@ -3,7 +3,7 @@ import React, { useState, useRef } from "react";
 import { Header } from "../components/";
 import logo from "../images/logo.png";
 import * as ROUTES from "../constants/routes";
-import { useWindowSize, useOnClickOutside } from "../services/hooks";
+import { useWindowSize, useOnClickOutside } from "../hooks";
 
 export function HeaderContainer() {
   const windowSize = useWindowSize();
