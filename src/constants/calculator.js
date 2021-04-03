@@ -1,5 +1,3 @@
-import * as Yup from "yup";
-
 export const GOALS = [
   { title: "Maintenance", value: "maintenance" },
   { title: "Cutting", value: "cutting" },
@@ -50,12 +48,12 @@ export const BMR_FACTORS = {
   age: 5,
 };
 
-export const genderOptions = [
+export const GENDER_OPTIONS = [
   { label: "Male", value: "male" },
   { label: "Female", value: "female" },
 ];
 
-export const activityOptions = [
+export const ACTIVITY_OPTIONS = [
   { label: "No sport", value: "sedentary" },
   { label: "Light", value: "light" },
   {
@@ -68,25 +66,3 @@ export const activityOptions = [
   },
   { label: "Extreme", value: "extreme" },
 ];
-
-export const validationSchemaForm = Yup.object({
-  gender: Yup.string().required("Required gender"),
-  age: Yup.number()
-    .min(1, "That seems too young")
-    .max(100, "That seems too old")
-    .required("Required age"),
-  weight: Yup.number()
-    .positive("Must be more than 0 kg")
-    .max(1000, "Must be 1000 kg or less")
-    .required("Required weight"),
-  height: Yup.number()
-    .min(1, "Must be 1 cm or more")
-    .max(250, "Must be 2.5 meters or less")
-    .required("Required height"),
-  activity: Yup.string()
-    .oneOf(
-      ["sedentary", "light", "moderate", "high", "extreme"],
-      "Invalid Job Type"
-    )
-    .required("Required activity"),
-});

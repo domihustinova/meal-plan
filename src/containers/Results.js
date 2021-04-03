@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { Results } from "../components";
 import illustration from "../images/illustration-results.svg";
 
-import { GOALS } from "../services/consts";
+import { GOALS } from "../constants/calculator";
 
 export function ResultsContainer({ caloriesData }) {
   const [selectedGoal, setSelectedGoal] = useState(GOALS[0].value);

@@ -4,11 +4,8 @@ import { Formik, Form } from "formik";
 import { TdeeForm } from "../components";
 import illustration from "../images/illustration-form.svg";
 
-import {
-  genderOptions,
-  activityOptions,
-  validationSchemaForm,
-} from "../services/consts";
+import { GENDER_OPTIONS, ACTIVITY_OPTIONS } from "../constants/calculator";
+import { validationSchemaTdeeForm } from "../helpers/validations";
 
 export function TdeeFormContainer({ isFormSubmitted, onFormSubmit }) {
   const [showForm, setShowForm] = useState(false);
@@ -24,7 +21,7 @@ export function TdeeFormContainer({ isFormSubmitted, onFormSubmit }) {
         height: "",
         activity: "",
       }}
-      validationSchema={validationSchemaForm}
+      validationSchema={validationSchemaTdeeForm}
       onSubmit={(values) => {
         onFormSubmit(values);
       }}
@@ -56,7 +53,7 @@ export function TdeeFormContainer({ isFormSubmitted, onFormSubmit }) {
                 <TdeeForm.InputButtonContainer
                   name="gender"
                   label="Gender"
-                  options={genderOptions}
+                  options={GENDER_OPTIONS}
                 />
               </TdeeForm.Row>
               <TdeeForm.Row type="input">
@@ -83,7 +80,7 @@ export function TdeeFormContainer({ isFormSubmitted, onFormSubmit }) {
                 <TdeeForm.InputButtonContainer
                   name="activity"
                   label="Activity"
-                  options={activityOptions}
+                  options={ACTIVITY_OPTIONS}
                 />
               </TdeeForm.Row>
               <TdeeForm.Row type="button">
