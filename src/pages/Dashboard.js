@@ -1,9 +1,8 @@
 import React, { useContext } from "react";
 import { FirebaseContext } from "../context/firebase";
 
-export default function Dashboard() {
+export default function Dashboard({ user }) {
   const { firebase } = useContext(FirebaseContext);
-  const user = firebase.auth().currentUser || {};
 
   const handleLogout = () => {
     return firebase

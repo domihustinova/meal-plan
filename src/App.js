@@ -5,10 +5,8 @@ import { ThemeProvider } from "styled-components";
 import { theme } from "./theme/consts";
 import { GlobalStyle } from "./theme/globalStyle";
 
-import { Home, SignIn, SignUp, Dashboard } from "./pages";
 import { useAuthListener } from "./hooks";
-import { IsUserRedirect, ProtectedRoute } from "./helpers/routes";
-import * as ROUTES from "./constants/routes";
+import { RoutesRedirect } from "./helpers/routes";
 
 function App() {
   const { user } = useAuthListener();
@@ -18,33 +16,7 @@ function App() {
       <ThemeProvider theme={theme}>
         <GlobalStyle />
         <Switch>
-          <IsUserRedirect
-            user={user}
-            loggedInPath={ROUTES.DASHBOARD}
-            path={ROUTES.SIGN_IN}
-            exact
-          >
-            <SignIn />
-          </IsUserRedirect>
-          <IsUserRedirect
-            user={user}
-            loggedInPath={ROUTES.DASHBOARD}
-            path={ROUTES.SIGN_UP}
-            exact
-          >
-            <SignUp />
-          </IsUserRedirect>
-          <ProtectedRoute user={user} path={ROUTES.DASHBOARD}>
-            <Dashboard />
-          </ProtectedRoute>
-          <IsUserRedirect
-            user={user}
-            loggedInPath={ROUTES.DASHBOARD}
-            path={ROUTES.HOME}
-            exact
-          >
-            <Home />
-          </IsUserRedirect>
+          <RoutesRedirect user={user} />
         </Switch>
       </ThemeProvider>
     </Router>
