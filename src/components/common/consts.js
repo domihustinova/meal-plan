@@ -12,6 +12,9 @@ export const getButtonStyleToken = (name, themetype, theme) => {
       primaryPastelBlue: theme.background.button.primary.pastelBlue,
       secondaryPastelBlue: theme.background.button.secondary.pastelBlue,
     },
+    backgroundButtonDisabled: {
+      primaryPastelBlue: theme.background.button.primary.pastelBlueDisabled,
+    },
     backgroundButtonHover: {
       primaryPastelBlue: theme.background.button.primary.pastelBlueHover,
       secondaryPastelBlue: theme.background.button.secondary.pastelBlueHover,
@@ -23,6 +26,9 @@ export const getButtonStyleToken = (name, themetype, theme) => {
     borderButtonHover: {
       primaryPastelBlue: theme.border.button.primary.pastelBlueHover,
       secondaryPastelBlue: theme.border.button.secondary.pastelBlueHover,
+    },
+    borderButtonDisabled: {
+      primaryPastelBlue: theme.border.button.primary.pastelBlueDisabled,
     },
     boxShadowButton: {
       primaryPastelBlue: "0px 2px 7px rgba(0, 0, 0, 0.1)",

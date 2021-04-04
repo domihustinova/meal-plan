@@ -120,6 +120,7 @@ export const theme = {
       primary: {
         pastelBlue: palette.pastelBlue.dark,
         pastelBlueHover: palette.pastelBlue.light,
+        pastelBlueDisabled: palette.pastelBlue.light,
       },
       secondary: {
         pastelBlue: palette.white.normal,
@@ -134,6 +135,7 @@ export const theme = {
       primary: {
         pastelBlue: palette.pastelBlue.dark,
         pastelBlueHover: palette.pastelBlue.light,
+        pastelBlueDisabled: palette.pastelBlue.light,
       },
       secondary: {
         pastelBlue: palette.pastelBlue.dark,

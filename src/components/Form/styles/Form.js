@@ -63,8 +63,6 @@ export const Input = styled.input`
 export const Submit = styled(Button)`
   width: 100%;
   margin-bottom: 10px;
-
-  /* Todo: implement disabled style */
 `;
 
 export const Text = styled.p`
