@@ -13,7 +13,7 @@ const StyledButton = styled.button`
     getButtonStyleToken("textButton", props.themetype, props.theme)};
   background-color: ${(props) =>
     getButtonStyleToken(
-      `${props.disabled ? "backgroundButtonDisabled" : "backgroundButton"}`,
+      props.disabled ? "backgroundButtonDisabled" : "backgroundButton",
       props.themetype,
       props.theme
     )};
@@ -24,7 +24,7 @@ const StyledButton = styled.button`
   border: 1px solid
     ${(props) =>
       getButtonStyleToken(
-        `${props.disabled ? "borderButtonDisabled" : "borderButton"}`,
+        props.disabled ? "borderButtonDisabled" : "borderButton",
         props.themetype,
         props.theme
       )};
