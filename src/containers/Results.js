@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { Results } from "../components";
 import illustration from "../images/illustration-results.svg";
 
-import { GOALS } from "../services/consts";
+import { GOALS } from "../constants/calculator";
 
 export function ResultsContainer({ caloriesData }) {
   const [selectedGoal, setSelectedGoal] = useState(GOALS[0].value);
@@ -58,8 +58,8 @@ export function ResultsContainer({ caloriesData }) {
           </Results.Text>
           <Results.ButtonGroup>
             {GOALS.map((goal) => (
-              <Results.ButtonLink
-                type={
+              <Results.Button
+                themetype={
                   goal.value === selectedGoal
                     ? `primaryPastelBlue`
                     : `secondaryPastelBlue`
@@ -69,7 +69,7 @@ export function ResultsContainer({ caloriesData }) {
                 onClick={() => handleSettingGoal(goal.value)}
               >
                 {goal.title}
-              </Results.ButtonLink>
+              </Results.Button>
             ))}
           </Results.ButtonGroup>
         </Results.TextContainer>

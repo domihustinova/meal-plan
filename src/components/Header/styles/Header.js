@@ -1,5 +1,6 @@
 import styled from "styled-components/macro";
-import Button from "../../common/Button";
+import { Link as ReactRouterLink } from "react-router-dom";
+import ButtonLink from "../../common/ButtonLink";
 
 export const Container = styled.header`
   display: flex;
@@ -8,6 +9,10 @@ export const Container = styled.header`
   position: relative;
   z-index: 100;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+
+  a {
+    outline: none;
+  }
 `;
 
 export const Frame = styled.div`
@@ -28,19 +33,29 @@ export const Group = styled.div`
 export const Logo = styled.img`
   height: 36px;
   width: 36px;
-  cursor: pointer;
   margin-right: 10px;
+  cursor: pointer;
 `;
 
-export const HomeLink = styled.a`
+export const HomeLink = styled(ReactRouterLink)`
   text-decoration: none;
+  user-select: none;
   cursor: pointer;
   font-size: 30px;
   font-weight: 500;
   letter-spacing: 2px;
+
+  color: ${({ theme }) => theme.colorText.link.navbar.home};
+  outline: none;
+  transition: 0.4s;
+
+  &:hover,
+  &:focus {
+    outline: none;
+  }
 `;
 
-export const ButtonLink = styled(Button)`
+export const StyledButtonLink = styled(ButtonLink)`
   margin-left: 10px;
 `;
 
@@ -110,7 +125,7 @@ export const Dropdown = styled.div`
   }
 `;
 
-export const TextLink = styled.a`
+export const TextLink = styled(ReactRouterLink)`
   color: ${({ theme }) => theme.colorText.link.pastelBlue};
   cursor: pointer;
   text-decoration: none;

@@ -1,17 +1,25 @@
-import React, { Fragment } from "react";
+import React from "react";
+import { BrowserRouter as Router, Switch } from "react-router-dom";
+
 import { ThemeProvider } from "styled-components";
 import { theme } from "./theme/consts";
 import { GlobalStyle } from "./theme/globalStyle";
-import { Home } from "./pages/Home";
+
+import { useAuthListener } from "./hooks";
+import { RoutesRedirect } from "./helpers/routes";
 
 function App() {
+  const { user } = useAuthListener();
+
   return (
-    <ThemeProvider theme={theme}>
-      <Fragment>
+    <Router>
+      <ThemeProvider theme={theme}>
         <GlobalStyle />
-        <Home />
-      </Fragment>
-    </ThemeProvider>
+        <Switch>
+          <RoutesRedirect user={user} />
+        </Switch>
+      </ThemeProvider>
+    </Router>
   );
 }
 

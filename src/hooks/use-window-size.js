@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
 // https://usehooks.com/useWindowSize/
-export function useWindowSize() {
+export default function useWindowSize() {
   // Initialize state with undefined width/height so server and client renders match
   // Learn more here: https://joshwcomeau.com/react/the-perils-of-rehydration/
   const [windowSize, setWindowSize] = useState({
@@ -31,22 +31,3 @@ export function useWindowSize() {
 
   return windowSize;
 }
-
-// https://css-tricks.com/hamburger-menu-with-a-side-of-react-hooks-and-styled-components/
-export const useOnClickOutside = (ref, handler) => {
-  useEffect(() => {
-    const listener = (event) => {
-      if (!ref.current || ref.current.contains(event.target)) {
-        return;
-      }
-      handler(event);
-    };
-    document.addEventListener("mousedown", listener);
-    document.addEventListener("touchstart", listener);
-
-    return () => {
-      document.removeEventListener("mousedown", listener);
-      document.removeEventListener("touchstart", listener);
-    };
-  }, [ref, handler]);
-};

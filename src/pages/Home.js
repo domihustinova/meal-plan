@@ -6,7 +6,7 @@ import { TdeeFormContainer } from "../containers/TdeeForm";
 import { ResultsContainer } from "../containers/Results";
 import { FooterContainer } from "../containers/Footer";
 
-import { getCalories } from "../services/helpers";
+import { getCalories } from "../helpers/calories";
 import { HeroContainer } from "../containers/Hero";
 
 export const Main = styled.main`
@@ -18,7 +18,7 @@ export const Main = styled.main`
   margin: 0 auto;
 `;
 
-export function Home() {
+export default function Home() {
   const [isFormSubmitted, setIsFormSubmitted] = useState(false);
   const [caloriesData, setCaloriesData] = useState("");
 

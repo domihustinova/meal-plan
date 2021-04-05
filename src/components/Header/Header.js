@@ -1,7 +1,8 @@
 import React from "react";
+import { Link as ReactRouterLink } from "react-router-dom";
+import * as ROUTES from "../../constants/routes";
 
 import {
-  ButtonLink,
   Container,
   Dropdown,
   Frame,
@@ -10,6 +11,7 @@ import {
   HomeLink,
   Logo,
   Navigation,
+  StyledButtonLink,
   TextLink,
 } from "./styles/Header";
 
@@ -17,37 +19,54 @@ export default function Header({ children, ...restProps }) {
   return <Container {...restProps}>{children}</Container>;
 }
 
-Header.Frame = React.forwardRef((props, ref) => (
-  <Frame ref={ref}>{props.children}</Frame>
+Header.Frame = function HeaderFrame({ children, ...restProps }) {
+  return <Frame {...restProps}>{children}</Frame>;
+};
+
+Header.Wrapper = React.forwardRef((props, ref) => (
+  <div ref={ref}>{props.children}</div>
 ));
 
 Header.Logo = function HeaderLogo({ to, ...restProps }) {
-  return <Logo {...restProps} />;
+  return (
+    <ReactRouterLink to={to}>
+      <Logo {...restProps} />
+    </ReactRouterLink>
+  );
 };
 
 Header.Group = function HeaderGroup({ children, ...restProps }) {
   return <Group {...restProps}>{children}</Group>;
 };
 
-Header.HomeLink = function HeaderHomeLink({ children, ...restProps }) {
-  return <HomeLink {...restProps}>{children}</HomeLink>;
+Header.HomeLink = function HeaderHomeLink({ to, children, ...restProps }) {
+  return (
+    <HomeLink to={to} {...restProps}>
+      {children}
+    </HomeLink>
+  );
 };
 
 Header.ButtonLink = function HeaderButtonLink({
-  type,
+  to,
+  themetype,
   size,
   children,
   ...restProps
 }) {
   return (
-    <ButtonLink type={type} size={size} {...restProps}>
+    <StyledButtonLink to={to} themetype={themetype} size={size} {...restProps}>
       {children}
-    </ButtonLink>
+    </StyledButtonLink>
   );
 };
 
-Header.TextLink = function HeaderTextLink({ children, ...restProps }) {
-  return <TextLink {...restProps}>{children}</TextLink>;
+Header.TextLink = function HeaderTextLink({ to, children, ...restProps }) {
+  return (
+    <TextLink to={to} {...restProps}>
+      {children}
+    </TextLink>
+  );
 };
 
 Header.Navigation = function HeaderNavigation({ children, ...restProps }) {
@@ -67,13 +86,13 @@ Header.HamburgerIcon = function HeaderHamburgerIcon({
   );
 };
 
-Header.Dropdown = function HeaderDropdown({ toggleDropdown }) {
+Header.Dropdown = function HeaderDropdown() {
   return (
     <Dropdown>
-      <Header.TextLink title="Sign In" onClick={toggleDropdown}>
+      <Header.TextLink to={ROUTES.SIGN_IN} title="Sign In">
         Sign In
       </Header.TextLink>
-      <Header.TextLink title="Sign Up" onClick={toggleDropdown}>
+      <Header.TextLink to={ROUTES.SIGN_UP} title="Sign Up">
         Sign Up
       </Header.TextLink>
     </Dropdown>

@@ -4,11 +4,8 @@ import { Formik, Form } from "formik";
 import { TdeeForm } from "../components";
 import illustration from "../images/illustration-form.svg";
 
-import {
-  genderOptions,
-  activityOptions,
-  validationSchemaForm,
-} from "../services/consts";
+import { GENDER_OPTIONS, ACTIVITY_OPTIONS } from "../constants/calculator";
+import { validationSchemaTdeeForm } from "../helpers/validations";
 
 export function TdeeFormContainer({ isFormSubmitted, onFormSubmit }) {
   const [showForm, setShowForm] = useState(false);
@@ -24,7 +21,7 @@ export function TdeeFormContainer({ isFormSubmitted, onFormSubmit }) {
         height: "",
         activity: "",
       }}
-      validationSchema={validationSchemaForm}
+      validationSchema={validationSchemaTdeeForm}
       onSubmit={(values) => {
         onFormSubmit(values);
       }}
@@ -40,13 +37,13 @@ export function TdeeFormContainer({ isFormSubmitted, onFormSubmit }) {
               Start small. Learn how many calories you burn every day - your
               Total Daily Energy Expenditure.
             </TdeeForm.Text>
-            <TdeeForm.ButtonLink
-              type="primaryPastelBlue"
+            <TdeeForm.Button
+              themetype="primaryPastelBlue"
               size="normal"
               onClick={handleButtonClick}
             >
               Calculate my TDEE
-            </TdeeForm.ButtonLink>
+            </TdeeForm.Button>
           </TdeeForm.TextContainer>
         </TdeeForm.Frame>
         {showForm && (
@@ -56,7 +53,7 @@ export function TdeeFormContainer({ isFormSubmitted, onFormSubmit }) {
                 <TdeeForm.InputButtonContainer
                   name="gender"
                   label="Gender"
-                  options={genderOptions}
+                  options={GENDER_OPTIONS}
                 />
               </TdeeForm.Row>
               <TdeeForm.Row type="input">
@@ -83,11 +80,15 @@ export function TdeeFormContainer({ isFormSubmitted, onFormSubmit }) {
                 <TdeeForm.InputButtonContainer
                   name="activity"
                   label="Activity"
-                  options={activityOptions}
+                  options={ACTIVITY_OPTIONS}
                 />
               </TdeeForm.Row>
               <TdeeForm.Row type="button">
-                <TdeeForm.Submit type="submit">
+                <TdeeForm.Submit
+                  themetype="primaryPastelBlue"
+                  size="normal"
+                  type="submit"
+                >
                   {isFormSubmitted ? "Recalculate" : "Calculate"}
                 </TdeeForm.Submit>
               </TdeeForm.Row>
