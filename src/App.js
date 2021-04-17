@@ -8,6 +8,18 @@ import { GlobalStyle } from "./theme/globalStyle";
 import { useAuthListener } from "./hooks";
 import { RoutesRedirect } from "./helpers/routes";
 
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { fab } from "@fortawesome/free-brands-svg-icons";
+import {
+  faHome,
+  faWeight,
+  faLeaf,
+  faPowerOff,
+  faSignOutAlt,
+} from "@fortawesome/free-solid-svg-icons";
+
+library.add(fab, faHome, faWeight, faLeaf, faPowerOff, faSignOutAlt);
+
 function App() {
   const { user } = useAuthListener();
 
