@@ -2,7 +2,16 @@ import React from "react";
 import { Route, Redirect } from "react-router-dom";
 import * as ROUTES from "../constants/routes";
 import { LayoutContainer } from "../containers/Layout";
-import { Home, Meals, Measurements, Overview, SignIn, SignUp } from "../pages";
+import {
+  Home,
+  Meals,
+  Measurements,
+  Overview,
+  Planner,
+  Recipes,
+  SignIn,
+  SignUp,
+} from "../pages";
 
 export function RoutesRedirect({ user }) {
   return (
@@ -28,6 +37,18 @@ export function RoutesRedirect({ user }) {
         exact
         path={ROUTES.MEASUREMENTS}
         component={Measurements}
+        user={user}
+      />
+      <PrivateRoute
+        exact
+        path={ROUTES.PLANNER}
+        component={Planner}
+        user={user}
+      />
+      <PrivateRoute
+        exact
+        path={ROUTES.RECIPES}
+        component={Recipes}
         user={user}
       />
     </>

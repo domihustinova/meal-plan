@@ -11,14 +11,25 @@ import { RoutesRedirect } from "./helpers/routes";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fab } from "@fortawesome/free-brands-svg-icons";
 import {
+  faBook,
   faHome,
-  faWeight,
   faLeaf,
+  faPencilAlt,
   faPowerOff,
   faSignOutAlt,
+  faWeight,
 } from "@fortawesome/free-solid-svg-icons";
 
-library.add(fab, faHome, faWeight, faLeaf, faPowerOff, faSignOutAlt);
+library.add(
+  fab,
+  faBook,
+  faHome,
+  faLeaf,
+  faPencilAlt,
+  faPowerOff,
+  faSignOutAlt,
+  faWeight
+);
 
 function App() {
   const { user } = useAuthListener();

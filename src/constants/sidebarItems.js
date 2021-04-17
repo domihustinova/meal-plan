@@ -7,6 +7,11 @@ export const SIDEBAR_ITEMS = [
     route: ROUTES.OVERVIEW,
   },
   {
+    name: "Meal Planner",
+    icon: "pencil-alt",
+    route: ROUTES.PLANNER,
+  },
+  {
     name: "Measurements",
     icon: "weight",
     route: ROUTES.MEASUREMENTS,
@@ -15,5 +20,10 @@ export const SIDEBAR_ITEMS = [
     name: "Meals",
     icon: "leaf",
     route: ROUTES.MEALS,
+  },
+  {
+    name: "Recipes",
+    icon: "book",
+    route: ROUTES.RECIPES,
   },
 ];
