@@ -35,7 +35,7 @@ export default function SignIn() {
       .auth()
       .signInWithEmailAndPassword(emailAddress, password)
       .then(() => {
-        history.push(ROUTES.DASHBOARD);
+        history.push(ROUTES.OVERVIEW);
       })
       .catch((error) => {
         setEmailAddress("");

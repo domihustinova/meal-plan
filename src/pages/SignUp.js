@@ -41,7 +41,7 @@ export default function SignUp() {
             displayName: firstName,
           })
           .then(() => {
-            history.push(ROUTES.DASHBOARD);
+            history.push(ROUTES.OVERVIEW);
           })
       )
       .catch((error) => {
