@@ -1,6 +1,6 @@
 import styled from "styled-components/macro";
 import { Link as ReactRouterLink } from "react-router-dom";
-import Button from "../../common/Button";
+import { Button } from "../../common/Button";
 
 export const Container = styled.div`
   display: flex;

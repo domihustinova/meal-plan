@@ -2,7 +2,7 @@ import styled from "styled-components/macro";
 import { Link as ReactRouterLink } from "react-router-dom";
 
 export const Container = styled.div`
-  background: #f4f6f3;
+  background: ${({ theme }) => theme.background.sidebar};
 
   a {
     display: block;
@@ -30,7 +30,10 @@ export const Title = styled.h3`
 `;
 
 export const Item = styled(ReactRouterLink)`
-  color: ${(props) => (props.selected ? "#344138" : "#83867e")};
+  color: ${(props) =>
+    props.selected
+      ? props.theme.colorText.link.sidebarSelected
+      : props.theme.colorText.link.sidebar};
   padding: 14px 24px;
   border-radius: 30px;
   margin-bottom: 10px;
@@ -41,22 +44,22 @@ export const Item = styled(ReactRouterLink)`
 
   &:hover {
     cursor: pointer;
-    color: #344138;
+    color: ${({ theme }) => theme.colorText.link.sidebarHover};
   }
 `;
 
 export const ItemIcon = styled.span`
   margin-right: 24px;
-  color: #64ad57;
+  color: ${({ theme }) => theme.sidebar.icon};
 `;
 
 export const LogoutLink = styled.a`
-  color: #83867e;
+  color: ${({ theme }) => theme.colorText.link.sidebar};
   padding: 14px 24px;
   transition: all ${({ theme }) => theme.durationNormal} ease-in-out;
 
   &:hover {
     cursor: pointer;
-    color: #344138;
+    color: ${({ theme }) => theme.colorText.link.sidebarHover};
   }
 `;

@@ -33,7 +33,7 @@ const StyledButton = styled.button`
   box-shadow: ${(props) =>
     getButtonStyleToken("boxShadowButton", props.themetype, props.theme)};
   outline: none;
-  transition: all ${({ theme }) => theme.durationNormal} ease-in-out;
+  transition: all ${({ theme }) => theme.durationFast} ease-in-out;
 
   ${(props) =>
     !props.disabled &&
@@ -61,7 +61,7 @@ const StyledButton = styled.button`
     `}
 `;
 
-const Button = ({
+export const Button = ({
   themetype,
   size,
   disabled = false,
@@ -85,5 +85,3 @@ const Button = ({
     </StyledButton>
   );
 };
-
-export default Button;

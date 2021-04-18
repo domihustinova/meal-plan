@@ -15,7 +15,6 @@ export const Main = styled.main`
   align-items: center;
   justify-content: center;
   margin: 0 auto;
-  background-color: ${({ theme }) => theme.background.main};
 `;
 
 export default function SignUp() {

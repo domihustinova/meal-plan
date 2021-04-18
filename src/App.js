@@ -12,7 +12,9 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import { fab } from "@fortawesome/free-brands-svg-icons";
 import {
   faBook,
+  faCheck,
   faHome,
+  faFile,
   faLeaf,
   faPencilAlt,
   faPowerOff,
@@ -23,7 +25,9 @@ import {
 library.add(
   fab,
   faBook,
+  faCheck,
   faHome,
+  faFile,
   faLeaf,
   faPencilAlt,
   faPowerOff,

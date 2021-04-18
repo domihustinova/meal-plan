@@ -15,7 +15,6 @@ export const Main = styled.main`
   align-items: center;
   justify-content: center;
   margin: 0 auto;
-  background-color: ${({ theme }) => theme.background.main};
 `;
 
 export default function SignIn() {
@@ -75,7 +74,7 @@ export default function SignIn() {
             </Form.Submit>
           </Form.Frame>
           <Form.Text>
-            New to MealPal?{" "}
+            Don't have an account yet?{" "}
             <Form.Link to={ROUTES.SIGN_UP}>Sign up now.</Form.Link>
           </Form.Text>
         </Form>

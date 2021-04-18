@@ -1,6 +1,6 @@
 import styled from "styled-components/macro";
 import { MEDIA_QUERY } from "../../../theme/consts";
-import Button from "../../common/Button";
+import { Button } from "../../common/Button";
 
 export const Container = styled.section`
   width: 100%;
