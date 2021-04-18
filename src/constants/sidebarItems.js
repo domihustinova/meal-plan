@@ -8,13 +8,13 @@ export const SIDEBAR_ITEMS = [
   },
   {
     name: "Meal Planner",
-    icon: "pencil-alt",
+    icon: "file",
     route: ROUTES.PLANNER,
   },
   {
-    name: "Measurements",
+    name: "Profile",
     icon: "weight",
-    route: ROUTES.MEASUREMENTS,
+    route: ROUTES.PROFILE,
   },
   {
     name: "Meals",

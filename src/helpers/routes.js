@@ -5,7 +5,7 @@ import { LayoutContainer } from "../containers/Layout";
 import {
   Home,
   Meals,
-  Measurements,
+  Profile,
   Overview,
   Planner,
   Recipes,
@@ -35,8 +35,8 @@ export function RoutesRedirect({ user }) {
       <PrivateRoute exact path={ROUTES.MEALS} component={Meals} user={user} />
       <PrivateRoute
         exact
-        path={ROUTES.MEASUREMENTS}
-        component={Measurements}
+        path={ROUTES.PROFILE}
+        component={Profile}
         user={user}
       />
       <PrivateRoute
