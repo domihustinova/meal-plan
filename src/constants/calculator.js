@@ -1,7 +1,7 @@
 export const GOALS = [
-  { title: "Maintenance", value: "maintenance" },
-  { title: "Cutting", value: "cutting" },
-  { title: "Bulking", value: "bulking" },
+  { label: "Maintenance", value: "maintenance" },
+  { label: "Cutting", value: "cutting" },
+  { label: "Bulking", value: "bulking" },
 ];
 
 export const MACRO_RATIOS = [

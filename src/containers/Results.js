@@ -68,7 +68,7 @@ export function ResultsContainer({ caloriesData }) {
                 key={goal.value}
                 onClick={() => handleSettingGoal(goal.value)}
               >
-                {goal.title}
+                {goal.label}
               </Results.Button>
             ))}
           </Results.ButtonGroup>
