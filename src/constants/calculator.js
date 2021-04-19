@@ -54,15 +54,34 @@ export const GENDER_OPTIONS = [
 ];
 
 export const ACTIVITY_OPTIONS = [
-  { label: "No sport", value: "sedentary" },
-  { label: "Light", value: "light" },
+  {
+    label: "No exercise",
+    value: "sedentary",
+    tooltip:
+      "Sedentary lifestyle, little or no exercise, moderate walking, desk job",
+  },
+  {
+    label: "Light",
+    value: "light",
+    tooltip:
+      "Slightly active, exercise or light sports 1 to 3 days a week, light jogging or walking 3 to 4 days a week",
+  },
   {
     label: "Moderate",
     value: "moderate",
+    tooltip:
+      "Moderately Active, physical work, exercise, or sports 4 to 5 days a week",
   },
   {
     label: "High",
     value: "high",
+    tooltip:
+      "Very active, heavy physical work, exercise, or sports 6 to 7 days a week, hard laborer ",
   },
-  { label: "Extreme", value: "extreme" },
+  {
+    label: "Extreme",
+    value: "extreme",
+    tooltip:
+      "Extremely active, very heavy physical work or exercise every day, professional/olympic athlete",
+  },
 ];
