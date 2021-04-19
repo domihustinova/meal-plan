@@ -100,6 +100,8 @@ export const theme = {
       navbar: {
         home: palette.ink.dark,
       },
+      green: palette.green.normal,
+      greenHover: palette.green.light,
       sidebar: palette.darkGreen.light,
       sidebarSelected: palette.darkGreen.normal,
       sidebarHover: palette.darkGreen.normal,
