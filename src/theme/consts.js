@@ -155,8 +155,14 @@ export const theme = {
     },
   },
   border: {
-    input: palette.pastelBlue.normal,
-    inputHover: palette.pastelBlue.normal,
+    input: {
+      pastelBlue: palette.pastelBlue.normal,
+      green: palette.green.normal,
+    },
+    inputHover: {
+      pastelBlue: palette.pastelBlue.normal,
+      green: palette.green.normal,
+    },
     button: {
       primary: {
         pastelBlue: palette.pastelBlue.dark,
