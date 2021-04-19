@@ -13,7 +13,7 @@ export const Header = styled.header`
 
 export const Title = styled.h1`
   font-size: 40px;
-  margin-right: 24px;
+  margin-right: 14px;
 `;
 
 export const Card = styled.div`
@@ -39,6 +39,7 @@ export const Button = styled(CommonButton)`
   width: 105px;
   height: 40px;
   padding: 0;
+  margin-left: 10px;
 `;
 
 export const TextButton = styled.button`

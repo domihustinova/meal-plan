@@ -206,6 +206,13 @@ export function ProfileContainer() {
           {isProfileEditable && (
             <Profile.CardFooter>
               <Profile.Button
+                themetype="secondaryGreen"
+                size="normal"
+                onClick={toggleProfileEdit}
+              >
+                Cancel
+              </Profile.Button>
+              <Profile.Button
                 themetype="primaryGreen"
                 size="normal"
                 onClick={handleSaveButton}
