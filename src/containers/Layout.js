@@ -8,6 +8,7 @@ export const Layout = styled.main`
 `;
 
 export const LayoutChildren = styled.div`
+  width: 100%;
   max-width: "800px";
 `;
 

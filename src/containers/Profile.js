@@ -203,26 +203,26 @@ export function ProfileContainer() {
               )}
             </Profile.Row>
           </Profile.CardContent>
-          {isProfileEditable && (
-            <Profile.CardFooter>
-              <Profile.Button
-                themetype="secondaryGreen"
-                size="normal"
-                onClick={toggleProfileEdit}
-              >
-                Cancel
-              </Profile.Button>
-              <Profile.Button
-                themetype="primaryGreen"
-                size="normal"
-                onClick={handleSaveButton}
-              >
-                Save
-                <Profile.ItemIcon icon="check" />
-              </Profile.Button>
-            </Profile.CardFooter>
-          )}
         </Profile.Card>
+        {isProfileEditable && (
+          <Profile.ButtonGroup>
+            <Profile.Button
+              themetype="secondaryGreen"
+              size="normal"
+              onClick={toggleProfileEdit}
+            >
+              Cancel
+            </Profile.Button>
+            <Profile.Button
+              themetype="primaryGreen"
+              size="normal"
+              onClick={handleSaveButton}
+            >
+              Save
+              <Profile.ItemIcon icon="check" />
+            </Profile.Button>
+          </Profile.ButtonGroup>
+        )}
       </Profile>
     </>
   );

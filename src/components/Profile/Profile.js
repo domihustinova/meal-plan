@@ -3,10 +3,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import {
   Button,
+  ButtonGroup,
   Container,
   Card,
   CardContent,
-  CardFooter,
   Header,
   Input,
   ItemIcon,
@@ -39,8 +39,8 @@ Profile.CardContent = function ProfileCardContent({ children, ...restProps }) {
   return <CardContent {...restProps}>{children}</CardContent>;
 };
 
-Profile.CardFooter = function ProfileCardFooter({ children, ...restProps }) {
-  return <CardFooter {...restProps}>{children}</CardFooter>;
+Profile.ButtonGroup = function ProfileButtonGroup({ children, ...restProps }) {
+  return <ButtonGroup {...restProps}>{children}</ButtonGroup>;
 };
 
 Profile.Row = function ProfileRow({ children, ...restProps }) {

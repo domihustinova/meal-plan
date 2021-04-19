@@ -27,11 +27,12 @@ export const CardContent = styled.div`
   padding: 36px;
 `;
 
-export const CardFooter = styled.div`
+export const ButtonGroup = styled.div`
   display: flex;
   justify-content: flex-end;
-  padding: 36px;
-  padding-top: 0;
+  width: 700px;
+  padding-right: 36px;
+  padding-top: 24px;
 `;
 
 export const Button = styled(CommonButton)`
