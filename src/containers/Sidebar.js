@@ -1,36 +1,12 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { FirebaseContext } from "../context/firebase";
 
 import { Sidebar } from "../components/";
 import { SIDEBAR_ITEMS } from "../constants/sidebarItems";
 
-export function SidebarContainer({ history, user, defaultActive }) {
+export function SidebarContainer({ history, user }) {
   const { firebase } = useContext(FirebaseContext);
-  const location = history.location;
-  const lastActiveIndexString = localStorage.getItem("lastActiveIndex");
-  const lastActiveIndex = Number(lastActiveIndexString);
-  const [activeIndex, setActiveIndex] = useState(
-    lastActiveIndex || Number(defaultActive)
-  );
-
-  function changeActiveIndex(newIndex) {
-    localStorage.setItem("lastActiveIndex", newIndex);
-    setActiveIndex(newIndex);
-  }
-
-  function getPath(path) {
-    if (path.charAt(0) !== "/") {
-      return "/" + path;
-    }
-    return path;
-  }
-
-  useEffect(() => {
-    const activeItem = SIDEBAR_ITEMS.findIndex(
-      (item) => getPath(item.route) === getPath(location.pathname)
-    );
-    changeActiveIndex(activeItem);
-  }, [location]);
+  const location = history.location.pathname;
 
   const handleLogout = () => {
     return firebase
@@ -48,17 +24,14 @@ export function SidebarContainer({ history, user, defaultActive }) {
         <Sidebar.Title>Hello, {user.displayName}</Sidebar.Title>
         <Sidebar.Frame>
           <Sidebar.Group>
-            {SIDEBAR_ITEMS.map((item, index) => (
+            {SIDEBAR_ITEMS.map((item) => (
               <Sidebar.Item
                 key={item.name}
                 to={item.route}
                 title={item.name}
-                selected={index === activeIndex}
+                selected={item.route === location}
               >
-                <Sidebar.ItemIcon
-                  icon={item.icon}
-                  selected={index === activeIndex}
-                />
+                <Sidebar.ItemIcon icon={item.icon} />
                 {item.name}
               </Sidebar.Item>
             ))}
