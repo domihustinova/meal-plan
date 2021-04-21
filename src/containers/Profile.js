@@ -1,67 +1,64 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import ReactTooltip from "react-tooltip";
+
+import { FirestoreContext } from "../context/firestore";
 
 import { Profile } from "../components/";
 import {
-  ACTIVITY_OPTIONS,
-  GENDER_OPTIONS,
-  GOALS,
+  genderOptions,
+  getGenderLabel,
+  goalsOptions,
+  getGoalsLabel,
+  activityOptions,
+  getActivityLabel,
 } from "../constants/calculator";
 
-export function ProfileContainer() {
+export function ProfileContainer({ user, measurementsData }) {
+  const { db } = useContext(FirestoreContext);
+
   const [isProfileEditable, setIsProfileEditable] = useState(false);
-  const [gender, setGender] = useState(
-    JSON.parse(localStorage.getItem("gender")) || ""
-  );
-  const [age, setAge] = useState(JSON.parse(localStorage.getItem("age")));
-  const [weight, setWeight] = useState(
-    JSON.parse(localStorage.getItem("weight"))
-  );
-  const [height, setHeight] = useState(
-    JSON.parse(localStorage.getItem("height"))
-  );
-  const [activity, setActivity] = useState(
-    JSON.parse(localStorage.getItem("activity")) || ""
-  );
-  const [goal, setGoal] = useState(
-    JSON.parse(localStorage.getItem("goal")) || ""
-  );
+  const [measurements, setMeasurements] = useState(measurementsData);
+
+  const [gender, setGender] = useState(measurementsData.gender);
+  const [age, setAge] = useState(measurementsData.age || null);
+  const [weight, setWeight] = useState(measurementsData.weight || null);
+  const [height, setHeight] = useState(measurementsData.height || null);
+  const [activity, setActivity] = useState(measurementsData.activity || "");
+  const [goal, setGoal] = useState(measurementsData.goal || "");
 
   const toggleProfileEdit = () => {
     setIsProfileEditable(!isProfileEditable);
   };
 
-  const handleSaveButton = () => {
-    if (isProfileEditable) {
-      localStorage.setItem(
-        "gender",
-        JSON.stringify({
-          label: gender.label,
-          value: gender.value,
-        })
-      );
-
-      localStorage.setItem("age", JSON.stringify(age));
-      localStorage.setItem("weight", JSON.stringify(weight));
-      localStorage.setItem("height", JSON.stringify(height));
-
-      localStorage.setItem(
-        "activity",
-        JSON.stringify({
-          label: activity.label,
-          value: activity.value,
-        })
-      );
-
-      localStorage.setItem(
-        "goal",
-        JSON.stringify({
-          label: goal.label,
-          value: goal.value,
-        })
-      );
-    }
+  const handleCancelButton = () => {
+    setGender(measurementsData.gender);
+    setAge(measurementsData.age);
+    setWeight(measurementsData.weight);
+    setHeight(measurementsData.height);
+    setActivity(measurementsData.activity);
+    setGoal(measurementsData.goal);
     setIsProfileEditable(!isProfileEditable);
+  };
+
+  const handleSaveButton = () => {
+    setIsProfileEditable(!isProfileEditable);
+    var uid = user.uid;
+
+    db.collection("user")
+      .doc(uid)
+      .set({
+        measurements: {
+          gender: gender,
+          age: parseFloat(age),
+          weight: parseFloat(weight),
+          height: parseFloat(height),
+          activity: activity,
+          goal: goal,
+        },
+      })
+      .catch(function (error) {
+        console.error("Error adding document: ", error);
+      });
   };
 
   return (
@@ -80,136 +77,148 @@ export function ProfileContainer() {
           )}
         </Profile.Header>
 
-        <Profile.Card>
-          <Profile.CardContent>
-            <Profile.Row>
-              <Profile.RowTitle>Gender</Profile.RowTitle>
-              {isProfileEditable ? (
-                <Profile.RowGroup>
-                  {GENDER_OPTIONS.map((option) => (
-                    <Profile.RowOption
-                      key={option.label}
-                      value={option.value}
-                      selected={option.value === gender.value}
-                      onClick={() => setGender(option)}
-                    >
-                      {option.label}
-                    </Profile.RowOption>
-                  ))}
-                </Profile.RowGroup>
-              ) : (
-                <Profile.RowText>{gender.label}</Profile.RowText>
-              )}
-            </Profile.Row>
-
-            <Profile.Row>
-              <Profile.RowTitle>Age</Profile.RowTitle>
-              {isProfileEditable ? (
-                <Profile.RowGroup>
-                  <Profile.Input
-                    id="age"
-                    type="number"
-                    value={age}
-                    placeholder=" "
-                    onChange={({ target }) => setAge(target.value)}
-                  />
-                </Profile.RowGroup>
-              ) : (
-                <Profile.RowText>{age}</Profile.RowText>
-              )}
-            </Profile.Row>
-
-            <Profile.Row>
-              <Profile.RowTitle>Weight</Profile.RowTitle>
-              {isProfileEditable ? (
-                <Profile.RowGroup>
-                  <Profile.Input
-                    id="weight"
-                    type="number"
-                    value={weight}
-                    placeholder="kg"
-                    onChange={({ target }) => setWeight(target.value)}
-                  />
-                </Profile.RowGroup>
-              ) : (
-                <Profile.RowText>{weight} kg</Profile.RowText>
-              )}
-            </Profile.Row>
-
-            <Profile.Row>
-              <Profile.RowTitle>Height</Profile.RowTitle>
-              {isProfileEditable ? (
-                <Profile.RowGroup>
-                  <Profile.Input
-                    id="height"
-                    type="number"
-                    value={height}
-                    placeholder="cm"
-                    onChange={({ target }) => setHeight(target.value)}
-                  />
-                </Profile.RowGroup>
-              ) : (
-                <Profile.RowText>{height} cm</Profile.RowText>
-              )}
-            </Profile.Row>
-
-            <Profile.Row>
-              <Profile.RowTitle>Activity</Profile.RowTitle>
-              {isProfileEditable ? (
-                <Profile.RowGroup>
-                  {ACTIVITY_OPTIONS.map((option) => (
-                    <Profile.RowOption
-                      key={option.label}
-                      value={option.value}
-                      data-tip
-                      data-for={option.value}
-                      selected={option.value === activity.value}
-                      onClick={() => setActivity(option)}
-                    >
-                      {option.label}
-                      <ReactTooltip
-                        id={option.value}
-                        type="success"
-                        effect="solid"
-                        multiline={true}
+        {measurements && (
+          <Profile.Card>
+            <Profile.CardContent>
+              <Profile.Row>
+                <Profile.RowTitle>Gender</Profile.RowTitle>
+                {isProfileEditable ? (
+                  <Profile.RowGroup>
+                    {genderOptions.map((option) => (
+                      <Profile.RowOption
+                        key={option.label}
+                        value={option.value}
+                        selected={option.value === gender}
+                        onClick={() => setGender(option.value)}
                       >
-                        <span>{option.tooltip}</span>
-                      </ReactTooltip>
-                    </Profile.RowOption>
-                  ))}
-                </Profile.RowGroup>
-              ) : (
-                <Profile.RowText>{activity.label}</Profile.RowText>
-              )}
-            </Profile.Row>
+                        {option.label}
+                      </Profile.RowOption>
+                    ))}
+                  </Profile.RowGroup>
+                ) : (
+                  <Profile.RowText>
+                    {getGenderLabel(measurements.gender)}
+                  </Profile.RowText>
+                )}
+              </Profile.Row>
 
-            <Profile.Row>
-              <Profile.RowTitle>Goal</Profile.RowTitle>
-              {isProfileEditable ? (
-                <Profile.RowGroup>
-                  {GOALS.map((option) => (
-                    <Profile.RowOption
-                      key={option.label}
-                      value={option.value}
-                      selected={option.value === goal.value}
-                      onClick={() => setGoal(option)}
-                    >
-                      {option.label}
-                    </Profile.RowOption>
-                  ))}
-                </Profile.RowGroup>
-              ) : (
-                <Profile.RowText>{goal.label}</Profile.RowText>
-              )}
-            </Profile.Row>
-          </Profile.CardContent>
-        </Profile.Card>
+              <Profile.Row>
+                <Profile.RowTitle>Age</Profile.RowTitle>
+                {isProfileEditable ? (
+                  <Profile.RowGroup>
+                    <Profile.Input
+                      id="age"
+                      type="number"
+                      value={age}
+                      placeholder=" "
+                      onChange={({ target }) => setAge(target.value)}
+                    />
+                  </Profile.RowGroup>
+                ) : (
+                  <Profile.RowText>{measurements.age}</Profile.RowText>
+                )}
+              </Profile.Row>
+
+              <Profile.Row>
+                <Profile.RowTitle>Weight</Profile.RowTitle>
+                {isProfileEditable ? (
+                  <Profile.RowGroup>
+                    <Profile.Input
+                      id="weight"
+                      type="number"
+                      value={weight}
+                      placeholder="kg"
+                      onChange={({ target }) => setWeight(target.value)}
+                    />
+                  </Profile.RowGroup>
+                ) : (
+                  <Profile.RowText>
+                    {measurements.weight && `${measurements.weight} kg`}
+                  </Profile.RowText>
+                )}
+              </Profile.Row>
+
+              <Profile.Row>
+                <Profile.RowTitle>Height</Profile.RowTitle>
+                {isProfileEditable ? (
+                  <Profile.RowGroup>
+                    <Profile.Input
+                      id="height"
+                      type="number"
+                      value={height}
+                      placeholder="cm"
+                      onChange={({ target }) => setHeight(target.value)}
+                    />
+                  </Profile.RowGroup>
+                ) : (
+                  <Profile.RowText>
+                    {measurements.height && `${measurements.height} cm`}
+                  </Profile.RowText>
+                )}
+              </Profile.Row>
+
+              <Profile.Row>
+                <Profile.RowTitle>Activity</Profile.RowTitle>
+                {isProfileEditable ? (
+                  <Profile.RowGroup>
+                    {activityOptions.map((option) => (
+                      <Profile.RowOption
+                        key={option.label}
+                        value={option.value}
+                        data-tip
+                        data-for={option.value}
+                        selected={option.value === activity}
+                        onClick={() => setActivity(option.value)}
+                      >
+                        {option.label}
+                        <ReactTooltip
+                          id={option.value}
+                          type="success"
+                          effect="solid"
+                          multiline={true}
+                        >
+                          <span>{option.tooltip}</span>
+                        </ReactTooltip>
+                      </Profile.RowOption>
+                    ))}
+                  </Profile.RowGroup>
+                ) : (
+                  <Profile.RowText>
+                    {getActivityLabel(measurements.activity)}
+                  </Profile.RowText>
+                )}
+              </Profile.Row>
+
+              <Profile.Row>
+                <Profile.RowTitle>Goal</Profile.RowTitle>
+                {isProfileEditable ? (
+                  <Profile.RowGroup>
+                    {goalsOptions.map((option) => (
+                      <Profile.RowOption
+                        key={option.label}
+                        value={option.value}
+                        selected={option.value === goal}
+                        onClick={() => setGoal(option.value)}
+                      >
+                        {option.label}
+                      </Profile.RowOption>
+                    ))}
+                  </Profile.RowGroup>
+                ) : (
+                  <Profile.RowText>
+                    {getGoalsLabel(measurements.goal)}
+                  </Profile.RowText>
+                )}
+              </Profile.Row>
+            </Profile.CardContent>
+          </Profile.Card>
+        )}
         {isProfileEditable && (
           <Profile.ButtonGroup>
             <Profile.Button
               themetype="secondaryGreen"
               size="normal"
-              onClick={toggleProfileEdit}
+              onClick={handleCancelButton}
             >
               Cancel
             </Profile.Button>
