@@ -13,7 +13,7 @@ import {
   SignUp,
 } from "../pages";
 
-export function RoutesRedirect({ user }) {
+export function RoutesRedirect({ user, measurementsData }) {
   return (
     <>
       <Route exact path={ROUTES.SIGN_IN}>
@@ -31,6 +31,7 @@ export function RoutesRedirect({ user }) {
         path={ROUTES.OVERVIEW}
         component={Overview}
         user={user}
+        measurementsData={measurementsData}
       />
       <PrivateRoute exact path={ROUTES.MEALS} component={Meals} user={user} />
       <PrivateRoute
@@ -38,6 +39,7 @@ export function RoutesRedirect({ user }) {
         path={ROUTES.PROFILE}
         component={Profile}
         user={user}
+        measurementsData={measurementsData}
       />
       <PrivateRoute
         exact
@@ -55,14 +57,23 @@ export function RoutesRedirect({ user }) {
   );
 }
 
-function PrivateRoute({ user, component: Component, ...rest }) {
+function PrivateRoute({
+  user,
+  measurementsData,
+  component: Component,
+  ...rest
+}) {
   return (
     <Route
       {...rest}
       render={(props) =>
         user ? (
           <LayoutContainer {...props} user={user}>
-            <Component {...props} />
+            <Component
+              {...props}
+              user={user}
+              measurementsData={measurementsData}
+            />
           </LayoutContainer>
         ) : (
           <Redirect

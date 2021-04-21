@@ -36,14 +36,14 @@ library.add(
 );
 
 function App() {
-  const { user } = useAuthListener();
+  const { user, measurementsData } = useAuthListener();
 
   return (
     <Router>
       <ThemeProvider theme={theme}>
         <GlobalStyle />
         <Switch>
-          <RoutesRedirect user={user} />
+          <RoutesRedirect user={user} measurementsData={measurementsData} />
         </Switch>
       </ThemeProvider>
     </Router>
