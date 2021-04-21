@@ -1,7 +1,30 @@
-import React from "react";
-
+import React, { useState, useEffect } from "react";
+import { SummaryContainer } from "../containers/Summary";
 import { WelcomeContainer } from "../containers/Welcome";
 
-export default function Overview() {
-  return <WelcomeContainer />;
+import { getCalories } from "../helpers/calories";
+
+export default function Overview({ measurementsData }) {
+  const [showWelcome, setShowWelcome] = useState(false);
+  const [caloriesData, setCaloriesData] = useState("");
+
+  const handleCaloriesData = (data) => {
+    setCaloriesData(getCalories(data));
+  };
+
+  useEffect(() => {
+    handleCaloriesData(measurementsData);
+  }, []);
+
+  return (
+    <>
+      {measurementsData && caloriesData && (
+        <SummaryContainer
+          measurementsData={measurementsData}
+          caloriesData={caloriesData}
+        />
+      )}
+      {showWelcome && <WelcomeContainer />}
+    </>
+  );
 }

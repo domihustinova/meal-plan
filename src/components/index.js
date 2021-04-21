@@ -5,5 +5,6 @@ export { default as Form } from "./Form/Form";
 export { default as Profile } from "./Profile/Profile";
 export { default as Results } from "./Results/Results";
 export { default as Sidebar } from "./Sidebar/Sidebar";
+export { default as Summary } from "./Summary/Summary";
 export { default as TdeeForm } from "./TdeeForm/TdeeForm";
 export { default as Welcome } from "./Welcome/Welcome";
