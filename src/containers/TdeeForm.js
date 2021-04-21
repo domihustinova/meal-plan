@@ -4,7 +4,7 @@ import { Formik, Form } from "formik";
 import { TdeeForm } from "../components";
 import illustration from "../images/illustration-form.svg";
 
-import { GENDER_OPTIONS, ACTIVITY_OPTIONS } from "../constants/calculator";
+import { genderOptions, activityOptions } from "../constants/calculator";
 import { validationSchemaTdeeForm } from "../helpers/validations";
 
 export function TdeeFormContainer({ isFormSubmitted, onFormSubmit }) {
@@ -53,7 +53,7 @@ export function TdeeFormContainer({ isFormSubmitted, onFormSubmit }) {
                 <TdeeForm.InputButtonContainer
                   name="gender"
                   label="Gender"
-                  options={GENDER_OPTIONS}
+                  options={genderOptions}
                 />
               </TdeeForm.Row>
               <TdeeForm.Row type="input">
@@ -80,7 +80,7 @@ export function TdeeFormContainer({ isFormSubmitted, onFormSubmit }) {
                 <TdeeForm.InputButtonContainer
                   name="activity"
                   label="Activity"
-                  options={ACTIVITY_OPTIONS}
+                  options={activityOptions}
                 />
               </TdeeForm.Row>
               <TdeeForm.Row type="button">

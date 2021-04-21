@@ -3,10 +3,10 @@ import React, { useState } from "react";
 import { Results } from "../components";
 import illustration from "../images/illustration-results.svg";
 
-import { GOALS } from "../constants/calculator";
+import { goalsOptions } from "../constants/calculator";
 
 export function ResultsContainer({ caloriesData }) {
-  const [selectedGoal, setSelectedGoal] = useState(GOALS[0].value);
+  const [selectedGoal, setSelectedGoal] = useState(goalsOptions[0].value);
 
   const handleSettingGoal = (goal) => {
     setSelectedGoal(goal);
@@ -57,7 +57,7 @@ export function ResultsContainer({ caloriesData }) {
             )}
           </Results.Text>
           <Results.ButtonGroup>
-            {GOALS.map((goal) => (
+            {goalsOptions.map((goal) => (
               <Results.Button
                 themetype={
                   goal.value === selectedGoal
