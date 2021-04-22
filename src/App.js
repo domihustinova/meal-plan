@@ -38,7 +38,7 @@ library.add(
 
 function App() {
   const { user } = useAuthListener();
-  const { measurementsData } = useMeasurementsListener();
+  const { measurementsData } = useMeasurementsListener(user);
 
   return (
     <Router>
