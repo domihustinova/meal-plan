@@ -68,3 +68,23 @@ export const getCalories = ({ gender, age, weight, height, activity }) => {
     goalsData,
   };
 };
+
+export const getMaxMacroValue = (selectedGoalData) => {
+  const maxMacroValue = selectedGoalData.ratios.reduce((prev, current) =>
+    prev.maxMacro > current.maxMacro ? prev.maxMacro : current.maxMacro
+  );
+  return maxMacroValue;
+};
+
+export const getGoalData = (caloriesData, selectedGoal) => {
+  const selectedGoalData = caloriesData.goalsData.find(
+    (obj) => obj.goal === selectedGoal
+  );
+
+  const maxMacroValue = getMaxMacroValue(selectedGoalData);
+
+  return {
+    ...selectedGoalData,
+    maxMacroValue,
+  };
+};
