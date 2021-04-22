@@ -228,7 +228,7 @@ export function ProfileContainer({ user, measurementsData }) {
               size="normal"
               onClick={handleSaveButton}
             >
-              "Save"
+              Save
               <Profile.ItemIcon icon="check" />
             </Profile.Button>
           </Profile.ButtonGroup>
