@@ -6,6 +6,7 @@ import { theme } from "./theme/consts";
 import { GlobalStyle } from "./theme/globalStyle";
 
 import { useAuthListener } from "./hooks";
+import { useMeasurementsListener } from "./hooks";
 import { RoutesRedirect } from "./helpers/routes";
 
 import { library } from "@fortawesome/fontawesome-svg-core";
@@ -36,7 +37,8 @@ library.add(
 );
 
 function App() {
-  const { user, measurementsData } = useAuthListener();
+  const { user } = useAuthListener();
+  const { measurementsData } = useMeasurementsListener();
 
   return (
     <Router>

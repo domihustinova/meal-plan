@@ -17,14 +17,13 @@ export function ProfileContainer({ user, measurementsData }) {
   const { db } = useContext(FirestoreContext);
 
   const [isProfileEditable, setIsProfileEditable] = useState(false);
-  const [measurements, setMeasurements] = useState(measurementsData);
 
-  const [gender, setGender] = useState(measurementsData.gender);
-  const [age, setAge] = useState(measurementsData.age || null);
-  const [weight, setWeight] = useState(measurementsData.weight || null);
-  const [height, setHeight] = useState(measurementsData.height || null);
-  const [activity, setActivity] = useState(measurementsData.activity || "");
-  const [goal, setGoal] = useState(measurementsData.goal || "");
+  const [gender, setGender] = useState(measurementsData?.gender);
+  const [age, setAge] = useState(measurementsData?.age || null);
+  const [weight, setWeight] = useState(measurementsData?.weight || null);
+  const [height, setHeight] = useState(measurementsData?.height || null);
+  const [activity, setActivity] = useState(measurementsData?.activity || "");
+  const [goal, setGoal] = useState(measurementsData?.goal || "");
 
   const toggleProfileEdit = () => {
     setIsProfileEditable(!isProfileEditable);
@@ -77,7 +76,7 @@ export function ProfileContainer({ user, measurementsData }) {
           )}
         </Profile.Header>
 
-        {measurements && (
+        {measurementsData?.gender && (
           <Profile.Card>
             <Profile.CardContent>
               <Profile.Row>
@@ -97,7 +96,7 @@ export function ProfileContainer({ user, measurementsData }) {
                   </Profile.RowGroup>
                 ) : (
                   <Profile.RowText>
-                    {getGenderLabel(measurements.gender)}
+                    {getGenderLabel(measurementsData?.gender)}
                   </Profile.RowText>
                 )}
               </Profile.Row>
@@ -115,7 +114,7 @@ export function ProfileContainer({ user, measurementsData }) {
                     />
                   </Profile.RowGroup>
                 ) : (
-                  <Profile.RowText>{measurements.age}</Profile.RowText>
+                  <Profile.RowText>{measurementsData?.age}</Profile.RowText>
                 )}
               </Profile.Row>
 
@@ -133,7 +132,8 @@ export function ProfileContainer({ user, measurementsData }) {
                   </Profile.RowGroup>
                 ) : (
                   <Profile.RowText>
-                    {measurements.weight && `${measurements.weight} kg`}
+                    {measurementsData?.weight &&
+                      `${measurementsData?.weight} kg`}
                   </Profile.RowText>
                 )}
               </Profile.Row>
@@ -152,7 +152,8 @@ export function ProfileContainer({ user, measurementsData }) {
                   </Profile.RowGroup>
                 ) : (
                   <Profile.RowText>
-                    {measurements.height && `${measurements.height} cm`}
+                    {measurementsData?.height &&
+                      `${measurementsData?.height} cm`}
                   </Profile.RowText>
                 )}
               </Profile.Row>
@@ -184,7 +185,7 @@ export function ProfileContainer({ user, measurementsData }) {
                   </Profile.RowGroup>
                 ) : (
                   <Profile.RowText>
-                    {getActivityLabel(measurements.activity)}
+                    {getActivityLabel(measurementsData?.activity)}
                   </Profile.RowText>
                 )}
               </Profile.Row>
@@ -206,7 +207,7 @@ export function ProfileContainer({ user, measurementsData }) {
                   </Profile.RowGroup>
                 ) : (
                   <Profile.RowText>
-                    {getGoalsLabel(measurements.goal)}
+                    {getGoalsLabel(measurementsData?.goal)}
                   </Profile.RowText>
                 )}
               </Profile.Row>
@@ -227,7 +228,7 @@ export function ProfileContainer({ user, measurementsData }) {
               size="normal"
               onClick={handleSaveButton}
             >
-              Save
+              "Save"
               <Profile.ItemIcon icon="check" />
             </Profile.Button>
           </Profile.ButtonGroup>

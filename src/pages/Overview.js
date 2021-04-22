@@ -13,8 +13,10 @@ export default function Overview({ measurementsData }) {
   };
 
   useEffect(() => {
-    handleCaloriesData(measurementsData);
-  }, []);
+    if (measurementsData?.gender) {
+      handleCaloriesData(measurementsData);
+    }
+  }, [measurementsData]);
 
   return (
     <>
