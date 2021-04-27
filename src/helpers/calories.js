@@ -1,5 +1,5 @@
 import {
-  GOALS,
+  goalsOptions,
   MACRO_RATIOS,
   ACTIVITY_MULTIPLIERS,
   GOAL_ADDENDS,
@@ -18,7 +18,7 @@ const getBmr = (gender, age, weight, height) => {
 const getFinalTdee = (activity, bmr) => {
   let tdee = Math.round(bmr * ACTIVITY_MULTIPLIERS[activity]);
 
-  return GOALS.map((goal) => ({
+  return goalsOptions.map((goal) => ({
     goal: goal.value,
     tdee: tdee + GOAL_ADDENDS[goal.value],
   }));
@@ -66,5 +66,25 @@ export const getCalories = ({ gender, age, weight, height, activity }) => {
   return {
     maintenanceTdee,
     goalsData,
+  };
+};
+
+export const getMaxMacroValue = (selectedGoalData) => {
+  const maxMacroValue = selectedGoalData.ratios.reduce((prev, current) =>
+    prev.maxMacro > current.maxMacro ? prev.maxMacro : current.maxMacro
+  );
+  return maxMacroValue;
+};
+
+export const getGoalData = (caloriesData, selectedGoal) => {
+  const selectedGoalData = caloriesData.goalsData.find(
+    (obj) => obj.goal === selectedGoal
+  );
+
+  const maxMacroValue = getMaxMacroValue(selectedGoalData);
+
+  return {
+    ...selectedGoalData,
+    maxMacroValue,
   };
 };

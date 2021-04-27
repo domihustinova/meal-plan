@@ -9,13 +9,14 @@ export default function useAuthListener() {
   const { firebase } = useContext(FirebaseContext);
 
   useEffect(() => {
-    const listener = firebase.auth().onAuthStateChanged((authUser) => {
+    firebase.auth().onAuthStateChanged((authUser) => {
       if (authUser) {
         localStorage.setItem(
           "authUser",
           JSON.stringify({
             displayName: authUser.displayName,
             email: authUser.email,
+            uid: authUser.uid,
           })
         );
         setUser(authUser);
@@ -24,8 +25,6 @@ export default function useAuthListener() {
         setUser(null);
       }
     });
-
-    return () => listener();
   }, [firebase]);
 
   return { user };

@@ -1,9 +1,3 @@
-export const GOALS = [
-  { title: "Maintenance", value: "maintenance" },
-  { title: "Cutting", value: "cutting" },
-  { title: "Bulking", value: "bulking" },
-];
-
 export const MACRO_RATIOS = [
   {
     name: "Low Carb",
@@ -48,21 +42,56 @@ export const BMR_FACTORS = {
   age: 5,
 };
 
-export const GENDER_OPTIONS = [
-  { label: "Male", value: "male" },
-  { label: "Female", value: "female" },
-];
+export const GOALS_DATA = {
+  maintenance: "Maintenance",
+  cutting: "Cutting",
+  bulking: "Bulking",
+};
 
-export const ACTIVITY_OPTIONS = [
-  { label: "No sport", value: "sedentary" },
-  { label: "Light", value: "light" },
-  {
-    label: "Moderate",
-    value: "moderate",
-  },
-  {
-    label: "High",
-    value: "high",
-  },
-  { label: "Extreme", value: "extreme" },
-];
+export const goalsOptions = Object.keys(GOALS_DATA).map((value) => ({
+  label: GOALS_DATA[value],
+  value,
+}));
+
+export const getGoalsLabel = (value) => GOALS_DATA[value] || "";
+
+export const GENDER_DATA = {
+  male: "Male",
+  female: "Female",
+};
+
+export const genderOptions = Object.keys(GENDER_DATA).map((value) => ({
+  label: GENDER_DATA[value],
+  value,
+}));
+
+export const getGenderLabel = (value) => GENDER_DATA[value] || "";
+
+export const ACTIVITY_DATA = {
+  sedentary: "Sedentary",
+  light: "Light",
+  moderate: "Moderate",
+  high: "High",
+  extreme: "Extreme",
+};
+
+export const ACTIVITY_TOOLTIP_DATA = {
+  sedentary:
+    "Sedentary lifestyle, little or no exercise, moderate walking, desk job",
+  light:
+    "Slightly active, exercise or light sports 1 to 3 days a week, light jogging or walking 3 to 4 days a week",
+  moderate:
+    "Moderately Active, physical work, exercise, or sports 4 to 5 days a week",
+  high:
+    "Very active, heavy physical work, exercise, or sports 6 to 7 days a week, hard laborer",
+  extreme:
+    "Extremely active, very heavy physical work or exercise every day, professional/olympic athlete",
+};
+
+export const activityOptions = Object.keys(ACTIVITY_DATA).map((value) => ({
+  label: ACTIVITY_DATA[value],
+  value,
+  tooltip: ACTIVITY_TOOLTIP_DATA[value],
+}));
+
+export const getActivityLabel = (value) => ACTIVITY_DATA[value] || "";

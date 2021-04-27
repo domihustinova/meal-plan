@@ -46,7 +46,7 @@ export const Title = styled.h1`
 export const Text = styled.p`
   margin-top: 0px;
   margin-bottom: 24px;
-  line-height: ${({ theme }) => theme.lineHeightLarge}; ;
+  line-height: ${({ theme }) => theme.lineHeightLarge};
 `;
 
 export const TextContainer = styled.div`

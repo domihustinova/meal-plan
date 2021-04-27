@@ -1,5 +1,6 @@
 import React from "react";
 import { useField } from "formik";
+import ReactTooltip from "react-tooltip";
 
 import {
   Container,
@@ -97,7 +98,19 @@ TdeeForm.InputButtonContainer = function TdeeFormInputButtonContainer({
               onChange={field.onChange}
               {...restProps}
             />
-            <label htmlFor={option.value}>{option.label}</label>
+            <label htmlFor={option.value} data-tip data-for={option.value}>
+              {option.label}
+            </label>
+            {option.tooltip && (
+              <ReactTooltip
+                id={option.value}
+                type="info"
+                effect="solid"
+                multiline={true}
+              >
+                <span>{option.tooltip}</span>
+              </ReactTooltip>
+            )}
           </div>
         ))}
       </InputButtonGroup>

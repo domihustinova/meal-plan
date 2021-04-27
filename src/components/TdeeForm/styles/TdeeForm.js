@@ -1,6 +1,6 @@
 import styled from "styled-components/macro";
 import { MEDIA_QUERY } from "../../../theme/consts";
-import Button from "../../common/Button";
+import { Button } from "../../common/Button";
 
 export const Container = styled.section`
   width: 100%;
@@ -190,15 +190,15 @@ export const InputButtonGroup = styled.div`
 `;
 
 export const Input = styled.input`
-  width: 120px;
+  width: 125px;
   height: 44px;
-  border: 1px solid #efefef;
+  border: 1px solid #e2e6ea;
   border-radius: ${({ theme }) => theme.borderRadiusNormal};
   padding: 20px;
   font-size: 14px;
   background-color: transparent;
   box-sizing: border-box;
-  transition: all ${({ theme }) => theme.durationNormal} ease-in-out;
+  transition: all ${({ theme }) => theme.durationFast} ease-in-out;
 
   &:focus,
   &:hover,
@@ -209,7 +209,7 @@ export const Input = styled.input`
   }
 
   &::placeholder {
-    color: #efefef;
+    color: #e2e6ea;
     opacity: 1;
   }
 
@@ -223,7 +223,7 @@ export const Input = styled.input`
 export const InputContainer = styled.div`
   position: relative;
   display: block;
-  width: 130px;
+  width: 135px;
   margin-bottom: 2px;
 `;
 

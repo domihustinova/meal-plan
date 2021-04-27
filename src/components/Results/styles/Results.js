@@ -1,6 +1,6 @@
 import styled from "styled-components/macro";
 import { MEDIA_QUERY } from "../../../theme/consts";
-import Button from "../../common/Button";
+import { Button } from "../../common/Button";
 
 const BACKGROUND = {
   proteins: "linear-gradient(to right, #8eb1ee, #3961aa)",

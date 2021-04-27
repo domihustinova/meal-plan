@@ -1,6 +1,6 @@
 import styled from "styled-components/macro";
 import { Link as ReactRouterLink } from "react-router-dom";
-import Button from "../../common/Button";
+import { Button } from "../../common/Button";
 
 export const Container = styled.div`
   display: flex;
@@ -33,7 +33,7 @@ export const Input = styled.input`
   height: 50px;
   padding: 20px;
   margin-bottom: 20px;
-  border: 1px solid ${({ theme }) => theme.border.input};
+  border: 1px solid ${({ theme }) => theme.border.input.pastelBlue};
   border-radius: ${({ theme }) => theme.borderRadiusNormal};
   font-size: 14px;
 
@@ -45,7 +45,7 @@ export const Input = styled.input`
   &:hover,
   &:not(:placeholder-shown) {
     outline: none;
-    border: 1px solid ${({ theme }) => theme.border.inputHover};
+    border: 1px solid ${({ theme }) => theme.border.inputHover.pastelBlue};
   }
 
   &::placeholder {

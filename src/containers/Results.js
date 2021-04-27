@@ -3,22 +3,17 @@ import React, { useState } from "react";
 import { Results } from "../components";
 import illustration from "../images/illustration-results.svg";
 
-import { GOALS } from "../constants/calculator";
+import { goalsOptions } from "../constants/calculator";
+import { getGoalData } from "../helpers/calories";
 
 export function ResultsContainer({ caloriesData }) {
-  const [selectedGoal, setSelectedGoal] = useState(GOALS[0].value);
+  const [selectedGoal, setSelectedGoal] = useState(goalsOptions[0].value);
 
   const handleSettingGoal = (goal) => {
     setSelectedGoal(goal);
   };
 
-  const goalSelectionData = caloriesData.goalsData.find(
-    (obj) => obj.goal === selectedGoal
-  );
-
-  const maxMacroValue = goalSelectionData.ratios.reduce((prev, current) =>
-    prev.maxMacro > current.maxMacro ? prev.maxMacro : current.maxMacro
-  );
+  const goalData = getGoalData(caloriesData, selectedGoal);
 
   return (
     <Results>
@@ -41,23 +36,23 @@ export function ResultsContainer({ caloriesData }) {
             )}
             {selectedGoal === "cutting" && (
               <span>
-                The macronutrient values below reflect your{" "}
-                {goalSelectionData.goal} calories of {goalSelectionData.tdee}{" "}
-                calories per day for different diets. It is a 500 calorie per
-                day deficit from your maintenance calories per day.
+                The macronutrient values below reflect your {goalData.goal}{" "}
+                calories of {goalData.tdee} calories per day for different
+                diets. It is a 500 calorie per day deficit from your maintenance
+                calories per day.
               </span>
             )}
             {selectedGoal === "bulking" && (
               <span>
-                The macronutrient values below reflect your{" "}
-                {goalSelectionData.goal} calories of {goalSelectionData.tdee}{" "}
-                calories per day for different diets. It is a 500 calorie per
-                day surplus from your maintenance calories per day.
+                The macronutrient values below reflect your {goalData.goal}{" "}
+                calories of {goalData.tdee} calories per day for different
+                diets. It is a 500 calorie per day surplus from your maintenance
+                calories per day.
               </span>
             )}
           </Results.Text>
           <Results.ButtonGroup>
-            {GOALS.map((goal) => (
+            {goalsOptions.map((goal) => (
               <Results.Button
                 themetype={
                   goal.value === selectedGoal
@@ -68,7 +63,7 @@ export function ResultsContainer({ caloriesData }) {
                 key={goal.value}
                 onClick={() => handleSettingGoal(goal.value)}
               >
-                {goal.title}
+                {goal.label}
               </Results.Button>
             ))}
           </Results.ButtonGroup>
@@ -77,11 +72,11 @@ export function ResultsContainer({ caloriesData }) {
       </Results.Frame>
 
       <Results.CardGroup>
-        {goalSelectionData.ratios.map((ratio) => (
+        {goalData.ratios.map((ratio) => (
           <Results.Card
             key={ratio.value}
             ratioData={ratio}
-            maxMacroValue={maxMacroValue}
+            maxMacroValue={goalData.maxMacroValue}
           />
         ))}
       </Results.CardGroup>
