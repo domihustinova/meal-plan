@@ -44,7 +44,7 @@ export function SidebarContainer({ history, user }) {
           </Sidebar.Group>
         </Sidebar.Frame>
       </div>
-      <div className="behind-the-scenes" />
+      <div />
     </Sidebar>
   );
 }
