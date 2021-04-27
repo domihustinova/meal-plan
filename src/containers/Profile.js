@@ -41,7 +41,7 @@ export function ProfileContainer({ user, measurementsData }) {
 
   const handleSaveButton = () => {
     setIsProfileEditable(!isProfileEditable);
-    var uid = user.uid;
+    const uid = user.uid;
 
     db.collection("user")
       .doc(uid)
