@@ -1,5 +1,13 @@
 import React from "react";
+import { QueryClient, QueryClientProvider } from "react-query";
+import { RecipesContainer } from "../containers/Recipes";
 
-export default function Recipes() {
-  return <div></div>;
+const queryClient = new QueryClient();
+
+export default function Recipes({ user }) {
+  return (
+    <QueryClientProvider client={queryClient}>
+      <RecipesContainer user={user} />
+    </QueryClientProvider>
+  );
 }
