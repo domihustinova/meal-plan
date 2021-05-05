@@ -3,6 +3,7 @@ export { default as Hero } from "./Hero/Hero";
 export { default as Footer } from "./Footer/Footer";
 export { default as Form } from "./Form/Form";
 export { default as Profile } from "./Profile/Profile";
+export { default as Recipe } from "./Recipe/Recipe";
 export { default as Results } from "./Results/Results";
 export { default as Sidebar } from "./Sidebar/Sidebar";
 export { default as Summary } from "./Summary/Summary";
