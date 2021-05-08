@@ -10,7 +10,7 @@ import { FirestoreContext } from "../context/firestore";
 import { RecipesResultsContainer as Results } from "./RecipesResults";
 import { RecipesSearchContainer as Search } from "./RecipesSearch";
 
-export function RecipesContainer({ user }) {
+export function RecipesContainer({ user, savedRecipesIds }) {
   const { db } = useContext(FirestoreContext);
   const uid = user.uid;
 
@@ -107,6 +107,7 @@ export function RecipesContainer({ user }) {
           recipesData={data}
           handleAddButton={handleAddButton}
           handleRemoveButton={handleRemoveButton}
+          savedRecipesIds={savedRecipesIds}
         />
       )}
       <Backdrop className={classes.backdrop} open={isLoading || isFetching}>

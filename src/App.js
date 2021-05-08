@@ -5,8 +5,11 @@ import { ThemeProvider } from "styled-components";
 import { theme } from "./theme/consts";
 import { GlobalStyle } from "./theme/globalStyle";
 
-import { useAuthListener } from "./hooks";
-import { useMeasurementsListener } from "./hooks";
+import {
+  useAuthListener,
+  useMeasurementsListener,
+  useRecipesListener,
+} from "./hooks";
 import { RoutesRedirect } from "./helpers/routes";
 
 import { library } from "@fortawesome/fontawesome-svg-core";
@@ -18,13 +21,19 @@ library.add(fab, faCheck, faPencilAlt);
 function App() {
   const { user } = useAuthListener();
   const { measurementsData } = useMeasurementsListener(user);
+  const { savedRecipes, savedRecipesIds } = useRecipesListener(user);
 
   return (
     <Router>
       <ThemeProvider theme={theme}>
         <GlobalStyle />
         <Switch>
-          <RoutesRedirect user={user} measurementsData={measurementsData} />
+          <RoutesRedirect
+            user={user}
+            measurementsData={measurementsData}
+            savedRecipes={savedRecipes}
+            savedRecipesIds={savedRecipesIds}
+          />
         </Switch>
       </ThemeProvider>
     </Router>

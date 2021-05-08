@@ -8,6 +8,7 @@ export function RecipesResultsContainer({
   recipesData,
   handleAddButton,
   handleRemoveButton,
+  savedRecipesIds,
 }) {
   return (
     <RecipeCard.Container>
@@ -17,6 +18,7 @@ export function RecipesResultsContainer({
           recipe={recipe}
           handleAddButton={handleAddButton}
           handleRemoveButton={handleRemoveButton}
+          savedRecipesIds={savedRecipesIds}
         />
       ))}
     </RecipeCard.Container>

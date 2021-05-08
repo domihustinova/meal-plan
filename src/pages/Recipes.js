@@ -4,10 +4,10 @@ import { RecipesContainer } from "../containers/Recipes";
 
 const queryClient = new QueryClient();
 
-export default function Recipes({ user }) {
+export default function Recipes({ user, savedRecipesIds }) {
   return (
     <QueryClientProvider client={queryClient}>
-      <RecipesContainer user={user} />
+      <RecipesContainer user={user} savedRecipesIds={savedRecipesIds} />
     </QueryClientProvider>
   );
 }

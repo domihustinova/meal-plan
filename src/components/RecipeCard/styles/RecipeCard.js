@@ -124,8 +124,8 @@ export const FooterView = styled.button`
 `;
 
 export const FooterAdd = styled.button`
-  background-color: white;
-  color: #46b04a;
+  background-color: ${(props) => (props.saved ? "#46b04a" : "#fff")};
+  color: ${(props) => (props.saved ? "#fff" : "#46b04a")};
   border: none;
   cursor: pointer;
   outline: none;

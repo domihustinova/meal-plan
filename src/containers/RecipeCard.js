@@ -8,10 +8,13 @@ export function RecipeCardContainer({
   recipe,
   handleAddButton,
   handleRemoveButton,
+  savedRecipesIds = [],
 }) {
   const [openModal, setOpenModal] = useState(false);
 
   const { PROCNT: protein, CHOCDF: carbs, FAT: fat } = recipe.totalNutrients;
+
+  const recipeId = getRecipeId(recipe.uri);
 
   return (
     <>
@@ -60,13 +63,12 @@ export function RecipeCardContainer({
             View Recipe
           </RecipeCard.FooterView>
           <RecipeCard.FooterAdd
-            onClick={() => handleAddButton(getRecipeId(recipe.uri), recipe)}
+            saved={savedRecipesIds.indexOf(recipeId) !== -1}
+            onClick={() => handleAddButton(recipeId, recipe)}
           >
             +
           </RecipeCard.FooterAdd>
-          <RecipeCard.FooterRemove
-            onClick={() => handleRemoveButton(getRecipeId(recipe.uri))}
-          >
+          <RecipeCard.FooterRemove onClick={() => handleRemoveButton(recipeId)}>
             -
           </RecipeCard.FooterRemove>
         </RecipeCard.Footer>

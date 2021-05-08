@@ -13,7 +13,12 @@ import {
   SignUp,
 } from "../pages";
 
-export function RoutesRedirect({ user, measurementsData }) {
+export function RoutesRedirect({
+  user,
+  measurementsData,
+  savedRecipes,
+  savedRecipesIds,
+}) {
   return (
     <>
       <Route exact path={ROUTES.SIGN_IN}>
@@ -33,7 +38,13 @@ export function RoutesRedirect({ user, measurementsData }) {
         user={user}
         measurementsData={measurementsData}
       />
-      <PrivateRoute exact path={ROUTES.MEALS} component={Meals} user={user} />
+      <PrivateRoute
+        exact
+        path={ROUTES.MEALS}
+        component={Meals}
+        user={user}
+        savedRecipes={savedRecipes}
+      />
       <PrivateRoute
         exact
         path={ROUTES.PROFILE}
@@ -47,6 +58,7 @@ export function RoutesRedirect({ user, measurementsData }) {
         path={ROUTES.RECIPES}
         component={Recipes}
         user={user}
+        savedRecipesIds={savedRecipesIds}
       />
     </>
   );
@@ -55,6 +67,8 @@ export function RoutesRedirect({ user, measurementsData }) {
 function PrivateRoute({
   user,
   measurementsData,
+  savedRecipes,
+  savedRecipesIds,
   component: Component,
   ...rest
 }) {
@@ -68,6 +82,8 @@ function PrivateRoute({
               {...props}
               user={user}
               measurementsData={measurementsData}
+              savedRecipes={savedRecipes}
+              savedRecipesIds={savedRecipesIds}
             />
           </LayoutContainer>
         ) : (
