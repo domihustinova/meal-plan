@@ -17,11 +17,6 @@ export function RecipesSearchContainer({
     setQuery(e.target.value);
   };
 
-  const handleReset = () => {
-    setDiet("");
-    setMealType("");
-  };
-
   return (
     <form onSubmit={handleSearch}>
       <div style={{ display: "flex" }}>
@@ -35,7 +30,7 @@ export function RecipesSearchContainer({
                 name="diet"
                 value={option.value}
                 checked={diet === option.value}
-                onChange={() => setDiet(option.value)}
+                onChange={() => setDiet(diet ? "" : option.value)}
               />
               <label htmlFor={option.value}>{option.label}</label>
             </div>
@@ -53,7 +48,7 @@ export function RecipesSearchContainer({
                 name="mealType"
                 value={option.value}
                 checked={mealType === option.value}
-                onChange={() => setMealType(option.value)}
+                onChange={() => setMealType(mealType ? "" : option.value)}
               />
               <label htmlFor={option.value}>{option.label}</label>
             </div>
@@ -63,9 +58,6 @@ export function RecipesSearchContainer({
       <input type="text" value={query} onChange={updateQuery}></input>
       <button type="submit" disabled={query === ""}>
         {isLoading || isFetching ? "Searching..." : "Get Recipes"}
-      </button>
-      <button type="button" onClick={handleReset}>
-        Reset
       </button>
     </form>
   );
