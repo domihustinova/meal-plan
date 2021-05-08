@@ -1,5 +1,7 @@
 import React, { useState, useContext } from "react";
 import { useQuery } from "react-query";
+import buildUrl from "build-url";
+
 import Backdrop from "@material-ui/core/Backdrop";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import { makeStyles } from "@material-ui/core/styles";
@@ -11,7 +13,6 @@ import { RecipesSearchContainer as Search } from "./RecipesSearch";
 export function RecipesContainer({ user }) {
   const { db } = useContext(FirestoreContext);
   const uid = user.uid;
-  const buildUrl = require("build-url");
 
   const [query, setQuery] = useState("");
   const [diet, setDiet] = useState("");
@@ -39,8 +40,7 @@ export function RecipesContainer({ user }) {
     });
 
     const response = await fetch(queryUrl);
-    const data = await response.json();
-    return data;
+    return response.json();
   };
 
   const { data, isError, isLoading, isFetching, isSuccess, refetch } = useQuery(
@@ -48,25 +48,21 @@ export function RecipesContainer({ user }) {
     getRecipes,
     {
       refetchOnWindowFocus: false,
-      enabled: false, // turned off by default, manual refetch is needed
+      enabled: false,
     }
   );
 
   const handleSearch = (e) => {
     e.preventDefault();
-
-    // manually refetch
     refetch();
   };
 
-  const useStyles = makeStyles((theme) => ({
+  const classes = makeStyles((theme) => ({
     backdrop: {
       zIndex: theme.zIndex.drawer + 1,
       color: "#fff",
     },
-  }));
-
-  const classes = useStyles();
+  }))();
 
   const handleAddButton = (recipeId, recipe) => {
     db.collection("recipes")
