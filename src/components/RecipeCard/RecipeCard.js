@@ -14,56 +14,72 @@ import {
   TextContainer,
   Time,
   Title,
-} from "./styles/Recipe";
+} from "./styles/RecipeCard";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-export default function Recipe({ children, direction = "row", ...restProps }) {
+export default function RecipeCard({
+  children,
+  direction = "row",
+  ...restProps
+}) {
   return <Card {...restProps}>{children}</Card>;
 }
 
-Recipe.Container = function RecipeContainer({ children, ...restProps }) {
+RecipeCard.Container = function RecipeCardContainer({
+  children,
+  ...restProps
+}) {
   return <Container {...restProps}>{children}</Container>;
 };
 
-Recipe.TextContainer = function RecipeTextContainer({
+RecipeCard.TextContainer = function RecipeCardTextContainer({
   children,
   ...restProps
 }) {
   return <TextContainer {...restProps}>{children}</TextContainer>;
 };
 
-Recipe.Time = function RecipeTime({ children, ...restProps }) {
+RecipeCard.Time = function RecipeCardTime({ children, ...restProps }) {
   return <Time {...restProps}>{children}</Time>;
 };
 
-Recipe.Title = function RecipeTitle({ children, ...restProps }) {
+RecipeCard.Title = function RecipeCardTitle({ children, ...restProps }) {
   return <Title {...restProps}>{children}</Title>;
 };
 
-Recipe.EnergyContainer = function RecipeEnergyContainer({
+RecipeCard.EnergyContainer = function RecipeCardEnergyContainer({
   children,
   ...restProps
 }) {
   return <EnergyContainer {...restProps}>{children}</EnergyContainer>;
 };
 
-Recipe.Energy = function RecipeEnergy({ children, ...restProps }) {
+RecipeCard.Energy = function RecipeCardEnergy({ children, ...restProps }) {
   return <Energy {...restProps}>{children}</Energy>;
 };
 
-Recipe.EnergyTitle = function RecipeEnergyTitle({ children, ...restProps }) {
+RecipeCard.EnergyTitle = function RecipeCardEnergyTitle({
+  children,
+  ...restProps
+}) {
   return <EnergyTitle {...restProps}>{children}</EnergyTitle>;
 };
 
-Recipe.EnergyValue = function RecipeEnergyValue({ children, ...restProps }) {
+RecipeCard.EnergyValue = function RecipeCardEnergyValue({
+  children,
+  ...restProps
+}) {
   return <EnergyValue {...restProps}>{children}</EnergyValue>;
 };
 
-Recipe.Footer = function RecipeFooter({ children, ...restProps }) {
+RecipeCard.Footer = function RecipeCardFooter({ children, ...restProps }) {
   return <Footer {...restProps}>{children}</Footer>;
 };
 
-Recipe.FooterView = function RecipeFooterView({ children, ...restProps }) {
+RecipeCard.FooterView = function RecipeCardFooterView({
+  children,
+  ...restProps
+}) {
   return (
     <FooterView {...restProps}>
       <FontAwesomeIcon icon="search" /> {children}
@@ -71,14 +87,20 @@ Recipe.FooterView = function RecipeFooterView({ children, ...restProps }) {
   );
 };
 
-Recipe.FooterAdd = function RecipeFooterAdd({ children, ...restProps }) {
+RecipeCard.FooterAdd = function RecipeCardFooterAdd({
+  children,
+  ...restProps
+}) {
   return <FooterAdd {...restProps}>{children}</FooterAdd>;
 };
 
-Recipe.FooterRemove = function RecipeFooterRemove({ children, ...restProps }) {
+RecipeCard.FooterRemove = function RecipeCardFooterRemove({
+  children,
+  ...restProps
+}) {
   return <FooterRemove {...restProps}>{children}</FooterRemove>;
 };
 
-Recipe.Image = function RecipeImage({ ...restProps }) {
+RecipeCard.Image = function RecipeCardImage({ ...restProps }) {
   return <Image {...restProps} />;
 };
