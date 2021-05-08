@@ -1,5 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 
-export default function Meals() {
-  return <div></div>;
+import { SavedRecipesContainer } from "../containers/SavedRecipes";
+
+export default function Meals({ user, savedRecipes }) {
+  const [subPage, setSubPage] = useState("savedRecipes");
+  return (
+    <div>
+      {subPage === "savedRecipes" && (
+        <SavedRecipesContainer user={user} savedRecipes={savedRecipes} />
+      )}
+    </div>
+  );
 }
