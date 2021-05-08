@@ -12,15 +12,31 @@ export function RecipesResultsContainer({
 }) {
   return (
     <RecipeCard.Container>
-      {recipesData?.hits?.map(({ recipe }) => (
-        <RecipeCardContainer
-          key={getRecipeId(recipe.uri)}
-          recipe={recipe}
-          handleAddButton={handleAddButton}
-          handleRemoveButton={handleRemoveButton}
-          savedRecipesIds={savedRecipesIds}
-        />
-      ))}
+      {recipesData?.hits?.map(({ recipe }) => {
+        const recipeId = getRecipeId(recipe.uri);
+
+        return (
+          <RecipeCardContainer
+            key={getRecipeId(recipe.uri)}
+            recipe={recipe}
+            handleAddButton={handleAddButton}
+            handleRemoveButton={handleRemoveButton}
+            savedRecipesIds={savedRecipesIds}
+          >
+            <RecipeCard.FooterAdd
+              saved={savedRecipesIds.indexOf(recipeId) !== -1}
+              onClick={() => handleAddButton(recipeId, recipe)}
+            >
+              +
+            </RecipeCard.FooterAdd>
+            <RecipeCard.FooterRemove
+              onClick={() => handleRemoveButton(recipeId)}
+            >
+              -
+            </RecipeCard.FooterRemove>
+          </RecipeCardContainer>
+        );
+      })}
     </RecipeCard.Container>
   );
 }

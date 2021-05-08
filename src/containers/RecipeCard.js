@@ -4,12 +4,7 @@ import { RecipeModalContainer } from "../containers/RecipeModal";
 
 import { getLabel, getRecipeId } from "../helpers/recipes";
 
-export function RecipeCardContainer({
-  recipe,
-  handleAddButton,
-  handleRemoveButton,
-  savedRecipesIds = [],
-}) {
+export function RecipeCardContainer({ recipe, children }) {
   const [openModal, setOpenModal] = useState(false);
 
   const { PROCNT: protein, CHOCDF: carbs, FAT: fat } = recipe.totalNutrients;
@@ -62,15 +57,7 @@ export function RecipeCardContainer({
           <RecipeCard.FooterView onClick={() => setOpenModal(true)}>
             View Recipe
           </RecipeCard.FooterView>
-          <RecipeCard.FooterAdd
-            saved={savedRecipesIds.indexOf(recipeId) !== -1}
-            onClick={() => handleAddButton(recipeId, recipe)}
-          >
-            +
-          </RecipeCard.FooterAdd>
-          <RecipeCard.FooterRemove onClick={() => handleRemoveButton(recipeId)}>
-            -
-          </RecipeCard.FooterRemove>
+          {children}
         </RecipeCard.Footer>
       </RecipeCard>
 
