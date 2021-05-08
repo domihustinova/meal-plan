@@ -1,6 +1,8 @@
 import React from "react";
 import { Recipe } from "../components";
 
+import { getLabel, getRecipeId } from "../helpers/recipes";
+
 export function RecipesResultsContainer({
   recipesData,
   handleAddButton,
@@ -15,33 +17,13 @@ export function RecipesResultsContainer({
           FAT: fat,
         } = recipe.totalNutrients;
 
-        const getLabel = (label) => {
-          const labelWithoutHyphen = label.replace(" - ", " ");
-          const labelWithoutRecipe = labelWithoutHyphen.replace(
-            /\brecipes?\b/gi,
-            ""
-          );
-
-          const labelArray = labelWithoutRecipe.split(" ");
-
-          if (labelArray.length >= 4) {
-            return labelArray
-              .slice(0, 4)
-              .join(" ")
-              .concat("...")
-              .replace(" ...", "...");
-          } else {
-            return labelWithoutRecipe.replace(" ...", "...");
-          }
-        };
-
-        const recipeId = recipe.uri.split("_")[1];
+        const recipeId = getRecipeId(recipe.uri);
 
         return (
           <Recipe key={recipeId}>
-            {recipe.totalTime !== 0 ? (
+            {recipe.totalTime !== 0 && (
               <Recipe.Time>{recipe.totalTime} mins</Recipe.Time>
-            ) : null}
+            )}
             <Recipe.Image src={recipe.image} />
             <Recipe.TextContainer>
               <Recipe.Title>{getLabel(recipe.label)}</Recipe.Title>
