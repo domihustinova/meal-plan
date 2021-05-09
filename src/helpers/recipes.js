@@ -1,6 +1,10 @@
-export const getLabel = (label) => {
+export const getLabel = (label, place = "search") => {
   const labelWithoutHyphen = label.replace(" - ", " ");
   const labelWithoutRecipe = labelWithoutHyphen.replace(/\brecipes?\b/gi, "");
+
+  if (place === "saved") {
+    return labelWithoutRecipe;
+  }
 
   const labelArray = labelWithoutRecipe.split(" ");
 
