@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components/macro";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import { RecipeCard } from "../components/";
+import { RecipeCardGrid } from "../components/";
 import { RecipeCardList } from "../components/";
 import { RecipeCardContainer } from "../containers/RecipeCard";
 import { RecipeCardListContainer } from "../containers/RecipeCardList";
@@ -16,7 +16,6 @@ const Wrapper = styled.div`
 
 const ViewIconGroup = styled.div`
   margin-left: 36px;
-  margin-bottom: 18px;
 `;
 
 const ViewIcon = styled.span`
@@ -54,7 +53,7 @@ export function SavedRecipesContainer({
         </ViewIcon>
       </ViewIconGroup>
       {view === "grid" && (
-        <RecipeCard.Container>
+        <RecipeCardGrid.Container>
           {savedRecipes.map((recipe) => {
             return (
               <RecipeCardContainer
@@ -65,7 +64,7 @@ export function SavedRecipesContainer({
               />
             );
           })}
-        </RecipeCard.Container>
+        </RecipeCardGrid.Container>
       )}
       {view === "list" && (
         <RecipeCardList.Container>

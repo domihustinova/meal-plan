@@ -5,7 +5,7 @@ import AccessTimeIcon from "@material-ui/icons/AccessTime";
 import PersonIcon from "@material-ui/icons/Person";
 import WhatshotIcon from "@material-ui/icons/Whatshot";
 
-import { RecipeCard, RecipeModal } from "../components";
+import { RecipeCardGrid, RecipeModal } from "../components";
 import { getLabel, getRecipeId } from "../helpers/recipes";
 
 export function RecipeModalContainer({ open, setOpen, recipe }) {
@@ -29,7 +29,7 @@ export function RecipeModalContainer({ open, setOpen, recipe }) {
       <RecipeModal>
         <CloseIcon onClick={handleClose} style={{ cursor: "pointer" }} />
         <RecipeModal.Title>{label}</RecipeModal.Title>
-        <RecipeCard.Image src={image} />
+        <RecipeCardGrid.Image src={image} />
         <PersonIcon /> {recipe.yield} Foodies
         <WhatshotIcon />
         {Math.round(calories)} Cal

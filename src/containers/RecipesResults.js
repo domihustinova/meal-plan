@@ -1,12 +1,12 @@
 import React from "react";
-import { RecipeCard } from "../components/";
+import { RecipeCardGrid } from "../components/";
 import { RecipeCardContainer } from "../containers/RecipeCard";
 
 import { getRecipeId } from "../helpers/recipes";
 
 export function RecipesResultsContainer({ recipesData, savedRecipesIds, uid }) {
   return (
-    <RecipeCard.Container>
+    <RecipeCardGrid.Container>
       {recipesData?.hits?.map(({ recipe }) => {
         return (
           <RecipeCardContainer
@@ -18,6 +18,6 @@ export function RecipesResultsContainer({ recipesData, savedRecipesIds, uid }) {
           />
         );
       })}
-    </RecipeCard.Container>
+    </RecipeCardGrid.Container>
   );
 }

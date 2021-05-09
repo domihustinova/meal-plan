@@ -2,7 +2,7 @@ import styled from "styled-components/macro";
 
 export const Container = styled.div`
   max-width: 750px;
-  margin-left: 36px;
+  margin: 36px;
   display: flex;
   flex-direction: column;
   border-radius: 7.5px;
@@ -63,7 +63,7 @@ export const Badge = styled.span`
   display: flex;
   align-items: center;
   width: fit-content;
-  padding: 4px 6px;
+  padding: 6px 8px;
   margin-right: 5px;
 
   border-radius: 20px;

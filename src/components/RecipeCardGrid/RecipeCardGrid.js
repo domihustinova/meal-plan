@@ -14,10 +14,10 @@ import {
   TextContainer,
   Time,
   Title,
-} from "./styles/RecipeCard";
+} from "./styles/RecipeCardGrid";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-export default function RecipeCard({
+export default function RecipeCardGrid({
   children,
   direction = "row",
   ...restProps
@@ -25,58 +25,67 @@ export default function RecipeCard({
   return <Card {...restProps}>{children}</Card>;
 }
 
-RecipeCard.Container = function RecipeCardContainer({
+RecipeCardGrid.Container = function RecipeCardGridContainer({
   children,
   ...restProps
 }) {
   return <Container {...restProps}>{children}</Container>;
 };
 
-RecipeCard.TextContainer = function RecipeCardTextContainer({
+RecipeCardGrid.TextContainer = function RecipeCardGridTextContainer({
   children,
   ...restProps
 }) {
   return <TextContainer {...restProps}>{children}</TextContainer>;
 };
 
-RecipeCard.Time = function RecipeCardTime({ children, ...restProps }) {
+RecipeCardGrid.Time = function RecipeCardGridTime({ children, ...restProps }) {
   return <Time {...restProps}>{children}</Time>;
 };
 
-RecipeCard.Title = function RecipeCardTitle({ children, ...restProps }) {
+RecipeCardGrid.Title = function RecipeCardGridTitle({
+  children,
+  ...restProps
+}) {
   return <Title {...restProps}>{children}</Title>;
 };
 
-RecipeCard.EnergyContainer = function RecipeCardEnergyContainer({
+RecipeCardGrid.EnergyContainer = function RecipeCardGridEnergyContainer({
   children,
   ...restProps
 }) {
   return <EnergyContainer {...restProps}>{children}</EnergyContainer>;
 };
 
-RecipeCard.Energy = function RecipeCardEnergy({ children, ...restProps }) {
+RecipeCardGrid.Energy = function RecipeCardGridEnergy({
+  children,
+  ...restProps
+}) {
   return <Energy {...restProps}>{children}</Energy>;
 };
 
-RecipeCard.EnergyTitle = function RecipeCardEnergyTitle({
+RecipeCardGrid.EnergyTitle = function RecipeCardGridEnergyTitle({
   children,
   ...restProps
 }) {
   return <EnergyTitle {...restProps}>{children}</EnergyTitle>;
 };
 
-RecipeCard.EnergyValue = function RecipeCardEnergyValue({
+RecipeCardGrid.EnergyValue = function RecipeCardGridEnergyValue({
   children,
   ...restProps
 }) {
   return <EnergyValue {...restProps}>{children}</EnergyValue>;
 };
 
-RecipeCard.Footer = function RecipeCardFooter({ children, ...restProps }) {
+RecipeCardGrid.Footer = function RecipeCardGridFooter({
+  children,
+  ...restProps
+}) {
   return <Footer {...restProps}>{children}</Footer>;
 };
 
-RecipeCard.FooterView = function RecipeCardFooterView({
+RecipeCardGrid.FooterView = function RecipeCardGridFooterView({
   children,
   ...restProps
 }) {
@@ -87,7 +96,7 @@ RecipeCard.FooterView = function RecipeCardFooterView({
   );
 };
 
-RecipeCard.FooterAdd = function RecipeCardFooterAdd({
+RecipeCardGrid.FooterAdd = function RecipeCardGridFooterAdd({
   saved,
   children,
   ...restProps
@@ -99,13 +108,13 @@ RecipeCard.FooterAdd = function RecipeCardFooterAdd({
   );
 };
 
-RecipeCard.FooterRemove = function RecipeCardFooterRemove({
+RecipeCardGrid.FooterRemove = function RecipeCardGridFooterRemove({
   children,
   ...restProps
 }) {
   return <FooterButton {...restProps}>{children}</FooterButton>;
 };
 
-RecipeCard.Image = function RecipeCardImage({ ...restProps }) {
+RecipeCardGrid.Image = function RecipeCardGridImage({ ...restProps }) {
   return <Image {...restProps} />;
 };
