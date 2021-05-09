@@ -9,6 +9,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import { RecipesResultsContainer as Results } from "./RecipesResults";
 import { RecipesSearchContainer as Search } from "./RecipesSearch";
 
+import { API } from "../constants/recipeApi";
+
 export function RecipesContainer({ user, savedRecipesIds }) {
   const [query, setQuery] = useState("");
   const [diet, setDiet] = useState("");
@@ -20,13 +22,13 @@ export function RecipesContainer({ user, savedRecipesIds }) {
       ...(mealType && { mealType: mealType }),
     };
 
-    const queryUrl = buildUrl("https://api.edamam.com", {
+    const queryUrl = buildUrl(API.URL, {
       path: "search",
       disableCSV: true,
       queryParams: {
         q: query,
-        app_id: APP_ID,
-        app_key: APP_KEY,
+        app_id: API.APP_ID,
+        app_key: API.APP_KEY,
         from: 0,
         to: 25,
         // calories: "400-500",
