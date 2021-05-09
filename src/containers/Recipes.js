@@ -6,14 +6,10 @@ import Backdrop from "@material-ui/core/Backdrop";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import { makeStyles } from "@material-ui/core/styles";
 
-import { FirestoreContext } from "../context/firestore";
 import { RecipesResultsContainer as Results } from "./RecipesResults";
 import { RecipesSearchContainer as Search } from "./RecipesSearch";
 
 export function RecipesContainer({ user, savedRecipesIds }) {
-  const { db } = useContext(FirestoreContext);
-  const uid = user.uid;
-
   const [query, setQuery] = useState("");
   const [diet, setDiet] = useState("");
   const [mealType, setMealType] = useState("");
@@ -64,30 +60,6 @@ export function RecipesContainer({ user, savedRecipesIds }) {
     },
   }))();
 
-  const handleAddButton = (recipeId, recipe) => {
-    db.collection("recipes")
-      .doc(uid)
-      .collection("userRecipes")
-      .doc(recipeId)
-      .set({
-        ...recipe,
-      })
-      .catch(function (error) {
-        console.error("Error adding document: ", error);
-      });
-  };
-
-  const handleRemoveButton = (recipeId) => {
-    db.collection("recipes")
-      .doc(uid)
-      .collection("userRecipes")
-      .doc(recipeId)
-      .delete()
-      .catch((error) => {
-        console.error("Error removing document: ", error);
-      });
-  };
-
   return (
     <div>
       <Search
@@ -105,9 +77,8 @@ export function RecipesContainer({ user, savedRecipesIds }) {
       {isSuccess && (
         <Results
           recipesData={data}
-          handleAddButton={handleAddButton}
-          handleRemoveButton={handleRemoveButton}
           savedRecipesIds={savedRecipesIds}
+          uid={user.uid}
         />
       )}
       <Backdrop className={classes.backdrop} open={isLoading || isFetching}>

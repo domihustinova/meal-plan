@@ -7,7 +7,7 @@ export default function Meals({ user, savedRecipes }) {
   return (
     <div>
       {subPage === "savedRecipes" && (
-        <SavedRecipesContainer user={user} savedRecipes={savedRecipes} />
+        <SavedRecipesContainer uid={user.uid} savedRecipes={savedRecipes} />
       )}
     </div>
   );
