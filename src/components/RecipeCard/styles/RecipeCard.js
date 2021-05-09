@@ -45,6 +45,7 @@ export const Image = styled.div`
 
 export const TextContainer = styled.div`
   padding-bottom: 0;
+  color: #00334e;
 `;
 
 export const Time = styled.span`
@@ -60,6 +61,7 @@ export const Time = styled.span`
 `;
 
 export const Title = styled.h3`
+  color: #00334e;
   font-size: 15px;
   font-weight: 500;
   text-align: center;
