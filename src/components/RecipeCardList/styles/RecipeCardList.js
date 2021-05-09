@@ -1,12 +1,19 @@
 import styled from "styled-components/macro";
 
 export const Container = styled.div`
-  max-width: 650px;
-  margin: 36px;
+  max-width: 750px;
+  margin-left: 36px;
   display: flex;
   flex-direction: column;
   border-radius: 7.5px;
   box-shadow: 0px 2px 7px rgba(0, 0, 0, 0.1);
+`;
+
+export const Frame = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  max-width: 750px;
 `;
 
 export const Card = styled.div`
@@ -29,13 +36,6 @@ export const Image = styled.div`
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
-`;
-
-export const Frame = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  max-width: 700px;
 `;
 
 export const InfoContainer = styled.div`
