@@ -19,6 +19,7 @@ export const Frame = styled.div`
 export const Card = styled.div`
   display: flex;
   flex-direction: row;
+  max-width: 750px;
 
   width: 100%;
   padding: 15px;

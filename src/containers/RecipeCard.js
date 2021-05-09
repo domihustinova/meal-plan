@@ -2,7 +2,8 @@ import React, { useState, useContext } from "react";
 
 import { FirestoreContext } from "../context/firestore";
 
-import { RecipeCardGrid } from "../components";
+import { RecipeCardGridContainer as Grid } from "../containers/RecipeCardGrid";
+import { RecipeCardListContainer as List } from "../containers/RecipeCardList";
 import { RecipeModalContainer } from "../containers/RecipeModal";
 import { RemoveRecipeDialogContainer } from "../containers/RemoveRecipeDialog";
 
@@ -12,16 +13,15 @@ export function RecipeCardContainer({
   recipe,
   savedRecipesIds = [],
   uid,
-  type,
+  page,
+  view,
 }) {
   const { db } = useContext(FirestoreContext);
 
   const [openModal, setOpenModal] = useState(false);
   const [openRemoveDialog, setOpenRemoveDialog] = useState(false);
 
-  const { label, calories, image, totalNutrients, totalTime, uri } = recipe;
-
-  const recipeId = getRecipeId(uri);
+  const recipeId = getRecipeId(recipe.uri);
   const isSaved = savedRecipesIds.indexOf(recipeId) !== -1;
 
   const saveRecipe = (recipeId, recipe) => {
@@ -52,84 +52,28 @@ export function RecipeCardContainer({
     setOpenRemoveDialog(false);
   };
 
-  const { PROCNT: protein, CHOCDF: carbs, FAT: fat } = totalNutrients;
-
   return (
     <>
-      <RecipeCardGrid>
-        {totalTime !== 0 && (
-          <RecipeCardGrid.Time>{totalTime} mins</RecipeCardGrid.Time>
-        )}
-        <RecipeCardGrid.Image src={image} />
-        <RecipeCardGrid.TextContainer>
-          <RecipeCardGrid.Title>{getLabel(label)}</RecipeCardGrid.Title>
-          <RecipeCardGrid.EnergyContainer>
-            <RecipeCardGrid.Energy>
-              <RecipeCardGrid.EnergyTitle>Calories</RecipeCardGrid.EnergyTitle>
-              <RecipeCardGrid.EnergyValue>
-                {Math.floor(calories / recipe.yield)}
-              </RecipeCardGrid.EnergyValue>
-            </RecipeCardGrid.Energy>
-
-            <RecipeCardGrid.Energy>
-              <RecipeCardGrid.EnergyTitle>
-                {protein.label}
-              </RecipeCardGrid.EnergyTitle>
-              <RecipeCardGrid.EnergyValue>
-                {Math.floor(protein.quantity / recipe.yield)}
-                {protein.unit}
-              </RecipeCardGrid.EnergyValue>
-            </RecipeCardGrid.Energy>
-
-            <RecipeCardGrid.Energy>
-              <RecipeCardGrid.EnergyTitle>
-                {carbs.label}
-              </RecipeCardGrid.EnergyTitle>
-              <RecipeCardGrid.EnergyValue>
-                {Math.floor(carbs.quantity / recipe.yield)}
-                {carbs.unit}
-              </RecipeCardGrid.EnergyValue>
-            </RecipeCardGrid.Energy>
-
-            <RecipeCardGrid.Energy>
-              <RecipeCardGrid.EnergyTitle>
-                {fat.label}
-              </RecipeCardGrid.EnergyTitle>
-              <RecipeCardGrid.EnergyValue>
-                {Math.floor(fat.quantity / recipe.yield)}
-                {fat.unit}
-              </RecipeCardGrid.EnergyValue>
-            </RecipeCardGrid.Energy>
-          </RecipeCardGrid.EnergyContainer>
-        </RecipeCardGrid.TextContainer>
-        <RecipeCardGrid.Footer>
-          <RecipeCardGrid.FooterView
-            title="View full recipe"
-            onClick={() => setOpenModal(true)}
-          >
-            View Recipe
-          </RecipeCardGrid.FooterView>
-          {type === "search" && (
-            <RecipeCardGrid.FooterAdd
-              title="Save recipe"
-              saved={isSaved}
-              onClick={() =>
-                isSaved ? removeRecipe(recipeId) : saveRecipe(recipeId, recipe)
-              }
-            >
-              {isSaved ? "Saved" : "Save"}
-            </RecipeCardGrid.FooterAdd>
-          )}
-          {type === "saved" && (
-            <RecipeCardGrid.FooterRemove
-              title="Remove recipe"
-              onClick={() => setOpenRemoveDialog(true)}
-            >
-              Delete
-            </RecipeCardGrid.FooterRemove>
-          )}
-        </RecipeCardGrid.Footer>
-      </RecipeCardGrid>
+      {view === "grid" && (
+        <Grid
+          recipe={recipe}
+          recipeId={recipeId}
+          page={page}
+          setOpenModal={setOpenModal}
+          isSaved={isSaved}
+          saveRecipe={saveRecipe}
+          removeRecipe={removeRecipe}
+          setOpenRemoveDialog={setOpenRemoveDialog}
+        />
+      )}
+      {view === "list" && (
+        <List
+          recipe={recipe}
+          setOpenModal={setOpenModal}
+          removeRecipe={removeRecipe}
+          setOpenRemoveDialog={setOpenRemoveDialog}
+        />
+      )}
 
       <RecipeModalContainer
         open={openModal}
@@ -139,7 +83,7 @@ export function RecipeCardContainer({
 
       <RemoveRecipeDialogContainer
         recipeId={recipeId}
-        label={getLabel(label, "saved")}
+        label={getLabel(recipe.label, "saved")}
         open={openRemoveDialog}
         handleRemoveDialogClose={handleRemoveDialogClose}
         removeRecipe={removeRecipe}

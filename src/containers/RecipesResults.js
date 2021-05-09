@@ -12,9 +12,10 @@ export function RecipesResultsContainer({ recipesData, savedRecipesIds, uid }) {
           <RecipeCardContainer
             key={getRecipeId(recipe.uri)}
             recipe={recipe}
-            savedRecipesIds={savedRecipesIds}
             uid={uid}
-            type="search"
+            savedRecipesIds={savedRecipesIds}
+            page="search"
+            view="grid"
           />
         );
       })}

@@ -60,7 +60,8 @@ export function SavedRecipesContainer({
                 key={getRecipeId(recipe.uri)}
                 recipe={recipe}
                 uid={uid}
-                type="saved"
+                page="saved"
+                view={view}
               />
             );
           })}
@@ -70,11 +71,12 @@ export function SavedRecipesContainer({
         <RecipeCardList.Container>
           {savedRecipes.map((recipe) => {
             return (
-              <RecipeCardListContainer
+              <RecipeCardContainer
                 key={getRecipeId(recipe.uri)}
                 recipe={recipe}
                 uid={uid}
-                type="saved"
+                page="saved"
+                view={view}
               />
             );
           })}
