@@ -2,10 +2,8 @@ import styled from "styled-components/macro";
 
 export const Container = styled.div`
   padding: 36px;
-  /* max-width: 1100px; */
   display: flex;
   flex-wrap: wrap;
-  /* justify-content: space-between; */
   justify-content: flex-start;
 `;
 
@@ -29,10 +27,8 @@ export const Card = styled.div`
   box-shadow: 0px 2px 7px rgba(0, 0, 0, 0.1);
 
   transition: all ease-in-out 0.3s;
-  /* overflow: hidden; */
 
   &:hover {
-    /* transform: scale(1.005); */
     box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.15);
   }
 `;
@@ -45,12 +41,9 @@ export const Image = styled.div`
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
-  /* border-top-left-radius: 7.5px; */
-  /* border-top-right-radius: 7.5px; */
 `;
 
 export const TextContainer = styled.div`
-  /* padding: 15px; */
   padding-bottom: 0;
 `;
 
@@ -102,54 +95,34 @@ export const Footer = styled.div`
   height: 45px;
 `;
 
-export const FooterView = styled.button`
+export const FooterButton = styled.button`
   background-color: white;
   color: #46b04a;
   border: none;
-  border-right: 1px solid #f4f6f3;
+  cursor: pointer;
+  outline: none;
   font-size: 10px;
   font-weight: 500;
   letter-spacing: 2px;
   text-decoration: none;
   text-transform: uppercase;
-  cursor: pointer;
-  outline: none;
   transition: all ease-in-out 300ms;
-  flex: 3;
+  flex: 1;
 
-  &:hover {
+  &:hover,
+  &:focus {
     color: white;
     background-color: #72be6c;
   }
 `;
 
-export const FooterAdd = styled.button`
-  background-color: ${(props) => (props.saved ? "#46b04a" : "#fff")};
-  color: ${(props) => (props.saved ? "#fff" : "#46b04a")};
-  border: none;
-  cursor: pointer;
-  outline: none;
-  transition: all ease-in-out 300ms;
-  flex: 1;
+export const FooterView = styled(FooterButton)`
   border-right: 1px solid #f4f6f3;
-
-  &:hover {
-    color: white;
-    background-color: #72be6c;
-  }
+  flex: 2;
 `;
 
-export const FooterRemove = styled.button`
-  background-color: white;
-  color: #46b04a;
-  border: none;
-  cursor: pointer;
-  outline: none;
-  transition: all ease-in-out 300ms;
-  flex: 1;
-
-  &:hover {
-    color: white;
-    background-color: #72be6c;
-  }
+export const FooterAdd = styled(FooterButton)`
+  background-color: ${({ saved }) => (saved ? "#46b04a" : "#fff")};
+  color: ${({ saved }) => (saved ? "#fff" : "#46b04a")};
+  border-right: 1px solid #f4f6f3;
 `;

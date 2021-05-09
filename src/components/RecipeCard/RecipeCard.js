@@ -8,7 +8,7 @@ import {
   EnergyValue,
   Footer,
   FooterAdd,
-  FooterRemove,
+  FooterButton,
   FooterView,
   Image,
   TextContainer,
@@ -88,17 +88,22 @@ RecipeCard.FooterView = function RecipeCardFooterView({
 };
 
 RecipeCard.FooterAdd = function RecipeCardFooterAdd({
+  saved,
   children,
   ...restProps
 }) {
-  return <FooterAdd {...restProps}>{children}</FooterAdd>;
+  return (
+    <FooterAdd saved={saved} {...restProps}>
+      {children} {saved && <FontAwesomeIcon icon="check" />}
+    </FooterAdd>
+  );
 };
 
 RecipeCard.FooterRemove = function RecipeCardFooterRemove({
   children,
   ...restProps
 }) {
-  return <FooterRemove {...restProps}>{children}</FooterRemove>;
+  return <FooterButton {...restProps}>{children}</FooterButton>;
 };
 
 RecipeCard.Image = function RecipeCardImage({ ...restProps }) {
