@@ -5,7 +5,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { RecipeCardGrid } from "../components/";
 import { RecipeCardList } from "../components/";
 import { RecipeCardContainer } from "../containers/RecipeCard";
-import { RecipeCardListContainer } from "../containers/RecipeCardList";
 
 import { getRecipeId } from "../helpers/recipes";
 

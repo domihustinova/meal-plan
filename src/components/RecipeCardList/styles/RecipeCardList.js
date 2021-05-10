@@ -75,12 +75,6 @@ export const Badge = styled.span`
   color: #fff;
 `;
 
-export const BadgeMeal = styled(Badge)`
-  position: absolute;
-  right: -16px;
-  top: 8px;
-`;
-
 export const BadgesContainer = styled.div`
   display: flex;
   flex-direction: column;

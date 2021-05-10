@@ -1,7 +1,6 @@
 import React from "react";
 import {
   Badge,
-  BadgeMeal,
   BadgesContainer,
   BadgesGroup,
   Button,
@@ -71,13 +70,6 @@ RecipeCardList.Badge = function RecipeCardListBadge({
   ...restProps
 }) {
   return <Badge {...restProps}>{children}</Badge>;
-};
-
-RecipeCardList.BadgeMeal = function RecipeCardListBadgeMeal({
-  children,
-  ...restProps
-}) {
-  return <BadgeMeal {...restProps}>{children}</BadgeMeal>;
 };
 
 RecipeCardList.Title = function RecipeCardListTitle({
