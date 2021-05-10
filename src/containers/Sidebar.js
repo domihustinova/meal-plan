@@ -1,5 +1,7 @@
 import React, { useContext } from "react";
 import { FirebaseContext } from "../context/firebase";
+import { Link as ReactRouterLink } from "react-router-dom";
+import logoutLine from "@iconify-icons/majesticons/logout-line";
 
 import { Sidebar } from "../components/";
 import { SIDEBAR_ITEMS } from "../constants/sidebarItems";
@@ -21,28 +23,20 @@ export function SidebarContainer({ history, user }) {
   return (
     <Sidebar>
       <div style={{ position: "fixed" }}>
-        <Sidebar.Title>Hello, {user.displayName}</Sidebar.Title>
-        <Sidebar.Frame>
-          <Sidebar.Group>
-            {SIDEBAR_ITEMS.map((item) => (
-              <Sidebar.Item
-                key={item.name}
-                to={item.route}
-                title={item.name}
-                selected={item.route === location}
-              >
+        <Sidebar.Group>
+          {SIDEBAR_ITEMS.map((item) => (
+            <ReactRouterLink key={item.name} to={item.route} title={item.name}>
+              <Sidebar.ItemGroup selected={item.route === location}>
                 <Sidebar.ItemIcon icon={item.icon} />
-                {item.name}
-              </Sidebar.Item>
-            ))}
-          </Sidebar.Group>
-
-          <Sidebar.Group>
-            <Sidebar.LogoutLink onClick={handleLogout}>
-              Logout
-            </Sidebar.LogoutLink>
-          </Sidebar.Group>
-        </Sidebar.Frame>
+                <Sidebar.Item>{item.name}</Sidebar.Item>
+              </Sidebar.ItemGroup>
+            </ReactRouterLink>
+          ))}
+          <Sidebar.ItemGroup onClick={handleLogout} title="Logout">
+            <Sidebar.ItemIcon icon={logoutLine} rotate="180deg" />
+            <Sidebar.Item>Logout</Sidebar.Item>
+          </Sidebar.ItemGroup>
+        </Sidebar.Group>
       </div>
       <div />
     </Sidebar>

@@ -31,7 +31,7 @@ const palette = {
     normal: "#344138",
   },
   orange: {
-    lighter: "#faf0e5",
+    lighter: "#fcf0e4",
     light: "#eba796",
     normal: "#e69183",
     dark: "#e37b5f",
@@ -54,7 +54,8 @@ const palette = {
     dark: "#e2e6ea",
   },
   ink: {
-    light: "#7f8388",
+    lighter: "#7f8388",
+    light: "#999999",
     normal: "#333333",
     dark: "#000",
   },
@@ -94,7 +95,7 @@ export const theme = {
   colorText: {
     primary: palette.ink.normal,
     error: palette.red.normal,
-    placeholder: palette.ink.light,
+    placeholder: palette.ink.lighter,
     footer: palette.white.normal,
     link: {
       navbar: {
@@ -102,9 +103,9 @@ export const theme = {
       },
       green: palette.green.normal,
       greenHover: palette.green.light,
-      sidebar: palette.darkGreen.light,
-      sidebarSelected: palette.darkGreen.normal,
-      sidebarHover: palette.darkGreen.normal,
+      sidebar: palette.ink.lighter,
+      sidebarSelected: palette.orange.normal,
+      sidebarHover: palette.orange.normal,
       form: palette.pastelBlue.dark,
       formHover: palette.pastelBlue.lighter,
       footer: palette.pastelBlue.lighter,
@@ -113,7 +114,7 @@ export const theme = {
       pastelBlueHover: palette.blue.dark,
     },
     textButton: {
-      profile: palette.ink.light,
+      profile: palette.ink.lighter,
       profileEdit: palette.green.normal,
       profileSelected: palette.green.normal,
       profileHover: palette.green.normal,
@@ -137,7 +138,9 @@ export const theme = {
     body: palette.white.normal,
     hero: palette.yellow.lighter,
     main: palette.orange.lighter,
-    sidebar: palette.green.lightest,
+    sidebar: palette.white.normal,
+    sidebarItem: palette.white.normal,
+    sidebarItemSelected: palette.orange.lighter,
     footer: palette.pastelBlue.normal,
     button: {
       primary: {

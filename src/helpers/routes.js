@@ -3,11 +3,11 @@ import { Route, Redirect } from "react-router-dom";
 import * as ROUTES from "../constants/routes";
 import { LayoutContainer } from "../containers/Layout";
 import {
+  Editor,
   Home,
   Meals,
   Profile,
   Overview,
-  Planner,
   Recipes,
   SignIn,
   SignUp,
@@ -41,12 +41,7 @@ export function RoutesRedirect({ user, measurementsData }) {
         user={user}
         measurementsData={measurementsData}
       />
-      <PrivateRoute
-        exact
-        path={ROUTES.PLANNER}
-        component={Planner}
-        user={user}
-      />
+      <PrivateRoute exact path={ROUTES.EDITOR} component={Editor} user={user} />
       <PrivateRoute
         exact
         path={ROUTES.RECIPES}
