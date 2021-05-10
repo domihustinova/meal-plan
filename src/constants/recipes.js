@@ -21,3 +21,13 @@ export const mealTypeOptions = Object.keys(MEAL_TYPE_DATA).map((value) => ({
   label: MEAL_TYPE_DATA[value],
   value,
 }));
+
+export const PAGES = {
+  SEARCH: "search",
+  SAVED: "saved",
+};
+
+export const VIEW = {
+  GRID: "grid",
+  LIST: "list",
+};

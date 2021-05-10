@@ -8,6 +8,7 @@ import { RecipeModalContainer } from "../containers/RecipeModal";
 import { RemoveRecipeDialogContainer } from "../containers/RemoveRecipeDialog";
 
 import { getLabel, getRecipeId } from "../helpers/recipes";
+import { VIEW } from "../constants/recipes";
 
 export function RecipeCardContainer({
   recipe,
@@ -29,9 +30,7 @@ export function RecipeCardContainer({
       .doc(uid)
       .collection("userRecipes")
       .doc(recipeId)
-      .set({
-        ...recipe,
-      })
+      .set(recipe)
       .catch(function (error) {
         console.error("Error adding document: ", error);
       });
@@ -54,7 +53,7 @@ export function RecipeCardContainer({
 
   return (
     <>
-      {view === "grid" && (
+      {view === VIEW.GRID && (
         <Grid
           recipe={recipe}
           recipeId={recipeId}
@@ -66,7 +65,7 @@ export function RecipeCardContainer({
           setOpenRemoveDialog={setOpenRemoveDialog}
         />
       )}
-      {view === "list" && (
+      {view === VIEW.LIST && (
         <List
           recipe={recipe}
           setOpenModal={setOpenModal}

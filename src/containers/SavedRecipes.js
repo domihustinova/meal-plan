@@ -7,6 +7,7 @@ import { RecipeCardList } from "../components/";
 import { RecipeCardContainer } from "../containers/RecipeCard";
 
 import { getRecipeId } from "../helpers/recipes";
+import { VIEW } from "../constants/recipes";
 
 const Wrapper = styled.div`
   display: flex;
@@ -40,18 +41,18 @@ export function SavedRecipesContainer({
           <FontAwesomeIcon
             icon="th-list"
             size="2x"
-            onClick={() => handleViewSetting("list")}
+            onClick={() => handleViewSetting(VIEW.LIST)}
           />
         </ViewIcon>
         <ViewIcon title="Gallery View">
           <FontAwesomeIcon
             icon="th"
             size="2x"
-            onClick={() => handleViewSetting("grid")}
+            onClick={() => handleViewSetting(VIEW.GRID)}
           />
         </ViewIcon>
       </ViewIconGroup>
-      {view === "grid" && (
+      {view === VIEW.GRID && (
         <RecipeCardGrid.Container>
           {savedRecipes.map((recipe) => {
             return (
@@ -66,7 +67,7 @@ export function SavedRecipesContainer({
           })}
         </RecipeCardGrid.Container>
       )}
-      {view === "list" && (
+      {view === VIEW.LIST && (
         <RecipeCardList.Container>
           {savedRecipes.map((recipe) => {
             return (

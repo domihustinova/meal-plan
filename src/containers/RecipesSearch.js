@@ -1,6 +1,6 @@
 import React from "react";
 
-import { dietOptions, mealTypeOptions } from "../constants/recipeSearch";
+import { dietOptions, mealTypeOptions } from "../constants/recipes";
 
 export function RecipesSearchContainer({
   handleSearch,

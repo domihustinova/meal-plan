@@ -1,8 +1,10 @@
-export const getLabel = (label, place = "search") => {
+import { PAGES } from "../constants/recipes";
+
+export const getLabel = (label, place = PAGES.SEARCH) => {
   const labelWithoutHyphen = label.replace(" - ", " ");
   const labelWithoutRecipe = labelWithoutHyphen.replace(/\brecipes?\b/gi, "");
 
-  if (place === "saved") {
+  if (place === PAGES.SAVED) {
     return labelWithoutRecipe;
   }
 

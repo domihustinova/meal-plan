@@ -3,6 +3,7 @@ import React from "react";
 import { RecipeCardGrid } from "../components";
 
 import { getLabel } from "../helpers/recipes";
+import { PAGES } from "../constants/recipes";
 
 export function RecipeCardGridContainer({
   recipe,
@@ -70,7 +71,7 @@ export function RecipeCardGridContainer({
         >
           View Recipe
         </RecipeCardGrid.FooterView>
-        {page === "search" && (
+        {page === PAGES.SEARCH && (
           <RecipeCardGrid.FooterAdd
             title="Save recipe"
             saved={isSaved}
@@ -81,7 +82,7 @@ export function RecipeCardGridContainer({
             {isSaved ? "Saved" : "Save"}
           </RecipeCardGrid.FooterAdd>
         )}
-        {page === "saved" && (
+        {page === PAGES.SAVED && (
           <RecipeCardGrid.FooterRemove
             title="Remove recipe"
             onClick={() => setOpenRemoveDialog(true)}

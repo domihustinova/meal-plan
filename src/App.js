@@ -14,10 +14,14 @@ import { RoutesRedirect } from "./helpers/routes";
 
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fab } from "@fortawesome/free-brands-svg-icons";
-import { faCheck, faPencilAlt, faTh, faThList } from "@fortawesome/free-solid-svg-icons";
+import {
+  faCheck,
+  faPencilAlt,
+  faTh,
+  faThList,
+} from "@fortawesome/free-solid-svg-icons";
 
-library.add(fab, faCheck, faPencilAlt, faTh,
-    faThList);
+library.add(fab, faCheck, faPencilAlt, faTh, faThList);
 
 function App() {
   const { user } = useAuthListener();

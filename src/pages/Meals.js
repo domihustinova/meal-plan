@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 
 import { SavedRecipesContainer } from "../containers/SavedRecipes";
+import { VIEW } from "../constants/recipes";
 
 export default function Meals({ user, savedRecipes }) {
   const [subPage, setSubPage] = useState("savedRecipes");
   const [view, setView] = useState(
-    JSON.parse(localStorage.getItem("savedRecipesView")) || "list"
+    JSON.parse(localStorage.getItem("savedRecipesView")) || VIEW.LIST
   );
 
   const handleViewSetting = (value) => {
