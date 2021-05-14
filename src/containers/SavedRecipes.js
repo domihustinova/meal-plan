@@ -7,7 +7,7 @@ import { RecipeCardList } from "../components/";
 import { RecipeCardContainer } from "../containers/RecipeCard";
 
 import { getRecipeId } from "../helpers/recipes";
-import { VIEW } from "../constants/recipes";
+import { PAGES, VIEW } from "../constants/recipes";
 
 const Wrapper = styled.div`
   display: flex;
@@ -60,7 +60,7 @@ export function SavedRecipesContainer({
                 key={getRecipeId(recipe.uri)}
                 recipe={recipe}
                 uid={uid}
-                page="saved"
+                page={PAGES.SAVED}
                 view={view}
               />
             );
@@ -75,7 +75,7 @@ export function SavedRecipesContainer({
                 key={getRecipeId(recipe.uri)}
                 recipe={recipe}
                 uid={uid}
-                page="saved"
+                page={PAGES.SAVED}
                 view={view}
               />
             );

@@ -27,6 +27,11 @@ export const PAGES = {
   SAVED: "saved",
 };
 
+export const SUB_PAGES = {
+  SAVED_RECIPES: "savedRecipes",
+  MY_MEALS: "myMeals",
+};
+
 export const VIEW = {
   GRID: "grid",
   LIST: "list",

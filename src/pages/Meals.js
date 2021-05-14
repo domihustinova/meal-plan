@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 
 import { SavedRecipesContainer } from "../containers/SavedRecipes";
-import { VIEW } from "../constants/recipes";
+import { VIEW, SUB_PAGES } from "../constants/recipes";
 
 export default function Meals({ user, savedRecipes }) {
-  const [subPage, setSubPage] = useState("savedRecipes");
+  const [subPage, setSubPage] = useState(SUB_PAGES.SAVED_RECIPES);
   const [view, setView] = useState(
     JSON.parse(localStorage.getItem("savedRecipesView")) || VIEW.LIST
   );
@@ -16,11 +16,13 @@ export default function Meals({ user, savedRecipes }) {
 
   return (
     <div>
-      <button onClick={() => setSubPage("savedRecipes")}>Saved Recipes</button>
-      <button onClick={() => setSubPage("myMeals")}>My Meals</button>
+      <button onClick={() => setSubPage(SUB_PAGES.SAVED_RECIPES)}>
+        Saved Recipes
+      </button>
+      <button onClick={() => setSubPage(SUB_PAGES.MY_MEALS)}>My Meals</button>
       <br />
 
-      {subPage === "savedRecipes" && (
+      {subPage === SUB_PAGES.SAVED_RECIPES && (
         <SavedRecipesContainer
           uid={user.uid}
           savedRecipes={savedRecipes}
@@ -28,7 +30,7 @@ export default function Meals({ user, savedRecipes }) {
           handleViewSetting={handleViewSetting}
         />
       )}
-      {subPage === "myMeals" && <div>My Meals</div>}
+      {subPage === SUB_PAGES.MY_MEALS && <div>My Meals</div>}
     </div>
   );
 }

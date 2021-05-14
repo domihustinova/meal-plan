@@ -3,6 +3,7 @@ import { RecipeCardGrid } from "../components/";
 import { RecipeCardContainer } from "../containers/RecipeCard";
 
 import { getRecipeId } from "../helpers/recipes";
+import { PAGES, VIEW } from "../constants/recipes";
 
 export function RecipesResultsContainer({ recipesData, savedRecipesIds, uid }) {
   return (
@@ -14,8 +15,8 @@ export function RecipesResultsContainer({ recipesData, savedRecipesIds, uid }) {
             recipe={recipe}
             uid={uid}
             savedRecipesIds={savedRecipesIds}
-            page="search"
-            view="grid"
+            page={PAGES.SEARCH}
+            view={VIEW.GRID}
           />
         );
       })}

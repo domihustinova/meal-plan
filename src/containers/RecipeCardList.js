@@ -4,6 +4,7 @@ import WhatshotIcon from "@material-ui/icons/Whatshot";
 import { RecipeCardList } from "../components";
 
 import { getLabel } from "../helpers/recipes";
+import { PAGES } from "../constants/recipes";
 
 export function RecipeCardListContainer({
   recipe,
@@ -25,7 +26,7 @@ export function RecipeCardListContainer({
 
         <RecipeCardList.InfoContainer>
           <RecipeCardList.Title>
-            {getLabel(label, "saved")}
+            {getLabel(label, PAGES.SAVED)}
           </RecipeCardList.Title>
 
           <RecipeCardList.Text>

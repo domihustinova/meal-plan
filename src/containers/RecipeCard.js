@@ -8,7 +8,7 @@ import { RecipeModalContainer } from "../containers/RecipeModal";
 import { RemoveRecipeDialogContainer } from "../containers/RemoveRecipeDialog";
 
 import { getLabel, getRecipeId } from "../helpers/recipes";
-import { VIEW } from "../constants/recipes";
+import { PAGES, VIEW } from "../constants/recipes";
 
 export function RecipeCardContainer({
   recipe,
@@ -82,7 +82,7 @@ export function RecipeCardContainer({
 
       <RemoveRecipeDialogContainer
         recipeId={recipeId}
-        label={getLabel(recipe.label, "saved")}
+        label={getLabel(recipe.label, PAGES.SAVED)}
         open={openRemoveDialog}
         handleRemoveDialogClose={handleRemoveDialogClose}
         removeRecipe={removeRecipe}
