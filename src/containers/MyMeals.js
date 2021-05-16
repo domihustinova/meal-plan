@@ -12,7 +12,6 @@ const Wrapper = styled.div`
 `;
 
 export function MyMealsContainer({ uid, savedMeals, view }) {
-  console.log(savedMeals);
   return (
     <Wrapper>
       <RecipeCardList.Container>

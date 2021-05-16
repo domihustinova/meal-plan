@@ -102,6 +102,8 @@ export function RecipeCardContainer({
       <EditMealModalContainer
         open={openEditMealModal}
         setOpen={setOpenEditMealModal}
+        uid={uid}
+        meal={recipe}
       />
 
       <RecipeModalContainer
