@@ -21,3 +21,13 @@ export const validationSchemaTdeeForm = Yup.object({
     )
     .required("Required activity"),
 });
+
+export const validationSchemaMealForm = Yup.object({
+  label: Yup.string().required("Required"),
+  calories: Yup.number().min(1, "That seems too little").required("Required"),
+  protein: Yup.number().min(1, "That seems too little").required("Required"),
+  carbs: Yup.number().min(1, "That seems too little").required("Required"),
+  fat: Yup.number().min(1, "That seems too little").required("Required"),
+  portions: Yup.number().min(1, "That seems too little").required("Required"),
+  mealType: Yup.string().required("Required"),
+});
