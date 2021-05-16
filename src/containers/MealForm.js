@@ -1,8 +1,9 @@
-import React, { useContext } from "react";
+import React, { useState, useContext } from "react";
 import { Formik, Form } from "formik";
 
 import Dialog from "@material-ui/core/Dialog";
 import { makeStyles } from "@material-ui/core/styles";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 import { FirestoreContext } from "../context/firestore";
 import { MealForm } from "../components/";
@@ -12,7 +13,11 @@ import { validationSchemaMealForm } from "../helpers/validations";
 export function MealFormContainer({ uid, open, setOpen }) {
   const { db } = useContext(FirestoreContext);
 
+  const [showSuccessCard, setShowSuccessCard] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+
   const saveMeal = (values) => {
+    setIsLoading(true);
     const meal = {
       label: values.label,
       calories: values.calories,
@@ -43,15 +48,19 @@ export function MealFormContainer({ uid, open, setOpen }) {
       .collection("userMeals")
       .doc(meal.mealId)
       .set(meal)
+      .then(() => {
+        setIsLoading(false);
+      })
       .catch(function (error) {
         console.error("Error adding document: ", error);
       });
 
-    setOpen(false);
+    setShowSuccessCard(true);
   };
 
   const handleClose = () => {
     setOpen(false);
+    setShowSuccessCard(false);
   };
 
   const classes = makeStyles(() => ({
@@ -64,115 +73,149 @@ export function MealFormContainer({ uid, open, setOpen }) {
       onClose={handleClose}
       classes={{ paper: classes.paper }}
     >
-      <Formik
-        initialValues={{
-          label: "",
-          calories: "",
-          protein: "",
-          carbs: "",
-          fat: "",
-          portions: "",
-          mealType: "",
-        }}
-        validationSchema={validationSchemaMealForm}
-        onSubmit={(values) => {
-          saveMeal(values);
-        }}
-      >
-        <Form>
-          <MealForm>
-            <MealForm.Title>Add Meal</MealForm.Title>
+      {!showSuccessCard ? (
+        <Formik
+          initialValues={{
+            label: "",
+            calories: "",
+            protein: "",
+            carbs: "",
+            fat: "",
+            portions: "",
+            mealType: "",
+          }}
+          validationSchema={validationSchemaMealForm}
+          onSubmit={(values) => {
+            saveMeal(values);
+          }}
+        >
+          <Form>
+            <MealForm>
+              <MealForm.Title>Add Meal</MealForm.Title>
 
-            <MealForm.Row>
-              <MealForm.RowTitle>Name</MealForm.RowTitle>
-              <MealForm.InputContainer
-                type="text"
-                id="label"
-                name="label"
-                label="Meal Name"
-                placeholder=" "
-              />
-            </MealForm.Row>
+              <MealForm.Row>
+                <MealForm.RowTitle>Name</MealForm.RowTitle>
+                <MealForm.InputContainer
+                  type="text"
+                  id="label"
+                  name="label"
+                  label="Meal Name"
+                  placeholder=" "
+                />
+              </MealForm.Row>
 
-            <MealForm.Row>
-              <MealForm.RowTitle>Calories</MealForm.RowTitle>
-              <MealForm.InputContainer
-                type="number"
-                id="calories"
-                name="calories"
-                label="Calories"
-                placeholder="kcal"
-              />
-            </MealForm.Row>
-
-            <MealForm.Row>
-              <MealForm.RowTitle>Macros (Protein/Carbs/Fat)</MealForm.RowTitle>
-
-              <MealForm.RowGroup>
+              <MealForm.Row>
+                <MealForm.RowTitle>Calories</MealForm.RowTitle>
                 <MealForm.InputContainer
                   type="number"
-                  id="protein"
-                  name="protein"
-                  label="Protein"
-                  placeholder="g"
+                  id="calories"
+                  name="calories"
+                  label="Calories"
+                  placeholder="kcal"
                 />
+              </MealForm.Row>
+
+              <MealForm.Row>
+                <MealForm.RowTitle>
+                  Macros (Protein/Carbs/Fat)
+                </MealForm.RowTitle>
+
+                <MealForm.RowGroup>
+                  <MealForm.InputContainer
+                    type="number"
+                    id="protein"
+                    name="protein"
+                    label="Protein"
+                    placeholder="g"
+                  />
+                  <MealForm.InputContainer
+                    type="number"
+                    id="carbs"
+                    name="carbs"
+                    label="Carbs"
+                    placeholder="g"
+                  />
+                  <MealForm.InputContainer
+                    type="number"
+                    id="fat"
+                    name="fat"
+                    label="Fat"
+                    placeholder="g"
+                  />
+                </MealForm.RowGroup>
+              </MealForm.Row>
+
+              <MealForm.Row>
+                <MealForm.RowTitle>Portions</MealForm.RowTitle>
                 <MealForm.InputContainer
                   type="number"
-                  id="carbs"
-                  name="carbs"
-                  label="Carbs"
-                  placeholder="g"
+                  id="portions"
+                  name="portions"
+                  label="Portions"
+                  placeholder=" "
                 />
-                <MealForm.InputContainer
-                  type="number"
-                  id="fat"
-                  name="fat"
-                  label="Fat"
-                  placeholder="g"
+              </MealForm.Row>
+
+              <MealForm.Row>
+                <MealForm.RowTitle>Meal Type</MealForm.RowTitle>
+                <MealForm.InputButtonGroupContainer
+                  name="mealType"
+                  options={mealTypeOtions}
                 />
-              </MealForm.RowGroup>
-            </MealForm.Row>
+              </MealForm.Row>
 
-            <MealForm.Row>
-              <MealForm.RowTitle>Portions</MealForm.RowTitle>
-              <MealForm.InputContainer
-                type="number"
-                id="portions"
-                name="portions"
-                label="Portions"
-                placeholder=" "
-              />
-            </MealForm.Row>
+              <MealForm.ButtonGroup>
+                <MealForm.Button
+                  themetype="secondaryGreen"
+                  size="normal"
+                  type="button"
+                  onClick={handleClose}
+                >
+                  Close
+                </MealForm.Button>
 
-            <MealForm.Row>
-              <MealForm.RowTitle>Meal Type</MealForm.RowTitle>
-              <MealForm.InputButtonGroupContainer
-                name="mealType"
-                options={mealTypeOtions}
-              />
-            </MealForm.Row>
+                <MealForm.Button
+                  themetype="primaryGreen"
+                  size="normal"
+                  type="submit"
+                >
+                  {isLoading ? (
+                    <CircularProgress color="inherit" />
+                  ) : (
+                    "Add Meal"
+                  )}
+                </MealForm.Button>
+              </MealForm.ButtonGroup>
+            </MealForm>
+          </Form>
+        </Formik>
+      ) : (
+        <MealForm.SuccessCard>
+          <MealForm.SuccessCardTitle>Success!</MealForm.SuccessCardTitle>
+          <MealForm.SuccessCardText>
+            Meal was successfully added.
+          </MealForm.SuccessCardText>
+          <MealForm.ButtonGroup>
+            <MealForm.Button
+              themetype="secondaryGreen"
+              size="normal"
+              type="button"
+              onClick={handleClose}
+            >
+              Close
+            </MealForm.Button>
 
-            <MealForm.ButtonGroup>
-              <MealForm.Button
-                themetype="secondaryGreen"
-                size="normal"
-                type="button"
-                onClick={handleClose}
-              >
-                Cancel
-              </MealForm.Button>
-
-              <MealForm.Button
-                themetype="primaryGreen"
-                size="normal"
-                type="submit"
-              >
-                Add Meal
-              </MealForm.Button>
-            </MealForm.ButtonGroup>
-          </MealForm>
-        </Form>
-      </Formik>
+            <MealForm.Button
+              themetype="primaryGreen"
+              size="normal"
+              type="button"
+              onClick={() => setShowSuccessCard(false)}
+            >
+              Add Meal
+            </MealForm.Button>
+          </MealForm.ButtonGroup>
+        </MealForm.SuccessCard>
+      )}
     </Dialog>
   );
 }

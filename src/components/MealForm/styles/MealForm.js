@@ -8,6 +8,19 @@ export const Card = styled.div`
   padding: 36px;
 `;
 
+export const SuccessCard = styled.div`
+  padding: 40px;
+`;
+
+export const SuccessCardText = styled.p`
+  font-size: 16px;
+`;
+
+export const SuccessCardTitle = styled.h3`
+  font-size: 32px;
+  margin-bottom: 16px;
+`;
+
 export const Title = styled.h2`
   font-size: 32px;
   margin-bottom: 16px;

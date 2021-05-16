@@ -15,12 +15,36 @@ import {
   RowTitle,
   Input,
   Error,
+  SuccessCard,
+  SuccessCardText,
+  SuccessCardTitle,
   Title,
 } from "./styles/MealForm";
 
 export default function MealForm({ children, ...restProps }) {
   return <Card {...restProps}>{children}</Card>;
 }
+
+MealForm.SuccessCard = function MealFormSuccessCard({
+  children,
+  ...restProps
+}) {
+  return <SuccessCard {...restProps}>{children}</SuccessCard>;
+};
+
+MealForm.SuccessCardTitle = function MealFormSuccessCardTitle({
+  children,
+  ...restProps
+}) {
+  return <SuccessCardTitle {...restProps}>{children}</SuccessCardTitle>;
+};
+
+MealForm.SuccessCardText = function MealFormSuccessCardText({
+  children,
+  ...restProps
+}) {
+  return <SuccessCardText {...restProps}>{children}</SuccessCardText>;
+};
 
 MealForm.Title = function MealFormTitle({ children, ...restProps }) {
   return <Title {...restProps}>{children}</Title>;
