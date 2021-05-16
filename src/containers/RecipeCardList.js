@@ -4,12 +4,15 @@ import WhatshotIcon from "@material-ui/icons/Whatshot";
 import { RecipeCardList } from "../components";
 
 import { getLabel } from "../helpers/recipes";
-import { PAGES } from "../constants/recipes";
+import { PAGES, SUB_PAGES } from "../constants/recipes";
+
+import food from "../images/food.png";
 
 export function RecipeCardListContainer({
   recipe,
   setOpenModal,
   setOpenRemoveDialog,
+  subPage,
 }) {
   const { label, calories, image, mealType, totalNutrients } = recipe;
 
@@ -22,7 +25,7 @@ export function RecipeCardListContainer({
   return (
     <RecipeCardList.Frame>
       <RecipeCardList>
-        <RecipeCardList.Image src={image} />
+        <RecipeCardList.Image src={image || food} />
 
         <RecipeCardList.InfoContainer>
           <RecipeCardList.Title>
@@ -50,12 +53,22 @@ export function RecipeCardListContainer({
         </RecipeCardList.InfoContainer>
       </RecipeCardList>
       <RecipeCardList.ButtonGroup>
-        <RecipeCardList.Button
-          title="View full recipe"
-          onClick={() => setOpenModal(true)}
-        >
-          View Recipe
-        </RecipeCardList.Button>
+        {subPage === SUB_PAGES.SAVED_RECIPES && (
+          <RecipeCardList.Button
+            title="View full recipe"
+            onClick={() => setOpenModal(true)}
+          >
+            View Recipe
+          </RecipeCardList.Button>
+        )}
+        {subPage === SUB_PAGES.MY_MEALS && (
+          <RecipeCardList.Button
+            title="Edit meal"
+            onClick={() => setOpenModal(true)}
+          >
+            Edit Meal
+          </RecipeCardList.Button>
+        )}
 
         <RecipeCardList.Button
           title="Remove recipe"
