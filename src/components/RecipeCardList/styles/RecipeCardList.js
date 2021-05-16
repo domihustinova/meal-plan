@@ -1,8 +1,9 @@
 import styled from "styled-components/macro";
 
 export const Container = styled.div`
-  max-width: 750px;
-  margin: 36px;
+  max-width: 950px;
+  width: 100%;
+  margin: 36px auto;
   display: flex;
   flex-direction: column;
   border-radius: 7.5px;
@@ -13,13 +14,14 @@ export const Frame = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  max-width: 750px;
+  width: 100%;
+  max-width: 950px;
 `;
 
 export const Card = styled.div`
   display: flex;
   flex-direction: row;
-  max-width: 750px;
+  max-width: 950px;
 
   width: 100%;
   padding: 15px;
