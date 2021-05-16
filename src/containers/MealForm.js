@@ -21,32 +21,32 @@ export function MealFormContainer({ uid, open, setOpen }) {
     const meal = {
       label: values.label,
       calories: values.calories,
-      totalNutrients: [
-        {
+      totalNutrients: {
+        PROCNT: {
           label: "Protein",
           quantity: values.protein,
           unit: "g",
         },
-        {
+        CHOCDF: {
           label: "Carbs",
           quantity: values.carbs,
           unit: "g",
         },
-        {
+        FAT: {
           label: "Fat",
           quantity: values.fat,
           unit: "g",
         },
-      ],
+      },
+
       yield: values.portions,
       mealType: values.mealType,
-      mealId: Math.random().toString(36).slice(2),
     };
 
     db.collection("meals")
       .doc(uid)
       .collection("userMeals")
-      .doc(meal.mealId)
+      .doc(Math.random().toString(36).slice(2))
       .set(meal)
       .then(() => {
         setIsLoading(false);
