@@ -18,6 +18,8 @@ export function RoutesRedirect({
   measurementsData,
   savedRecipes,
   savedRecipesIds,
+  savedMeals,
+  savedMealsIds,
 }) {
   return (
     <>
@@ -44,6 +46,7 @@ export function RoutesRedirect({
         component={Meals}
         user={user}
         savedRecipes={savedRecipes}
+        savedMeals={savedMeals}
       />
       <PrivateRoute
         exact
@@ -69,6 +72,7 @@ function PrivateRoute({
   measurementsData,
   savedRecipes,
   savedRecipesIds,
+  savedMeals,
   component: Component,
   ...rest
 }) {
@@ -84,6 +88,7 @@ function PrivateRoute({
               measurementsData={measurementsData}
               savedRecipes={savedRecipes}
               savedRecipesIds={savedRecipesIds}
+              savedMeals={savedMeals}
             />
           </LayoutContainer>
         ) : (

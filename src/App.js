@@ -7,6 +7,7 @@ import { GlobalStyle } from "./theme/globalStyle";
 
 import {
   useAuthListener,
+  useMealsListener,
   useMeasurementsListener,
   useRecipesListener,
 } from "./hooks";
@@ -28,6 +29,7 @@ function App() {
   const { user } = useAuthListener();
   const { measurementsData } = useMeasurementsListener(user);
   const { savedRecipes, savedRecipesIds } = useRecipesListener(user);
+  const { savedMeals, savedMealsIds } = useMealsListener(user);
 
   return (
     <Router>
@@ -39,6 +41,8 @@ function App() {
             measurementsData={measurementsData}
             savedRecipes={savedRecipes}
             savedRecipesIds={savedRecipesIds}
+            savedMeals={savedMeals}
+            savedMealsIds={savedMealsIds}
           />
         </Switch>
       </ThemeProvider>
