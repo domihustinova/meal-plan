@@ -26,7 +26,7 @@ export function RecipeCardContainer({
   const [openEditMealModal, setOpenEditMealModal] = useState(false);
   const [openRemoveDialog, setOpenRemoveDialog] = useState(false);
 
-  const setIsSaved = (recipeId) => savedRecipesIds.indexOf(recipeId) !== -1;
+  const setIsSaved = (recipeId) => savedRecipesIds.includes(recipeId);
 
   const saveRecipe = (recipeId, recipe) => {
     db.collection("recipes")
@@ -67,13 +67,13 @@ export function RecipeCardContainer({
 
   return (
     <>
-      {view === VIEW.GRID && subPage === SUB_PAGES.SAVED_RECIPES && (
+      {view === VIEW.GRID && (
         <Grid
           recipe={recipe}
           recipeId={getRecipeId(recipe.uri)}
           page={page}
           setOpenModal={setOpenRecipeModal}
-          isSaved={setIsSaved(recipe.uri)}
+          isSaved={setIsSaved(getRecipeId(recipe.uri))}
           saveRecipe={saveRecipe}
           removeRecipe={removeRecipe}
           setOpenRemoveDialog={setOpenRemoveDialog}
