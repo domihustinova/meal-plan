@@ -11,7 +11,7 @@ export default function Meals({ user, savedRecipes, savedMeals }) {
   const [view, setView] = useState(
     JSON.parse(localStorage.getItem("savedRecipesView")) || VIEW.LIST
   );
-  const [openAddMeal, setOpenAddMeal] = useState(false);
+  const [openAddMealForm, setOpenAddMealForm] = useState(false);
 
   const handleViewSetting = (value) => {
     localStorage.setItem("savedRecipesView", JSON.stringify(value));
@@ -24,7 +24,7 @@ export default function Meals({ user, savedRecipes, savedMeals }) {
         Saved Recipes
       </button>
       <button onClick={() => setSubPage(SUB_PAGES.MY_MEALS)}>My Meals</button>
-      <button title="Add Meal" onClick={() => setOpenAddMeal(true)}>
+      <button title="Add Meal" onClick={() => setOpenAddMealForm(true)}>
         Add Meal
       </button>
 
@@ -48,8 +48,9 @@ export default function Meals({ user, savedRecipes, savedMeals }) {
 
       <MealFormContainer
         uid={user.uid}
-        open={openAddMeal}
-        setOpen={setOpenAddMeal}
+        open={openAddMealForm}
+        setOpen={setOpenAddMealForm}
+        formType="add"
       />
     </div>
   );

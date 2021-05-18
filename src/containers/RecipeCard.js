@@ -4,7 +4,7 @@ import { FirestoreContext } from "../context/firestore";
 
 import { RecipeCardGridContainer as Grid } from "../containers/RecipeCardGrid";
 import { RecipeCardListContainer as List } from "../containers/RecipeCardList";
-import { EditMealModalContainer } from "../containers/EditMealModal";
+import { MealFormContainer } from "../containers/MealForm";
 import { RecipeModalContainer } from "../containers/RecipeModal";
 import { RemoveRecipeDialogContainer } from "../containers/RemoveRecipeDialog";
 import { RemoveMealDialogContainer } from "../containers/RemoveMealDialog";
@@ -23,7 +23,7 @@ export function RecipeCardContainer({
   const { db } = useContext(FirestoreContext);
 
   const [openRecipeModal, setOpenRecipeModal] = useState(false);
-  const [openEditMealModal, setOpenEditMealModal] = useState(false);
+  const [openEditMealForm, setOpenEditMealForm] = useState(false);
   const [openRemoveDialog, setOpenRemoveDialog] = useState(false);
 
   const setIsSaved = (recipeId) => savedRecipesIds.includes(recipeId);
@@ -92,18 +92,19 @@ export function RecipeCardContainer({
       {view === VIEW.LIST && subPage === SUB_PAGES.MY_MEALS && (
         <List
           recipe={recipe}
-          setOpenModal={setOpenEditMealModal}
+          setOpenModal={setOpenEditMealForm}
           removeRecipe={removeMeal}
           setOpenRemoveDialog={setOpenRemoveDialog}
           subPage={subPage}
         />
       )}
 
-      <EditMealModalContainer
-        open={openEditMealModal}
-        setOpen={setOpenEditMealModal}
+      <MealFormContainer
+        open={openEditMealForm}
+        setOpen={setOpenEditMealForm}
         uid={uid}
         meal={recipe}
+        formType="edit"
       />
 
       <RecipeModalContainer
