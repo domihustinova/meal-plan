@@ -11,12 +11,14 @@ export function RecipeCardGridContainer({ recipe, children }) {
 
   const { PROCNT: protein, CHOCDF: carbs, FAT: fat } = totalNutrients;
 
+  const isImageMissing = (image) => (image ? image.includes("svg") : true);
+
   return (
     <RecipeCardGrid>
       {totalTime !== 0 && totalTime && (
         <RecipeCardGrid.Time>{totalTime} mins</RecipeCardGrid.Time>
       )}
-      <RecipeCardGrid.Image src={image || food} />
+      <RecipeCardGrid.Image src={isImageMissing(image) ? food : image} />
       <RecipeCardGrid.TextContainer>
         <RecipeCardGrid.Title>{getLabel(label)}</RecipeCardGrid.Title>
         <RecipeCardGrid.EnergyContainer>
