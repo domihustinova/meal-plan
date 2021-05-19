@@ -20,10 +20,11 @@ import {
   faPencilAlt,
   faTh,
   faThList,
+  faTrashAlt,
   faSearch,
 } from "@fortawesome/free-solid-svg-icons";
 
-library.add(fab, faCheck, faPencilAlt, faSearch, faTh, faThList);
+library.add(fab, faCheck, faPencilAlt, faSearch, faTh, faTrashAlt, faThList);
 
 function App() {
   const { user } = useAuthListener();

@@ -1,5 +1,6 @@
 import React from "react";
 import WhatshotIcon from "@material-ui/icons/Whatshot";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { RecipeCardList } from "../components";
 
@@ -23,10 +24,10 @@ export function RecipeCardListContainer({
   ];
 
   return (
-    <RecipeCardList.Frame>
-      <RecipeCardList>
-        <RecipeCardList.Image src={image || food} />
+    <RecipeCardList>
+      <RecipeCardList.Image src={image || food} />
 
+      <RecipeCardList.Frame>
         <RecipeCardList.InfoContainer>
           <RecipeCardList.Title>
             {getLabel(label, PAGES.SAVED)}
@@ -51,32 +52,34 @@ export function RecipeCardListContainer({
             )}
           </RecipeCardList.BadgesGroup>
         </RecipeCardList.InfoContainer>
-      </RecipeCardList>
-      <RecipeCardList.ButtonGroup>
-        {subPage === SUB_PAGES.SAVED_RECIPES && (
-          <RecipeCardList.Button
-            title="View full recipe"
-            onClick={() => setOpenModal(true)}
-          >
-            View Recipe
-          </RecipeCardList.Button>
-        )}
-        {subPage === SUB_PAGES.MY_MEALS && (
-          <RecipeCardList.Button
-            title="Edit meal"
-            onClick={() => setOpenModal(true)}
-          >
-            Edit Meal
-          </RecipeCardList.Button>
-        )}
+        <RecipeCardList.ButtonGroup>
+          {subPage === SUB_PAGES.SAVED_RECIPES && (
+            <RecipeCardList.Button
+              title="View full recipe"
+              onClick={() => setOpenModal(true)}
+            >
+              <FontAwesomeIcon icon="search" size="lg" />
+            </RecipeCardList.Button>
+          )}
+          {subPage === SUB_PAGES.MY_MEALS && (
+            <RecipeCardList.Button
+              title="Edit meal"
+              onClick={() => setOpenModal(true)}
+            >
+              <FontAwesomeIcon icon="pencil-alt" size="lg" />
+            </RecipeCardList.Button>
+          )}
 
-        <RecipeCardList.Button
-          title="Remove recipe"
-          onClick={() => setOpenRemoveDialog(true)}
-        >
-          Delete
-        </RecipeCardList.Button>
-      </RecipeCardList.ButtonGroup>
-    </RecipeCardList.Frame>
+          <RecipeCardList.Button
+            title={`Remove ${
+              subPage === SUB_PAGES.SAVED_RECIPES ? "recipe" : "meal"
+            }`}
+            onClick={() => setOpenRemoveDialog(true)}
+          >
+            <FontAwesomeIcon icon="trash-alt" size="lg" />
+          </RecipeCardList.Button>
+        </RecipeCardList.ButtonGroup>
+      </RecipeCardList.Frame>
+    </RecipeCardList>
   );
 }
