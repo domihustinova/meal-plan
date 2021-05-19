@@ -3,28 +3,20 @@ import React from "react";
 import { RecipeCardGrid } from "../components";
 
 import { getLabel } from "../helpers/recipes";
-import { PAGES } from "../constants/recipes";
 
-export function RecipeCardGridContainer({
-  recipe,
-  recipeId,
-  page,
-  setOpenModal,
-  isSaved,
-  saveRecipe,
-  removeRecipe,
-  setOpenRemoveDialog,
-}) {
+import food from "../images/food.png";
+
+export function RecipeCardGridContainer({ recipe, children }) {
   const { label, calories, image, totalNutrients, totalTime } = recipe;
 
   const { PROCNT: protein, CHOCDF: carbs, FAT: fat } = totalNutrients;
 
   return (
     <RecipeCardGrid>
-      {totalTime !== 0 && (
+      {totalTime !== 0 && totalTime && (
         <RecipeCardGrid.Time>{totalTime} mins</RecipeCardGrid.Time>
       )}
-      <RecipeCardGrid.Image src={image} />
+      <RecipeCardGrid.Image src={image || food} />
       <RecipeCardGrid.TextContainer>
         <RecipeCardGrid.Title>{getLabel(label)}</RecipeCardGrid.Title>
         <RecipeCardGrid.EnergyContainer>
@@ -64,33 +56,7 @@ export function RecipeCardGridContainer({
           </RecipeCardGrid.Energy>
         </RecipeCardGrid.EnergyContainer>
       </RecipeCardGrid.TextContainer>
-      <RecipeCardGrid.Footer>
-        <RecipeCardGrid.FooterView
-          title="View full recipe"
-          onClick={() => setOpenModal(true)}
-        >
-          View Recipe
-        </RecipeCardGrid.FooterView>
-        {page === PAGES.SEARCH && (
-          <RecipeCardGrid.FooterAdd
-            title="Save recipe"
-            saved={isSaved}
-            onClick={() =>
-              isSaved ? removeRecipe(recipeId) : saveRecipe(recipeId, recipe)
-            }
-          >
-            {isSaved ? "Saved" : "Save"}
-          </RecipeCardGrid.FooterAdd>
-        )}
-        {page === PAGES.SAVED && (
-          <RecipeCardGrid.FooterRemove
-            title="Remove recipe"
-            onClick={() => setOpenRemoveDialog(true)}
-          >
-            Delete
-          </RecipeCardGrid.FooterRemove>
-        )}
-      </RecipeCardGrid.Footer>
+      <RecipeCardGrid.Footer>{children}</RecipeCardGrid.Footer>
     </RecipeCardGrid>
   );
 }

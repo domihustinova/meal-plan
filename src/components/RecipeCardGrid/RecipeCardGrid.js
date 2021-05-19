@@ -108,6 +108,13 @@ RecipeCardGrid.FooterAdd = function RecipeCardGridFooterAdd({
   );
 };
 
+RecipeCardGrid.FooterEdit = function RecipeCardGridFooterEdit({
+  children,
+  ...restProps
+}) {
+  return <FooterView {...restProps}>{children}</FooterView>;
+};
+
 RecipeCardGrid.FooterRemove = function RecipeCardGridFooterRemove({
   children,
   ...restProps

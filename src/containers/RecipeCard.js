@@ -2,6 +2,8 @@ import React, { useState, useContext } from "react";
 
 import { FirestoreContext } from "../context/firestore";
 
+import { RecipeCardGrid } from "../components";
+
 import { RecipeCardGridContainer as Grid } from "../containers/RecipeCardGrid";
 import { RecipeCardListContainer as List } from "../containers/RecipeCardList";
 import { MealFormContainer } from "../containers/MealForm";
@@ -26,7 +28,10 @@ export function RecipeCardContainer({
   const [openEditMealForm, setOpenEditMealForm] = useState(false);
   const [openRemoveDialog, setOpenRemoveDialog] = useState(false);
 
+  const recipeId =
+    subPage !== SUB_PAGES.MY_MEALS ? getRecipeId(recipe?.uri) : null;
   const setIsSaved = (recipeId) => savedRecipesIds.includes(recipeId);
+  const isSaved = setIsSaved(recipeId);
 
   const saveRecipe = (recipeId, recipe) => {
     db.collection("recipes")
@@ -67,33 +72,74 @@ export function RecipeCardContainer({
 
   return (
     <>
-      {view === VIEW.GRID && (
-        <Grid
-          recipe={recipe}
-          recipeId={getRecipeId(recipe.uri)}
-          page={page}
-          setOpenModal={setOpenRecipeModal}
-          isSaved={setIsSaved(getRecipeId(recipe.uri))}
-          saveRecipe={saveRecipe}
-          removeRecipe={removeRecipe}
-          setOpenRemoveDialog={setOpenRemoveDialog}
-        />
-      )}
-      {view === VIEW.LIST && subPage === SUB_PAGES.SAVED_RECIPES && (
-        <List
-          recipe={recipe}
-          setOpenModal={setOpenRecipeModal}
-          removeRecipe={removeRecipe}
-          setOpenRemoveDialog={setOpenRemoveDialog}
-          subPage={subPage}
-        />
+      {page === PAGES.SEARCH && (
+        <Grid recipe={recipe}>
+          <RecipeCardGrid.FooterView
+            title="View full recipe"
+            onClick={() => setOpenRecipeModal(true)}
+          >
+            View Recipe
+          </RecipeCardGrid.FooterView>
+
+          <RecipeCardGrid.FooterAdd
+            title="Save recipe"
+            saved={isSaved}
+            onClick={() =>
+              isSaved ? removeRecipe(recipeId) : saveRecipe(recipeId, recipe)
+            }
+          >
+            {isSaved ? "Saved" : "Save"}
+          </RecipeCardGrid.FooterAdd>
+        </Grid>
       )}
 
-      {view === VIEW.LIST && subPage === SUB_PAGES.MY_MEALS && (
+      {view === VIEW.GRID && subPage === SUB_PAGES.SAVED_RECIPES && (
+        <Grid recipe={recipe}>
+          <RecipeCardGrid.FooterView
+            title="View full recipe"
+            onClick={() => setOpenRecipeModal(true)}
+          >
+            View Recipe
+          </RecipeCardGrid.FooterView>
+
+          <RecipeCardGrid.FooterRemove
+            title="Remove recipe"
+            onClick={() => setOpenRemoveDialog(true)}
+          >
+            Delete
+          </RecipeCardGrid.FooterRemove>
+        </Grid>
+      )}
+
+      {view === VIEW.GRID && subPage === SUB_PAGES.MY_MEALS && (
+        <Grid recipe={recipe}>
+          <RecipeCardGrid.FooterEdit
+            title="Edit meal"
+            onClick={() => setOpenEditMealForm(true)}
+          >
+            Edit Meal
+          </RecipeCardGrid.FooterEdit>
+
+          <RecipeCardGrid.FooterRemove
+            title="Remove meal"
+            onClick={() => setOpenRemoveDialog(true)}
+          >
+            Delete
+          </RecipeCardGrid.FooterRemove>
+        </Grid>
+      )}
+
+      {view === VIEW.LIST && (
         <List
           recipe={recipe}
-          setOpenModal={setOpenEditMealForm}
-          removeRecipe={removeMeal}
+          setOpenModal={
+            subPage === SUB_PAGES.SAVED_RECIPES
+              ? setOpenRecipeModal
+              : setOpenEditMealForm
+          }
+          removeRecipe={
+            subPage === SUB_PAGES.SAVED_RECIPES ? removeRecipe : removeMeal
+          }
           setOpenRemoveDialog={setOpenRemoveDialog}
           subPage={subPage}
         />

@@ -7,7 +7,9 @@ import { MealFormContainer } from "../containers/MealForm";
 import { VIEW, SUB_PAGES } from "../constants/recipes";
 
 export default function Meals({ user, savedRecipes, savedMeals }) {
-  const [subPage, setSubPage] = useState(SUB_PAGES.SAVED_RECIPES);
+  const [subPage, setSubPage] = useState(
+    JSON.parse(localStorage.getItem("mealsSubPage")) || SUB_PAGES.SAVED_RECIPES
+  );
   const [view, setView] = useState(
     JSON.parse(localStorage.getItem("savedRecipesView")) || VIEW.LIST
   );
@@ -18,12 +20,19 @@ export default function Meals({ user, savedRecipes, savedMeals }) {
     setView(value);
   };
 
+  const handleSubPageSetting = (value) => {
+    localStorage.setItem("mealsSubPage", JSON.stringify(value));
+    setSubPage(value);
+  };
+
   return (
     <div>
-      <button onClick={() => setSubPage(SUB_PAGES.SAVED_RECIPES)}>
+      <button onClick={() => handleSubPageSetting(SUB_PAGES.SAVED_RECIPES)}>
         Saved Recipes
       </button>
-      <button onClick={() => setSubPage(SUB_PAGES.MY_MEALS)}>My Meals</button>
+      <button onClick={() => handleSubPageSetting(SUB_PAGES.MY_MEALS)}>
+        My Meals
+      </button>
       <button title="Add Meal" onClick={() => setOpenAddMealForm(true)}>
         Add Meal
       </button>
@@ -43,6 +52,7 @@ export default function Meals({ user, savedRecipes, savedMeals }) {
           savedMeals={savedMeals}
           view={view}
           subPage={SUB_PAGES.MY_MEALS}
+          handleViewSetting={handleViewSetting}
         />
       )}
 

@@ -127,5 +127,4 @@ export const FooterView = styled(FooterButton)`
 export const FooterAdd = styled(FooterButton)`
   background-color: ${({ saved }) => (saved ? "#46b04a" : "#fff")};
   color: ${({ saved }) => (saved ? "#fff" : "#46b04a")};
-  border-right: 1px solid #f4f6f3;
 `;
