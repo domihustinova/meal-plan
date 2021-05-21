@@ -23,12 +23,10 @@ export function RecipesContainer({ user, savedRecipesIds }) {
     };
 
     const queryUrl = buildUrl(API.URL, {
-      path: "search",
+      path: "recipes",
       disableCSV: true,
       queryParams: {
         q: query,
-        app_id: API.APP_ID,
-        app_key: API.APP_KEY,
         from: 0,
         to: 100,
         health: "alcohol-free",
