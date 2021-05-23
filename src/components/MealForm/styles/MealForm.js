@@ -90,7 +90,8 @@ export const RowText = styled.p`
 
 export const Button = styled(CommonButton)`
   border-radius: 10px;
-  width: 105px;
+  width: 100%;
+  max-width: 175px;
   height: 40px;
   padding: 0;
   margin-left: 12px;

@@ -11,7 +11,8 @@ import food from "../images/food.png";
 
 export function RecipeCardListContainer({
   recipe,
-  setOpenModal,
+  setOpenRecipeModal,
+  setOpenEditMealForm,
   setOpenRemoveDialog,
   subPage,
 }) {
@@ -54,17 +55,25 @@ export function RecipeCardListContainer({
         </RecipeCardList.InfoContainer>
         <RecipeCardList.ButtonGroup>
           {subPage === SUB_PAGES.SAVED_RECIPES && (
-            <RecipeCardList.Button
-              title="View full recipe"
-              onClick={() => setOpenModal(true)}
-            >
-              <FontAwesomeIcon icon="search" size="lg" />
-            </RecipeCardList.Button>
+            <>
+              <RecipeCardList.Button
+                title="View full recipe"
+                onClick={() => setOpenRecipeModal(true)}
+              >
+                <FontAwesomeIcon icon="search" size="lg" />
+              </RecipeCardList.Button>
+              <RecipeCardList.Button
+                title="Edit meal"
+                onClick={() => setOpenEditMealForm(true)}
+              >
+                <FontAwesomeIcon icon="pencil-alt" size="lg" />
+              </RecipeCardList.Button>
+            </>
           )}
           {subPage === SUB_PAGES.MY_MEALS && (
             <RecipeCardList.Button
               title="Edit meal"
-              onClick={() => setOpenModal(true)}
+              onClick={() => setOpenEditMealForm(true)}
             >
               <FontAwesomeIcon icon="pencil-alt" size="lg" />
             </RecipeCardList.Button>

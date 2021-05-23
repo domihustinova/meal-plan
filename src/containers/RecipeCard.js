@@ -99,8 +99,15 @@ export function RecipeCardContainer({
             title="View full recipe"
             onClick={() => setOpenRecipeModal(true)}
           >
-            View Recipe
+            View
           </RecipeCardGrid.FooterView>
+
+          <RecipeCardGrid.FooterEdit
+            title="Edit recipe"
+            onClick={() => setOpenEditMealForm(true)}
+          >
+            Edit
+          </RecipeCardGrid.FooterEdit>
 
           <RecipeCardGrid.FooterRemove
             title="Remove recipe"
@@ -117,7 +124,7 @@ export function RecipeCardContainer({
             title="Edit meal"
             onClick={() => setOpenEditMealForm(true)}
           >
-            Edit Meal
+            Edit
           </RecipeCardGrid.FooterEdit>
 
           <RecipeCardGrid.FooterRemove
@@ -132,15 +139,12 @@ export function RecipeCardContainer({
       {view === VIEW.LIST && (
         <List
           recipe={recipe}
-          setOpenModal={
-            subPage === SUB_PAGES.SAVED_RECIPES
-              ? setOpenRecipeModal
-              : setOpenEditMealForm
-          }
+          setOpenRecipeModal={setOpenRecipeModal}
+          setOpenEditMealForm={setOpenEditMealForm}
+          setOpenRemoveDialog={setOpenRemoveDialog}
           removeRecipe={
             subPage === SUB_PAGES.SAVED_RECIPES ? removeRecipe : removeMeal
           }
-          setOpenRemoveDialog={setOpenRemoveDialog}
           subPage={subPage}
         />
       )}
@@ -149,8 +153,9 @@ export function RecipeCardContainer({
         open={openEditMealForm}
         setOpen={setOpenEditMealForm}
         uid={uid}
-        meal={recipe}
+        mealData={recipe}
         formType="edit"
+        subPage={subPage}
       />
 
       <RecipeModalContainer

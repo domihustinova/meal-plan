@@ -16,8 +16,7 @@ export const Card = styled.div`
   min-height: 350px;
   max-height: 350px;
   margin-bottom: 30px;
-  margin-right: 30px;
-
+  margin-right: 40px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -49,7 +48,7 @@ export const TextContainer = styled.div`
   color: #00334e;
 `;
 
-export const Time = styled.span`
+export const Badge = styled.span`
   font-size: 0.75rem;
   padding: 4px 6px;
   border-radius: 20px;
@@ -57,6 +56,14 @@ export const Time = styled.span`
   width: fit-content;
   color: #fff;
   position: absolute;
+`;
+
+export const Time = styled(Badge)`
+  right: -16px;
+  top: ${({ hasMealType }) => (hasMealType ? "36px" : "8px")}; ;
+`;
+
+export const MealType = styled(Badge)`
   right: -16px;
   top: 8px;
 `;
@@ -121,7 +128,7 @@ export const FooterButton = styled.button`
 
 export const FooterView = styled(FooterButton)`
   border-right: 1px solid #f4f6f3;
-  flex: 2;
+  flex: 1;
 `;
 
 export const FooterAdd = styled(FooterButton)`

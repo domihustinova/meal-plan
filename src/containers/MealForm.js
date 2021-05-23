@@ -10,45 +10,53 @@ import { MealForm } from "../components/";
 import { mealTypeOtions } from "../constants/mealForm";
 import { validationSchemaMealForm } from "../helpers/validations";
 
-export function MealFormContainer({ uid, open, setOpen, meal, formType }) {
+import { SUB_PAGES } from "../constants/recipes";
+
+export function MealFormContainer({
+  uid,
+  open,
+  setOpen,
+  mealData,
+  formType,
+  subPage,
+}) {
   const { db } = useContext(FirestoreContext);
 
   const [showSuccessCard, setShowSuccessCard] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
-  const mealId = meal?.id;
-
   const saveMeal = (values) => {
     setIsLoading(true);
     const meal = {
+      ...mealData,
       label: values.label,
-      calories: values.calories,
+      calories: Math.floor(values.calories),
       totalNutrients: {
         PROCNT: {
           label: "Protein",
-          quantity: values.protein,
+          quantity: Math.floor(values.protein),
           unit: "g",
         },
         CHOCDF: {
           label: "Carbs",
-          quantity: values.carbs,
+          quantity: Math.floor(values.carbs),
           unit: "g",
         },
         FAT: {
           label: "Fat",
-          quantity: values.fat,
+          quantity: Math.floor(values.fat),
           unit: "g",
         },
       },
 
       yield: values.portions,
-      mealType: values.mealType,
+      mealType: [values.mealType],
     };
 
     db.collection("meals")
       .doc(uid)
       .collection("userMeals")
-      .doc(mealId || Math.random().toString(36).slice(2))
+      .doc(meal.id || Math.random().toString(36).slice(2))
       .set(meal)
       .then(() => {
         setIsLoading(false);
@@ -79,14 +87,15 @@ export function MealFormContainer({ uid, open, setOpen, meal, formType }) {
   };
 
   const editMealFormInitialValues = {
-    label: meal?.label,
-    calories: meal?.calories,
-    protein: meal?.totalNutrients?.PROCNT.quantity,
-    carbs: meal?.totalNutrients?.CHOCDF.quantity,
-    fat: meal?.totalNutrients?.FAT.quantity,
-    portions: meal?.yield,
-    mealType: meal?.mealType,
+    label: mealData?.label,
+    calories: mealData?.calories,
+    protein: mealData?.totalNutrients?.PROCNT.quantity,
+    carbs: mealData?.totalNutrients?.CHOCDF.quantity,
+    fat: mealData?.totalNutrients?.FAT.quantity,
+    portions: mealData?.yield,
+    mealType: mealData?.mealType?.[0] || [],
   };
+
   return (
     <>
       {open && (
@@ -99,9 +108,11 @@ export function MealFormContainer({ uid, open, setOpen, meal, formType }) {
             <MealForm.SuccessCard>
               <MealForm.SuccessCardTitle>Success!</MealForm.SuccessCardTitle>
               <MealForm.SuccessCardText>
-                {`Meal was successfully ${
-                  formType === "add" ? "added" : "changed"
-                }.`}
+                {subPage === SUB_PAGES.SAVED_RECIPES
+                  ? "Recipe was successfully changed and added to My Meals."
+                  : `Meal was successfully ${
+                      formType === "add" ? "added" : "changed"
+                    }.`}
               </MealForm.SuccessCardText>
               <MealForm.ButtonGroup>
                 <MealForm.Button
@@ -128,9 +139,9 @@ export function MealFormContainer({ uid, open, setOpen, meal, formType }) {
             >
               <Form>
                 <MealForm>
-                  <MealForm.Title>{`${
-                    formType === "add" ? "Add" : "Edit"
-                  } meal`}</MealForm.Title>
+                  <MealForm.Title>{`${formType === "add" ? "Add" : "Edit"} ${
+                    subPage === SUB_PAGES.SAVED_RECIPES ? "recipe" : "meal"
+                  }`}</MealForm.Title>
 
                   <MealForm.Row>
                     <MealForm.RowTitle>Name</MealForm.RowTitle>
@@ -235,7 +246,11 @@ export function MealFormContainer({ uid, open, setOpen, meal, formType }) {
                         {isLoading ? (
                           <CircularProgress color="inherit" />
                         ) : (
-                          "Save"
+                          `${
+                            subPage === SUB_PAGES.SAVED_RECIPES
+                              ? "Save to My Meals"
+                              : "Save"
+                          }`
                         )}
                       </MealForm.Button>
                     )}

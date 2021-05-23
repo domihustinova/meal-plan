@@ -7,7 +7,8 @@ import { getLabel } from "../helpers/recipes";
 import food from "../images/food.png";
 
 export function RecipeCardGridContainer({ recipe, children }) {
-  const { label, calories, image, totalNutrients, totalTime } = recipe;
+  const { label, calories, image, totalNutrients, totalTime, mealType } =
+    recipe;
 
   const { PROCNT: protein, CHOCDF: carbs, FAT: fat } = totalNutrients;
 
@@ -15,8 +16,13 @@ export function RecipeCardGridContainer({ recipe, children }) {
 
   return (
     <RecipeCardGrid>
+      {mealType && (
+        <RecipeCardGrid.MealType>{mealType}</RecipeCardGrid.MealType>
+      )}
       {totalTime !== 0 && totalTime && (
-        <RecipeCardGrid.Time>{totalTime} mins</RecipeCardGrid.Time>
+        <RecipeCardGrid.Time hasMealType={mealType}>
+          {totalTime} mins
+        </RecipeCardGrid.Time>
       )}
       <RecipeCardGrid.Image src={isImageMissing(image) ? food : image} />
       <RecipeCardGrid.TextContainer>
