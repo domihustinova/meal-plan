@@ -1,3 +1,3 @@
 export const API = {
-  URL: "http://meal-pal-backend.herokuapp.com/",
+  URL: "https://meal-pal-backend.herokuapp.com/",
 };
