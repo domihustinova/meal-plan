@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
 import { Formik, Form } from "formik";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Dialog from "@material-ui/core/Dialog";
 import { makeStyles } from "@material-ui/core/styles";
 import CircularProgress from "@material-ui/core/CircularProgress";
@@ -25,32 +26,47 @@ export function MealFormContainer({
   const [showSuccessCard, setShowSuccessCard] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
+  const [ingredients, setIngredients] = useState(
+    mealData?.ingredients || [{ weight: "", text: "" }]
+  );
+
+  const getIngredients = (ingredients) => {
+    return ingredients
+      .filter(
+        (ingredient) => ingredient.weight !== "" && ingredient.text !== ""
+      )
+      .map((ingredient) => ({
+        ...ingredient,
+        weight: parseInt(ingredient.weight),
+      }));
+  };
+
   const saveMeal = (values) => {
     setIsLoading(true);
     const meal = {
       ...mealData,
       label: values.label,
-      calories: Math.floor(values.calories),
+      calories: Math.round(values.calories),
       totalNutrients: {
         PROCNT: {
           label: "Protein",
-          quantity: Math.floor(values.protein),
+          quantity: Math.round(values.protein),
           unit: "g",
         },
         CHOCDF: {
           label: "Carbs",
-          quantity: Math.floor(values.carbs),
+          quantity: Math.round(values.carbs),
           unit: "g",
         },
         FAT: {
           label: "Fat",
-          quantity: Math.floor(values.fat),
+          quantity: Math.round(values.fat),
           unit: "g",
         },
       },
-
       yield: values.portions,
       mealType: [values.mealType],
+      ingredients: getIngredients(ingredients),
     };
 
     db.collection("meals")
@@ -70,6 +86,7 @@ export function MealFormContainer({
   const handleClose = () => {
     setOpen(false);
     setShowSuccessCard(false);
+    setIngredients(mealData?.ingredients || [{ weight: "", text: "" }]);
   };
 
   const classes = makeStyles(() => ({
@@ -88,12 +105,29 @@ export function MealFormContainer({
 
   const editMealFormInitialValues = {
     label: mealData?.label,
-    calories: mealData?.calories,
-    protein: mealData?.totalNutrients?.PROCNT.quantity,
-    carbs: mealData?.totalNutrients?.CHOCDF.quantity,
-    fat: mealData?.totalNutrients?.FAT.quantity,
+    calories: Math.round(mealData?.calories),
+    protein: Math.round(mealData?.totalNutrients?.PROCNT.quantity),
+    carbs: Math.round(mealData?.totalNutrients?.CHOCDF.quantity),
+    fat: Math.round(mealData?.totalNutrients?.FAT.quantity),
     portions: mealData?.yield,
     mealType: mealData?.mealType?.[0] || [],
+  };
+
+  const handleIngredientInputChange = (e, index) => {
+    const { name, value } = e.target;
+    const list = [...ingredients];
+    list[index][name] = value;
+    setIngredients(list);
+  };
+
+  const handleIngredientRemoveClick = (index) => {
+    const list = [...ingredients];
+    list.splice(index, 1);
+    setIngredients(list);
+  };
+
+  const handleIngredientAddClick = () => {
+    setIngredients([...ingredients, { weight: "", text: "" }]);
   };
 
   return (
@@ -212,6 +246,61 @@ export function MealFormContainer({
                       name="mealType"
                       options={mealTypeOtions}
                     />
+                  </MealForm.Row>
+
+                  <MealForm.Row>
+                    <MealForm.RowTitle>Ingredients</MealForm.RowTitle>
+                    <MealForm.IngredientInputGroup>
+                      {ingredients.map((ingredient, index) => (
+                        <MealForm.IngredientInputRow>
+                          <MealForm.IngredientInput
+                            name="weight"
+                            type="number"
+                            placeholder="g"
+                            value={
+                              ingredient.weight
+                                ? Math.round(ingredient.weight)
+                                : ingredient.weight
+                            }
+                            onChange={(e) =>
+                              handleIngredientInputChange(e, index)
+                            }
+                          />
+                          g
+                          <MealForm.IngredientInput
+                            name="text"
+                            type="text"
+                            placeholder=" "
+                            value={ingredient.text}
+                            onChange={(e) =>
+                              handleIngredientInputChange(e, index)
+                            }
+                          />
+                          <MealForm.IngredientInputButtonGroup>
+                            {ingredients.length !== 1 && (
+                              <MealForm.IngredientInputButton
+                                type="button"
+                                onClick={() =>
+                                  handleIngredientRemoveClick(index)
+                                }
+                              >
+                                <FontAwesomeIcon icon="minus" size="lg" />
+                              </MealForm.IngredientInputButton>
+                            )}
+                            {ingredients[index].weight &&
+                            ingredients[index].text &&
+                            ingredients.length - 1 === index ? (
+                              <MealForm.IngredientInputButton
+                                type="button"
+                                onClick={handleIngredientAddClick}
+                              >
+                                <FontAwesomeIcon icon="plus" size="lg" />
+                              </MealForm.IngredientInputButton>
+                            ) : null}
+                          </MealForm.IngredientInputButtonGroup>
+                        </MealForm.IngredientInputRow>
+                      ))}
+                    </MealForm.IngredientInputGroup>
                   </MealForm.Row>
 
                   <MealForm.ButtonGroup>
