@@ -1,24 +1,13 @@
 import React from "react";
 import Dialog from "@material-ui/core/Dialog";
 import CloseIcon from "@material-ui/icons/Close";
-import AccessTimeIcon from "@material-ui/icons/AccessTime";
 import PersonIcon from "@material-ui/icons/Person";
 import WhatshotIcon from "@material-ui/icons/Whatshot";
 
 import { RecipeCardGrid, RecipeModal } from "../components";
-import { getLabel, getRecipeId } from "../helpers/recipes";
 
 export function RecipeModalContainer({ open, setOpen, recipe }) {
-  const {
-    label,
-    calories,
-    image,
-    totalTime,
-    dietLabels,
-    healthLabels,
-    ingredients,
-    url,
-  } = recipe;
+  const { label, calories, image, url } = recipe;
 
   const handleClose = () => {
     setOpen(false);
@@ -34,7 +23,7 @@ export function RecipeModalContainer({ open, setOpen, recipe }) {
         <WhatshotIcon />
         {Math.round(calories)} Cal
         <br />
-        <a href={url} target="_blank">
+        <a href={url} target="_blank" rel="noreferrer">
           See Complete Recipe here
         </a>
       </RecipeModal>

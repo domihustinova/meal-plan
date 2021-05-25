@@ -6,7 +6,6 @@ import { RecipeCardGrid } from "../components/";
 import { RecipeCardList } from "../components/";
 import { RecipeCardContainer } from "../containers/RecipeCard";
 
-import { getRecipeId } from "../helpers/recipes";
 import { PAGES, SUB_PAGES, VIEW } from "../constants/recipes";
 
 const Wrapper = styled.div`
@@ -28,12 +27,7 @@ const ViewIcon = styled.span`
   }
 `;
 
-export function SavedRecipesContainer({
-  uid,
-  savedRecipes,
-  view,
-  handleViewSetting,
-}) {
+export function MyMealsContainer({ uid, savedMeals, view, handleViewSetting }) {
   return (
     <Wrapper>
       <ViewIconGroup>
@@ -52,16 +46,17 @@ export function SavedRecipesContainer({
           />
         </ViewIcon>
       </ViewIconGroup>
+
       {view === VIEW.GRID && (
         <RecipeCardGrid.Container>
-          {savedRecipes.map((recipe) => {
+          {savedMeals.map((meal) => {
             return (
               <RecipeCardContainer
-                key={getRecipeId(recipe.uri)}
-                recipe={recipe}
+                key={meal.id}
+                recipe={meal}
                 uid={uid}
                 page={PAGES.SAVED}
-                subPage={SUB_PAGES.SAVED_RECIPES}
+                subPage={SUB_PAGES.MY_MEALS}
                 view={view}
               />
             );
@@ -70,14 +65,14 @@ export function SavedRecipesContainer({
       )}
       {view === VIEW.LIST && (
         <RecipeCardList.Container>
-          {savedRecipes.map((recipe) => {
+          {savedMeals.map((meal) => {
             return (
               <RecipeCardContainer
-                key={getRecipeId(recipe.uri)}
-                recipe={recipe}
+                key={meal.id}
+                recipe={meal}
                 uid={uid}
                 page={PAGES.SAVED}
-                subPage={SUB_PAGES.SAVED_RECIPES}
+                subPage={SUB_PAGES.MY_MEALS}
                 view={view}
               />
             );

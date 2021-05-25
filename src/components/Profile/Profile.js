@@ -6,7 +6,6 @@ import {
   ButtonGroup,
   Container,
   Card,
-  CardContent,
   Header,
   Input,
   ItemIcon,
@@ -33,10 +32,6 @@ Profile.Title = function ProfileTitle({ children, ...restProps }) {
 
 Profile.Card = function ProfileCard({ children, ...restProps }) {
   return <Card {...restProps}>{children}</Card>;
-};
-
-Profile.CardContent = function ProfileCardContent({ children, ...restProps }) {
-  return <CardContent {...restProps}>{children}</CardContent>;
 };
 
 Profile.ButtonGroup = function ProfileButtonGroup({ children, ...restProps }) {

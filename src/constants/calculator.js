@@ -1,3 +1,5 @@
+import { getOptions } from "../helpers/data";
+
 export const MACRO_RATIOS = [
   {
     name: "Low Carb",
@@ -48,10 +50,7 @@ export const GOALS_DATA = {
   bulking: "Bulking",
 };
 
-export const goalsOptions = Object.keys(GOALS_DATA).map((value) => ({
-  label: GOALS_DATA[value],
-  value,
-}));
+export const goalsOptions = getOptions(GOALS_DATA);
 
 export const getGoalsLabel = (value) => GOALS_DATA[value] || "";
 
@@ -60,10 +59,7 @@ export const GENDER_DATA = {
   female: "Female",
 };
 
-export const genderOptions = Object.keys(GENDER_DATA).map((value) => ({
-  label: GENDER_DATA[value],
-  value,
-}));
+export const genderOptions = getOptions(GENDER_DATA);
 
 export const getGenderLabel = (value) => GENDER_DATA[value] || "";
 
@@ -82,8 +78,7 @@ export const ACTIVITY_TOOLTIP_DATA = {
     "Slightly active, exercise or light sports 1 to 3 days a week, light jogging or walking 3 to 4 days a week",
   moderate:
     "Moderately Active, physical work, exercise, or sports 4 to 5 days a week",
-  high:
-    "Very active, heavy physical work, exercise, or sports 6 to 7 days a week, hard laborer",
+  high: "Very active, heavy physical work, exercise, or sports 6 to 7 days a week, hard laborer",
   extreme:
     "Extremely active, very heavy physical work or exercise every day, professional/olympic athlete",
 };

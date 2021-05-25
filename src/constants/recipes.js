@@ -1,3 +1,5 @@
+import { getOptions } from "../helpers/data";
+
 export const DIET_DATA = {
   balanced: "Balanced",
   "high-protein": "High-protein",
@@ -5,10 +7,7 @@ export const DIET_DATA = {
   "low-carb": "Low-carb",
 };
 
-export const dietOptions = Object.keys(DIET_DATA).map((value) => ({
-  label: DIET_DATA[value],
-  value,
-}));
+export const dietOptions = getOptions(DIET_DATA);
 
 export const MEAL_TYPE_DATA = {
   breakfast: "Breakfast",
@@ -17,10 +16,7 @@ export const MEAL_TYPE_DATA = {
   snack: "Snack",
 };
 
-export const mealTypeOptions = Object.keys(MEAL_TYPE_DATA).map((value) => ({
-  label: MEAL_TYPE_DATA[value],
-  value,
-}));
+export const mealTypeOptions = getOptions(MEAL_TYPE_DATA);
 
 export const PAGES = {
   SEARCH: "search",

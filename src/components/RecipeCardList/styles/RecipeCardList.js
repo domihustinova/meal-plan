@@ -2,7 +2,8 @@ import styled from "styled-components/macro";
 
 export const Container = styled.div`
   max-width: 750px;
-  margin: 36px;
+  width: 100%;
+  margin: 36px auto;
   display: flex;
   flex-direction: column;
   border-radius: 7.5px;
@@ -13,7 +14,7 @@ export const Frame = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  max-width: 750px;
+  width: 100%;
 `;
 
 export const Card = styled.div`
@@ -94,19 +95,21 @@ export const Title = styled.h3`
 
 export const ButtonGroup = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  align-items: flex-end;
 `;
 
 export const Button = styled.button`
-  height: 40px;
+  height: 35px;
+  width: 35px;
   padding: 10px;
+  margin-left: 5px;
 
-  background-color: white;
-  color: #46b04a;
+  color: white;
+  background-color: #72be6c;
 
-  border: none;
-  border-left: 1px solid #f4f6f3;
-  border-bottom: 1px solid #f4f6f3;
+  border: 1px solid #f4f6f3;
+  border-radius: 50%;
 
   font-size: 10px;
   font-weight: 500;
@@ -123,6 +126,6 @@ export const Button = styled.button`
   &:hover,
   &:focus {
     color: white;
-    background-color: #72be6c;
+    background-color: #46b04a;
   }
 `;

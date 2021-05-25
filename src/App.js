@@ -7,6 +7,7 @@ import { GlobalStyle } from "./theme/globalStyle";
 
 import {
   useAuthListener,
+  useMealsListener,
   useMeasurementsListener,
   useRecipesListener,
 } from "./hooks";
@@ -19,15 +20,17 @@ import {
   faPencilAlt,
   faTh,
   faThList,
+  faTrashAlt,
   faSearch,
 } from "@fortawesome/free-solid-svg-icons";
 
-library.add(fab, faCheck, faPencilAlt, faSearch, faTh, faThList);
+library.add(fab, faCheck, faPencilAlt, faSearch, faTh, faTrashAlt, faThList);
 
 function App() {
   const { user } = useAuthListener();
   const { measurementsData } = useMeasurementsListener(user);
   const { savedRecipes, savedRecipesIds } = useRecipesListener(user);
+  const { savedMeals, savedMealsIds } = useMealsListener(user);
 
   return (
     <Router>
@@ -39,6 +42,8 @@ function App() {
             measurementsData={measurementsData}
             savedRecipes={savedRecipes}
             savedRecipesIds={savedRecipesIds}
+            savedMeals={savedMeals}
+            savedMealsIds={savedMealsIds}
           />
         </Switch>
       </ThemeProvider>

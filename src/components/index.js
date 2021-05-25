@@ -3,6 +3,7 @@ export { default as Hero } from "./Hero/Hero";
 export { default as Footer } from "./Footer/Footer";
 export { default as Form } from "./Form/Form";
 export { default as Profile } from "./Profile/Profile";
+export { default as MealForm } from "./MealForm/MealForm";
 export { default as RecipeCardGrid } from "./RecipeCardGrid/RecipeCardGrid";
 export { default as RecipeCardList } from "./RecipeCardList/RecipeCardList";
 export { default as RecipeModal } from "./RecipeModal/RecipeModal";
