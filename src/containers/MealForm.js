@@ -1,5 +1,6 @@
 import React, { useState, useContext } from "react";
 import { Formik, Form } from "formik";
+import _ from "lodash";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Dialog from "@material-ui/core/Dialog";
@@ -37,7 +38,7 @@ export function MealFormContainer({
       )
       .map((ingredient) => ({
         ...ingredient,
-        weight: parseInt(ingredient.weight),
+        weight: Number(ingredient.weight),
       }));
   };
 
@@ -115,19 +116,18 @@ export function MealFormContainer({
 
   const handleIngredientInputChange = (e, index) => {
     const { name, value } = e.target;
-    const list = [...ingredients];
-    list[index][name] = value;
-    setIngredients(list);
+    const updatedIngredients = _.cloneDeep(ingredients);
+    updatedIngredients[index][name] = value;
+    setIngredients(updatedIngredients);
   };
 
   const handleIngredientRemoveClick = (index) => {
-    const list = [...ingredients];
-    list.splice(index, 1);
-    setIngredients(list);
+    setIngredients(ingredients.filter((_, idx) => idx !== index));
   };
 
   const handleIngredientAddClick = () => {
-    setIngredients([...ingredients, { weight: "", text: "" }]);
+    const updatedIngredients = _.cloneDeep(ingredients);
+    setIngredients([...updatedIngredients, { weight: "", text: "" }]);
   };
 
   return (
@@ -258,9 +258,7 @@ export function MealFormContainer({
                             type="number"
                             placeholder="g"
                             value={
-                              ingredient.weight
-                                ? Math.round(ingredient.weight)
-                                : ingredient.weight
+                              ingredient.weight && Math.round(ingredient.weight)
                             }
                             onChange={(e) =>
                               handleIngredientInputChange(e, index)
