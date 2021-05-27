@@ -13,6 +13,8 @@ import {
   getActivityLabel,
 } from "../constants/calculator";
 
+import { getCalories } from "../helpers/calories";
+
 export function ProfileContainer({ user, measurementsData }) {
   const { db } = useContext(FirestoreContext);
 
@@ -43,18 +45,27 @@ export function ProfileContainer({ user, measurementsData }) {
     setIsProfileEditable(!isProfileEditable);
     const uid = user.uid;
 
+    const measurements = {
+      gender: gender,
+      age: parseFloat(age),
+      weight: parseFloat(weight),
+      height: parseFloat(height),
+      activity: activity,
+      goal: goal,
+    };
+
     db.collection("user")
       .doc(uid)
       .set({
-        measurements: {
-          gender: gender,
-          age: parseFloat(age),
-          weight: parseFloat(weight),
-          height: parseFloat(height),
-          activity: activity,
-          goal: goal,
-        },
+        measurements,
       })
+      .catch(function (error) {
+        console.error("Error adding document: ", error);
+      });
+
+    db.collection("calories")
+      .doc(uid)
+      .set(getCalories(measurements))
       .catch(function (error) {
         console.error("Error adding document: ", error);
       });
