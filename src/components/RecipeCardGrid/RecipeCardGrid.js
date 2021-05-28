@@ -11,7 +11,6 @@ import {
   FooterButton,
   FooterView,
   Image,
-  MealType,
   TextContainer,
   Time,
   Title,
@@ -42,13 +41,6 @@ RecipeCardGrid.TextContainer = function RecipeCardGridTextContainer({
 
 RecipeCardGrid.Time = function RecipeCardGridTime({ children, ...restProps }) {
   return <Time {...restProps}>{children}</Time>;
-};
-
-RecipeCardGrid.MealType = function RecipeCardGridMealType({
-  children,
-  ...restProps
-}) {
-  return <MealType {...restProps}>{children}</MealType>;
 };
 
 RecipeCardGrid.Title = function RecipeCardGridTitle({

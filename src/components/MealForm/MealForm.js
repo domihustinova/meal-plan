@@ -5,11 +5,6 @@ import {
   Button,
   ButtonGroup,
   Card,
-  IngredientInput,
-  IngredientInputButton,
-  IngredientInputButtonGroup,
-  IngredientInputGroup,
-  IngredientInputRow,
   InputButtonGroupContainer,
   InputButtonOption,
   InputButtonOptionGroup,
@@ -80,47 +75,6 @@ MealForm.ButtonGroup = function MealFormButtonGroup({
   ...restProps
 }) {
   return <ButtonGroup {...restProps}>{children}</ButtonGroup>;
-};
-
-MealForm.IngredientInput = function MealFormIngredientInput({
-  children,
-  ...restProps
-}) {
-  return <IngredientInput {...restProps}>{children}</IngredientInput>;
-};
-
-MealForm.IngredientInputButton = function MealFormIngredientInputButton({
-  children,
-  ...restProps
-}) {
-  return (
-    <IngredientInputButton {...restProps}>{children}</IngredientInputButton>
-  );
-};
-
-MealForm.IngredientInputButtonGroup = function MealFormIngredientInputButton({
-  children,
-  ...restProps
-}) {
-  return (
-    <IngredientInputButtonGroup {...restProps}>
-      {children}
-    </IngredientInputButtonGroup>
-  );
-};
-
-MealForm.IngredientInputRow = function MealFormIngredientInputRow({
-  children,
-  ...restProps
-}) {
-  return <IngredientInputRow {...restProps}>{children}</IngredientInputRow>;
-};
-
-MealForm.IngredientInputGroup = function MealFormIngredientInputGroup({
-  children,
-  ...restProps
-}) {
-  return <IngredientInputGroup {...restProps}>{children}</IngredientInputGroup>;
 };
 
 MealForm.InputContainer = function MealFormInputContainer({

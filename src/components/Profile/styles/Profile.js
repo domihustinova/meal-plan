@@ -8,7 +8,7 @@ export const Container = styled.div`
 export const Header = styled.header`
   display: flex;
   align-items: center;
-  margin-bottom: 24px;
+  margin: 24px 0;
 `;
 
 export const Title = styled.h1`

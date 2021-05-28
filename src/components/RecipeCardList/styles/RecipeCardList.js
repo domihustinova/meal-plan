@@ -3,7 +3,7 @@ import styled from "styled-components/macro";
 export const Container = styled.div`
   max-width: 750px;
   width: 100%;
-  margin: 15px auto;
+  margin: 36px auto;
   display: flex;
   flex-direction: column;
   border-radius: 7.5px;
