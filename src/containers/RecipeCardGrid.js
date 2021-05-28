@@ -7,16 +7,24 @@ import { getLabel } from "../helpers/recipes";
 import food from "../images/food.png";
 
 export function RecipeCardGridContainer({ recipe, children }) {
-  const { label, calories, image, totalNutrients, totalTime } = recipe;
+  const { label, calories, image, totalNutrients, totalTime, mealType } =
+    recipe;
 
   const { PROCNT: protein, CHOCDF: carbs, FAT: fat } = totalNutrients;
 
+  const isImageMissing = (image) => (image ? image.includes("svg") : true);
+
   return (
     <RecipeCardGrid>
-      {totalTime !== 0 && totalTime && (
-        <RecipeCardGrid.Time>{totalTime} mins</RecipeCardGrid.Time>
+      {mealType && (
+        <RecipeCardGrid.MealType>{mealType}</RecipeCardGrid.MealType>
       )}
-      <RecipeCardGrid.Image src={image || food} />
+      {totalTime !== 0 && totalTime && (
+        <RecipeCardGrid.Time hasMealType={mealType}>
+          {totalTime} mins
+        </RecipeCardGrid.Time>
+      )}
+      <RecipeCardGrid.Image src={isImageMissing(image) ? food : image} />
       <RecipeCardGrid.TextContainer>
         <RecipeCardGrid.Title>{getLabel(label)}</RecipeCardGrid.Title>
         <RecipeCardGrid.EnergyContainer>

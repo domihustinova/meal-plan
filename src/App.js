@@ -17,14 +17,26 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import { fab } from "@fortawesome/free-brands-svg-icons";
 import {
   faCheck,
+  faMinus,
   faPencilAlt,
+  faPlus,
   faTh,
   faThList,
   faTrashAlt,
   faSearch,
 } from "@fortawesome/free-solid-svg-icons";
 
-library.add(fab, faCheck, faPencilAlt, faSearch, faTh, faTrashAlt, faThList);
+library.add(
+  fab,
+  faCheck,
+  faMinus,
+  faPencilAlt,
+  faSearch,
+  faPlus,
+  faTh,
+  faTrashAlt,
+  faThList
+);
 
 function App() {
   const { user } = useAuthListener();
