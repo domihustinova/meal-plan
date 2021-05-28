@@ -285,7 +285,7 @@ export function MealFormContainer({
                                 <FontAwesomeIcon icon="minus" size="lg" />
                               </MealForm.IngredientInputButton>
                             )}
-                            {ingredients[index].weight &&
+                            {ingredients[index].weight !== "" &&
                             ingredients[index].text &&
                             ingredients.length - 1 === index ? (
                               <MealForm.IngredientInputButton
