@@ -1,6 +1,8 @@
 import React, { useState, useContext } from "react";
 import { Formik, Form } from "formik";
+import _ from "lodash";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Dialog from "@material-ui/core/Dialog";
 import { makeStyles } from "@material-ui/core/styles";
 import CircularProgress from "@material-ui/core/CircularProgress";
@@ -10,45 +12,68 @@ import { MealForm } from "../components/";
 import { mealTypeOtions } from "../constants/mealForm";
 import { validationSchemaMealForm } from "../helpers/validations";
 
-export function MealFormContainer({ uid, open, setOpen, meal, formType }) {
+import { SUB_PAGES } from "../constants/recipes";
+
+export function MealFormContainer({
+  uid,
+  open,
+  setOpen,
+  mealData,
+  formType,
+  subPage,
+}) {
   const { db } = useContext(FirestoreContext);
 
   const [showSuccessCard, setShowSuccessCard] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
-  const mealId = meal?.id;
+  const [ingredients, setIngredients] = useState(
+    mealData?.ingredients || [{ weight: "", text: "" }]
+  );
+
+  const getIngredients = (ingredients) => {
+    return ingredients
+      .filter(
+        (ingredient) => ingredient.weight !== "" && ingredient.text !== ""
+      )
+      .map((ingredient) => ({
+        ...ingredient,
+        weight: Number(ingredient.weight),
+      }));
+  };
 
   const saveMeal = (values) => {
     setIsLoading(true);
     const meal = {
+      ...mealData,
       label: values.label,
-      calories: values.calories,
+      calories: Math.round(values.calories),
       totalNutrients: {
         PROCNT: {
           label: "Protein",
-          quantity: values.protein,
+          quantity: Math.round(values.protein),
           unit: "g",
         },
         CHOCDF: {
           label: "Carbs",
-          quantity: values.carbs,
+          quantity: Math.round(values.carbs),
           unit: "g",
         },
         FAT: {
           label: "Fat",
-          quantity: values.fat,
+          quantity: Math.round(values.fat),
           unit: "g",
         },
       },
-
       yield: values.portions,
-      mealType: values.mealType,
+      mealType: [values.mealType],
+      ingredients: getIngredients(ingredients),
     };
 
     db.collection("meals")
       .doc(uid)
       .collection("userMeals")
-      .doc(mealId || Math.random().toString(36).slice(2))
+      .doc(meal.id || Math.random().toString(36).slice(2))
       .set(meal)
       .then(() => {
         setIsLoading(false);
@@ -62,6 +87,7 @@ export function MealFormContainer({ uid, open, setOpen, meal, formType }) {
   const handleClose = () => {
     setOpen(false);
     setShowSuccessCard(false);
+    setIngredients(mealData?.ingredients || [{ weight: "", text: "" }]);
   };
 
   const classes = makeStyles(() => ({
@@ -79,14 +105,31 @@ export function MealFormContainer({ uid, open, setOpen, meal, formType }) {
   };
 
   const editMealFormInitialValues = {
-    label: meal?.label,
-    calories: meal?.calories,
-    protein: meal?.totalNutrients?.PROCNT.quantity,
-    carbs: meal?.totalNutrients?.CHOCDF.quantity,
-    fat: meal?.totalNutrients?.FAT.quantity,
-    portions: meal?.yield,
-    mealType: meal?.mealType,
+    label: mealData?.label,
+    calories: Math.round(mealData?.calories),
+    protein: Math.round(mealData?.totalNutrients?.PROCNT.quantity),
+    carbs: Math.round(mealData?.totalNutrients?.CHOCDF.quantity),
+    fat: Math.round(mealData?.totalNutrients?.FAT.quantity),
+    portions: mealData?.yield,
+    mealType: mealData?.mealType?.[0] || [],
   };
+
+  const handleIngredientInputChange = (e, index) => {
+    const { name, value } = e.target;
+    const updatedIngredients = _.cloneDeep(ingredients);
+    updatedIngredients[index][name] = value;
+    setIngredients(updatedIngredients);
+  };
+
+  const handleIngredientRemoveClick = (index) => {
+    setIngredients(ingredients.filter((_, idx) => idx !== index));
+  };
+
+  const handleIngredientAddClick = () => {
+    const updatedIngredients = _.cloneDeep(ingredients);
+    setIngredients([...updatedIngredients, { weight: "", text: "" }]);
+  };
+
   return (
     <>
       {open && (
@@ -99,9 +142,11 @@ export function MealFormContainer({ uid, open, setOpen, meal, formType }) {
             <MealForm.SuccessCard>
               <MealForm.SuccessCardTitle>Success!</MealForm.SuccessCardTitle>
               <MealForm.SuccessCardText>
-                {`Meal was successfully ${
-                  formType === "add" ? "added" : "changed"
-                }.`}
+                {subPage === SUB_PAGES.SAVED_RECIPES
+                  ? "Recipe was successfully changed and added to My Meals."
+                  : `Meal was successfully ${
+                      formType === "add" ? "added" : "changed"
+                    }.`}
               </MealForm.SuccessCardText>
               <MealForm.ButtonGroup>
                 <MealForm.Button
@@ -128,9 +173,9 @@ export function MealFormContainer({ uid, open, setOpen, meal, formType }) {
             >
               <Form>
                 <MealForm>
-                  <MealForm.Title>{`${
-                    formType === "add" ? "Add" : "Edit"
-                  } meal`}</MealForm.Title>
+                  <MealForm.Title>{`${formType === "add" ? "Add" : "Edit"} ${
+                    subPage === SUB_PAGES.SAVED_RECIPES ? "recipe" : "meal"
+                  }`}</MealForm.Title>
 
                   <MealForm.Row>
                     <MealForm.RowTitle>Name</MealForm.RowTitle>
@@ -203,6 +248,59 @@ export function MealFormContainer({ uid, open, setOpen, meal, formType }) {
                     />
                   </MealForm.Row>
 
+                  <MealForm.Row>
+                    <MealForm.RowTitle>Ingredients</MealForm.RowTitle>
+                    <MealForm.IngredientInputGroup>
+                      {ingredients.map((ingredient, index) => (
+                        <MealForm.IngredientInputRow>
+                          <MealForm.IngredientInput
+                            name="weight"
+                            type="number"
+                            placeholder="g"
+                            value={
+                              ingredient.weight && Math.round(ingredient.weight)
+                            }
+                            onChange={(e) =>
+                              handleIngredientInputChange(e, index)
+                            }
+                          />
+                          g
+                          <MealForm.IngredientInput
+                            name="text"
+                            type="text"
+                            placeholder=" "
+                            value={ingredient.text}
+                            onChange={(e) =>
+                              handleIngredientInputChange(e, index)
+                            }
+                          />
+                          <MealForm.IngredientInputButtonGroup>
+                            {ingredients.length !== 1 && (
+                              <MealForm.IngredientInputButton
+                                type="button"
+                                onClick={() =>
+                                  handleIngredientRemoveClick(index)
+                                }
+                              >
+                                <FontAwesomeIcon icon="minus" size="lg" />
+                              </MealForm.IngredientInputButton>
+                            )}
+                            {ingredients[index].weight !== "" &&
+                            ingredients[index].text &&
+                            ingredients.length - 1 === index ? (
+                              <MealForm.IngredientInputButton
+                                type="button"
+                                onClick={handleIngredientAddClick}
+                              >
+                                <FontAwesomeIcon icon="plus" size="lg" />
+                              </MealForm.IngredientInputButton>
+                            ) : null}
+                          </MealForm.IngredientInputButtonGroup>
+                        </MealForm.IngredientInputRow>
+                      ))}
+                    </MealForm.IngredientInputGroup>
+                  </MealForm.Row>
+
                   <MealForm.ButtonGroup>
                     <MealForm.Button
                       themetype="secondaryGreen"
@@ -235,7 +333,11 @@ export function MealFormContainer({ uid, open, setOpen, meal, formType }) {
                         {isLoading ? (
                           <CircularProgress color="inherit" />
                         ) : (
-                          "Save"
+                          `${
+                            subPage === SUB_PAGES.SAVED_RECIPES
+                              ? "Save to My Meals"
+                              : "Save"
+                          }`
                         )}
                       </MealForm.Button>
                     )}

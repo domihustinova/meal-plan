@@ -90,7 +90,8 @@ export const RowText = styled.p`
 
 export const Button = styled(CommonButton)`
   border-radius: 10px;
-  width: 105px;
+  width: 100%;
+  max-width: 175px;
   height: 40px;
   padding: 0;
   margin-left: 12px;
@@ -115,7 +116,7 @@ export const Input = styled.input`
   padding-left: 10px;
   height: 30px;
   margin-left: 10px;
-  text-align: left;
+  text-align: ${(props) => (props.type === "number" ? "center" : "left")};
   outline: none;
   border: 1px solid #e5eae7;
   transition: all ${({ theme }) => theme.durationNormal} ease-in-out;
@@ -155,4 +156,60 @@ export const Error = styled.span`
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+`;
+
+export const IngredientInput = styled(Input)`
+  width: ${(props) => (props.type === "number" ? "75px" : "300px")};
+  margin-right: 5px;
+`;
+
+export const IngredientInputRow = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  &:not(:last-of-type) {
+    margin-bottom: 10px;
+  }
+`;
+
+export const IngredientInputGroup = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+export const IngredientInputButton = styled.button`
+  height: 30px;
+  width: 30px;
+  margin-left: 5px;
+
+  color: white;
+  background-color: #72be6c;
+
+  border: 1px solid #f4f6f3;
+  border-radius: 50%;
+
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 2px;
+
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: all ease-in-out 300ms;
+  flex: 1;
+
+  cursor: pointer;
+  outline: none;
+
+  &:hover,
+  &:focus {
+    color: white;
+    background-color: #46b04a;
+  }
+`;
+
+export const IngredientInputButtonGroup = styled.div`
+  display: flex;
+  flex-direction: row;
 `;
