@@ -12,16 +12,12 @@
 
 <p align="center">
   <h2 align="center">🚧 This project is still a work in progress 🚧</h2>
-  <p align="center">That means that some pages can be missing styles or functionality. Every new feature is created with a desktop-first approach and almost nothing is responsive yet and the mobile version looks horrible. Believe me, I know 🙈 Making this app responsive is the first thing on my to-do list after the main functionality is successfully done.</p>
 </p>
-
----
 
 ### ⚙️ Installation
 
-- open project [MealPal](https://meal-pal.herokuapp.com/) directly in your browser (Google Chrome recommended)
+- open project [MealPal](https://meal-pal.vercel.app/) directly in your browser (Google Chrome recommended)
 - or clone project [meal-plan](https://github.com/domihustinova/meal-plan) from GitHub, create [Firebase project](https://firebase.google.com/) and replace `firebaseConfig` in the file `meal-plan/src/lib/firebase.prod.js` with your own keys and identifiers and run `yarn install && yarn start`
-- the app is using [meal-plan-backend](https://github.com/domihustinova/meal-plan-backend) for requests to Edamam API; you can clone this project, create your ID and API Key from [Recipe Search API](https://developer.edamam.com/edamam-docs-recipe-api) and replace them in the `meal-plan-backend/index.js` file (don't forget to replace the URL in the `meal-plan/src/constants/recipeApi.js` file)
 
 ```
 const firebaseConfig = {
@@ -35,10 +31,11 @@ const firebaseConfig = {
 };
 ```
 
+If you would like to check the app but you don't feel like creating an account, you can use these test credentials:
+
 ```
-export const API = {
-  URL: "https://meal-pal-backend.herokuapp.com/",
-};
+mealpaltest@gmail.com
+mealpal123
 ```
 
 ---
@@ -73,19 +70,3 @@ export const API = {
 - Google Sign-In
 - account settings
 - and many more...
-
----
-
-### 📌 Dependencies used in the project
-
-- `create-react-app`
-- `react-query`
-- `react-router-dom`
-- `firebase`
-- `formik`
-- `build-url`
-- `yup`
-- `styled-components`
-- `@material-ui`
-- `@fortawesome`
-- `@iconify-icons`
