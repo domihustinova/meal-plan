@@ -2,28 +2,25 @@ import React, { useState, useEffect } from "react";
 import { SummaryContainer } from "../containers/Summary";
 import { WelcomeContainer } from "../containers/Welcome";
 
-import { getCalories } from "../helpers/calories";
+import { getGoalData } from "../helpers/calories";
 
-export default function Overview({ measurementsData }) {
-  const [caloriesData, setCaloriesData] = useState("");
+export default function Overview({ measurementsData, caloriesData }) {
+  const [goalData, setGoalData] = useState({});
 
-  const handleCaloriesData = (data) => {
-    setCaloriesData(getCalories(data));
+  const handleGoalData = (measurementsData, caloriesData) => {
+    setGoalData(getGoalData(caloriesData, measurementsData.goal));
   };
 
   useEffect(() => {
-    if (measurementsData?.gender) {
-      handleCaloriesData(measurementsData);
+    if (caloriesData?.goalsData) {
+      handleGoalData(measurementsData, caloriesData);
     }
-  }, [measurementsData]);
+  }, [measurementsData, caloriesData]);
 
   return (
     <>
-      {caloriesData ? (
-        <SummaryContainer
-          measurementsData={measurementsData}
-          caloriesData={caloriesData}
-        />
+      {goalData?.ratios ? (
+        <SummaryContainer goalData={goalData} />
       ) : (
         <WelcomeContainer />
       )}

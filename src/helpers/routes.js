@@ -20,6 +20,7 @@ export function RoutesRedirect({
   savedRecipesIds,
   savedMeals,
   savedMealsIds,
+  caloriesData,
 }) {
   return (
     <>
@@ -39,6 +40,7 @@ export function RoutesRedirect({
         component={Overview}
         user={user}
         measurementsData={measurementsData}
+        caloriesData={caloriesData}
       />
       <PrivateRoute
         exact
@@ -55,7 +57,16 @@ export function RoutesRedirect({
         user={user}
         measurementsData={measurementsData}
       />
-      <PrivateRoute exact path={ROUTES.EDITOR} component={Editor} user={user} />
+      <PrivateRoute
+        exact
+        path={ROUTES.EDITOR}
+        component={Editor}
+        user={user}
+        savedRecipes={savedRecipes}
+        savedMeals={savedMeals}
+        measurementsData={measurementsData}
+        caloriesData={caloriesData}
+      />
       <PrivateRoute
         exact
         path={ROUTES.RECIPES}
@@ -73,6 +84,7 @@ function PrivateRoute({
   savedRecipes,
   savedRecipesIds,
   savedMeals,
+  caloriesData,
   component: Component,
   ...rest
 }) {
@@ -89,6 +101,7 @@ function PrivateRoute({
               savedRecipes={savedRecipes}
               savedRecipesIds={savedRecipesIds}
               savedMeals={savedMeals}
+              caloriesData={caloriesData}
             />
           </LayoutContainer>
         ) : (

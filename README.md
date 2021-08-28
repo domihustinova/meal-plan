@@ -38,6 +38,13 @@ mealpaltest@gmail.com
 mealpal123
 ```
 
+If you would like to check the app but you don't feel like creating an account, you can use these test credentials:
+
+```
+mealpaltest@gmail.com
+mealpal123
+```
+
 ---
 
 ### 🚀 Current Features

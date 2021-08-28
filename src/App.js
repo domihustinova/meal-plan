@@ -7,6 +7,7 @@ import { GlobalStyle } from "./theme/globalStyle";
 
 import {
   useAuthListener,
+  useCaloriesListener,
   useMealsListener,
   useMeasurementsListener,
   useRecipesListener,
@@ -43,6 +44,7 @@ function App() {
   const { measurementsData } = useMeasurementsListener(user);
   const { savedRecipes, savedRecipesIds } = useRecipesListener(user);
   const { savedMeals, savedMealsIds } = useMealsListener(user);
+  const { caloriesData } = useCaloriesListener(user);
 
   return (
     <Router>
@@ -56,6 +58,7 @@ function App() {
             savedRecipesIds={savedRecipesIds}
             savedMeals={savedMeals}
             savedMealsIds={savedMealsIds}
+            caloriesData={caloriesData}
           />
         </Switch>
       </ThemeProvider>
